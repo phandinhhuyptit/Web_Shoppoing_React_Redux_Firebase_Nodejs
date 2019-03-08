@@ -1,28 +1,50 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './component/Header/Header';
+import Path from './component/Path/Path';
+import Footer from './component/Footer/Footer';
+
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ShowLogin: false
+
+    }
+  }
+
+
+  OnShowLogin = () => {
+
+
+    this.setState({
+
+      ShowLogin: true
+
+    })
+
+  }
+  OffShowLogin = () => {
+
+
+    this.setState({
+
+      ShowLogin: false
+
+    })
+
+  }
+  
+
   render() {
+    const { ShowLogin } = this.state
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Header ShowLogin={ShowLogin} ClickShowLogin={this.OnShowLogin} ClickCloseLogin={this.OffShowLogin}></Header>       
+        <Path></Path>
+        <Footer ></Footer>
       </div>
     );
   }
 }
-
 export default App;

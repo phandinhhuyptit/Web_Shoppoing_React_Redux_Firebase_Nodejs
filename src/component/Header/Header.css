@@ -1,0 +1,64 @@
+.example-leave {
+    opacity: 1;
+  }
+  
+.example-leave.example-leave-active {
+    opacity: 0.01;
+    transition: opacity 500ms ease-in;
+  }
+
+.Nav-enter {
+
+  transform:  translateX(-100%);
+
+}
+
+
+.Nav-enter-active {
+
+  animation: Nav-In 500ms ease-in forwards;
+
+}
+
+.Nav-leave {
+
+  transform:  translateX(0%);
+}
+.Nav-leave-active {
+
+    animation: Nav-Out 500ms ease-out forwards;
+}
+
+
+@keyframes Nav-In {
+
+
+  from {
+
+    transform:  translateX(-100%);
+
+  }
+  to {
+
+    transform:  translateX(0);
+  }
+}
+
+ @keyframes Nav-Out {
+
+  from {
+    
+    /*-webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);*/
+    /* transform:  none */
+    transform:  translateX(0%);
+   
+  }
+
+  to {
+    /* opacity: 1;
+    transform: translate3d(-300px,0,0); */
+    transform:  translateX(-100%);
+   
+  }
+ }
