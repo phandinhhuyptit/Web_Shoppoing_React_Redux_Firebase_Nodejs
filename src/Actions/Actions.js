@@ -29,4 +29,17 @@ export function Close_Silde_Bar(Close_Slide_Bar){
     } 
 
 }
+export function Show_Notification_Product(Show_Product){
 
+    return {
+        type : Action.Show_Notification_Product,
+        Show_Product
+    }
+}
+export function Close_Notification_Product(Close_Product){
+    return {
+            type : Action.Close_Notification_Product,
+            Close_Product
+
+    }
+}

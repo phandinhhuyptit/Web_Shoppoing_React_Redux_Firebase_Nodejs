@@ -1,0 +1,53 @@
+/* .Notification-enter {
+    opacity: 0.01;
+}
+.Notification-enter.Notification-enter-active {   
+    opacity: 1;
+    transition: opcacity 500ms ease-in
+} */
+
+.Notification-enter {
+    opacity: 0.01;
+    transform: scale(0);
+  }
+  
+  
+  .Notification-enter.Notification-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 300ms ease-in;
+  } 
+  
+  
+  .Notification-leave {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .Notification-leave.Notification-leave-active {
+    opacity: 0.01;
+    transform: scale(0);
+    transition: all 300ms ease-in;
+  }
+
+.Background_Notification-enter {
+    
+    opacity: 0.01;
+
+
+}
+.Background_Notification-enter.Background_Notification-enter-active {
+    opacity: 1;
+    transition : opcatity  300ms ease-out;
+
+}
+.Background_Notification-leave {
+
+    opacity: 1;
+}
+.Background_Notification-leave.Background_Notification-leave-active{
+
+    opacity: 0.01;
+    transition : opcatity  300ms ease-out;
+
+}

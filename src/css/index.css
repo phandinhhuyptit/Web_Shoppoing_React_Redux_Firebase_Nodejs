@@ -1273,13 +1273,8 @@ a.carousel-control-prev.previous:hover,a.carousel-control-next.next:hover {
     background-color: #fff;
     border-radius: 4px;
     margin-left: -200px;
-    margin-top: -100px;
-    visibility: hidden;
-    transition:0.5s;  
-    opacity: 0;
-    transform: scale(0);
+    margin-top: -100px; 
     z-index: 2;
-
 
 }
 
@@ -1295,6 +1290,17 @@ a.carousel-control-prev.previous:hover,a.carousel-control-next.next:hover {
     text-align: center;
     padding-top: 21px;
 }
+.Notification .CheckOutButton .btn-success {
+    margin: 0px 8px;
+    color:white;
+}
+
+.Notification .CheckOutButton .btn-success:hover {    
+    color:white;
+}
+
+
+
 /* End Notification Cart */
 
 /* ================================================> End Page Home<==================================================== */

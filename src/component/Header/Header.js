@@ -29,7 +29,7 @@ class Header extends Component {
         this.props.on_Close_Silde_Bar(this.props.OnNav);
 
     }
-
+    
 
     render() {
         let Login, Background, Backgroud_Nav, Nav;
@@ -46,7 +46,7 @@ class Header extends Component {
                                 <h3>Đăng Nhập</h3>
                             </div>
                             <div className="col-6 text-register">
-                                <a href>Tạo Tài Khoản</a>
+                                <a href="true">Tạo Tài Khoản</a>
                             </div>
                         </div>
                         <label htmlFor="uname"><b>Tài khoản</b></label>

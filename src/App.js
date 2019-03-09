@@ -4,7 +4,8 @@ import Path from './component/Path/Path';
 import Footer from './component/Footer/Footer';
 import Carousel from './component/Home/Carousel/Carousel';
 import Blog from './component/Home/Blog/Blog';
-
+import Product from './component/Home/Product/Product';
+import Multiple_Slider from './component/Home/Multiple_Slider/Multiple_Slider';
 
 class App extends Component {
   constructor(props) {
@@ -45,7 +46,9 @@ class App extends Component {
         <Header ShowLogin={ShowLogin} ClickShowLogin={this.OnShowLogin} ClickCloseLogin={this.OffShowLogin}></Header>       
         <Path></Path>
         <Carousel></Carousel>
+        <Product></Product>        
         <Blog></Blog>
+        <Multiple_Slider></Multiple_Slider>
         <Footer ></Footer>
       </div>
     );
