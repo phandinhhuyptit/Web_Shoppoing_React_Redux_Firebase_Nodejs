@@ -1,0 +1,17 @@
+.Information567-enter {
+    opacity: 0.01;
+  }
+  
+  .Information567-enter.Information-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+  
+  .Information567-leave {
+    opacity: 1;
+  }
+  
+  .Information567-leave.Information-leave-active {
+    opacity: 0.01;
+    transition: opacity 500ms ease-in;
+  }

@@ -3,11 +3,10 @@ import * as Action from '../Contants/Action_Types';
 const ShoppingInitialState = {
 
     onShowNav : false
-
-
 }
 
 const rootReducer = (state = ShoppingInitialState, action) => {
+
     switch (action.type) {
         
         
@@ -25,10 +24,10 @@ const rootReducer = (state = ShoppingInitialState, action) => {
 
             }     
         case Action.Close_Slide_Bar :     
-            return {...state,onShowNav : !action.Close_Slide_Bar}
+            return {...state,onShowNav :!action.Close_Slide_Bar}
 
         default:
-            return state
+            return state;
     }
 }
 

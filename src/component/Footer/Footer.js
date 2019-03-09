@@ -1,10 +1,91 @@
 import React, { Component } from 'react';
 import Scroll_Top from './Scroll_Top/Scroll_Top';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import './Footer.css'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 
 
 class Footer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+
+            Name: 'HCM'
+
+
+        }
+
+        this.Adress = [];
+    }
+
+    On_Click_Data_Location = (event) => {
+
+
+        event.preventDefault();    
+
+        this.setState({
+
+            Name: event.target.name
+
+
+        })
+
+    }
+
     render() {
+
+
+        let adress, info, hotline;
+
+        if (this.state.Name === 'HCM') {
+
+
+            adress = <p className="Content-Address_0">
+                <i className="fas fa-map-marker-alt" />
+                220 Lý Thái Tổ, phường 1, Quận 3,Hồ Chí Minh
+                </p>
+            info = <p className="Content-Address_0">
+                <i className="fas fa-envelope" />
+                Nhox.Mjko@Gmail.com
+                </p>
+            hotline = <p className="Content-Address_0">
+                <i className="fas fa-mobile-alt" />
+                Hotline: 0996.579.888
+                 </p>
+
+        }
+        else if (this.state.Name === "HN") {
+            adress = <p className="Content-Address_1">
+                <i className="fas fa-map-marker-alt" />
+                210 - Lê Trọng Tấn - Quận Thanh Xuân - Hà Nội
+                </p>
+            info = <p className="Content-Address_1">
+                <i className="fas fa-envelope" />
+                DinhHuy@Gmail.com
+            </p>
+            hotline = <p className="Content-Address_1">
+                <i className="fas fa-mobile-alt" />
+                Hotline: 0965.789.666 - Phone: 02423.474.848
+        </p>
+
+        }
+        else {
+
+            adress = <p className="Content-Address_2">
+                <i className="fas fa-map-marker-alt" />
+                Số 5- phố Hải Long- Tp Hạ Long - Quảng Ninh
+                 </p>
+            hotline = <p className="Content-Address_2">
+                <i className="fas fa-mobile-alt" />
+                Hotline: 0962538366
+            </p>
+            info = <p className="Content-Address_2">
+                <i className="fas fa-envelope" />
+                HuyDepTrai@Gmail.com
+        </p>
+        }
+
         return (
             <div>
                 <div className="Contact-Footer">
@@ -12,80 +93,72 @@ class Footer extends Component {
                         <div className="row Contact">
                             <h3 className="col-12">
                                 LIÊN HỆ
-        </h3>
+                            </h3>
                             <div className="col-12  col-md-4 Content-Contact">
                                 <div className="Location-Information1 ">
-                                    <a className="Adress_And_Area_Content Active" href="#" data-locate="HCM">
+                                    <a onClick={(event) => this.On_Click_Data_Location(event)} name="HCM" data="HCM" className={`Adress_And_Area_Content ${this.state.Name === 'HCM' ? 'Active' : ''}`} href="#" ref={(ref) => this.Adress[0] = ref} >
                                         HỒ CHÍ MINH
-            </a>
+                                    </a>
                                 </div>
                             </div>
                             <div />
                             <div className="col-12 col-md-4 Content-Contact">
                                 <div className="Location-Information2">
-                                    <a className="Adress_And_Area_Content" href="#" data-locate="HN">
+                                    <a onClick={(event) => this.On_Click_Data_Location(event)} name="HN" data="HN" className={`Adress_And_Area_Content ${this.state.Name === 'HN' ? 'Active' : ''}`} href="#" ref={(ref) => this.Adress[1] = ref}>
                                         HÀ NỘI
-            </a>
+                                     </a>
                                 </div>
                             </div>
                             <div className="col-12 col-md-4 Content-Contact">
                                 <div className="Location-Information3">
-                                    <a className="Adress_And_Area_Content" href="#" data-locate="QN">
+                                    <a onClick={(event) => this.On_Click_Data_Location(event)} name="QN" data="QN" className={`Adress_And_Area_Content ${this.state.Name === 'QN' ? 'Active' : ''}`} href="#" ref={(ref) => this.Adress[2] = ref} >
                                         QUẢNG NINH(ĐẠI LÝ)
-            </a>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                         <div className="row Content-Address_2">
                             <div className="col-12 Address-Content-3  ">
                                 Cửa hàng máy tính MAGIC - đại lý độc quyền của Phan Đình Huy
-        </div>
+                            </div>
                         </div>
                         <div className="row Address">
-                            {/* HCM */}
+
                             <div className="col-12 col-md-4 Content-Address">
-                                <p className="Content-Address_0">
-                                    <i className="fas fa-map-marker-alt" />
-                                    220 Lý Thái Tổ, phường 1, Quận 3,Hồ Chí Minh
-          </p>
-                                <p className="Content-Address_1">
-                                    <i className="fas fa-map-marker-alt" />
-                                    210 - Lê Trọng Tấn - Quận Thanh Xuân - Hà Nội
-          </p>
-                                <p className="Content-Address_2">
-                                    <i className="fas fa-map-marker-alt" />
-                                    Số 5- phố Hải Long- Tp Hạ Long - Quảng Ninh
-          </p>
+                                <ReactCSSTransitionGroup
+                                    transitionName="Information567"
+                                    transitionEnterTimeout={500}
+                                    transitionLeaveTimeout={800}>
+
+
+                                    {adress}
+                                </ReactCSSTransitionGroup>
+
                             </div>
-                            {/* HN */}
+
                             <div className=" col-12 col-md-4 Content-Address">
-                                <p className="Content-Address_0">
-                                    <i className="fas fa-mobile-alt" />
-                                    Hotline: 0996.579.888
-          </p>
-                                <p className="Content-Address_1">
-                                    <i className="fas fa-mobile-alt" />
-                                    Hotline: 0965.789.666 - Phone: 02423.474.848
-          </p>
-                                <p className="Content-Address_2">
-                                    <i className="fas fa-mobile-alt" />
-                                    Hotline: 0962538366
-          </p>
+                                <ReactCSSTransitionGroup
+                                    transitionName="Information567"
+                                    transitionEnterTimeout={500}
+                                    transitionLeaveTimeout={800}>
+
+
+                                    {hotline}
+                                </ReactCSSTransitionGroup>
+
+
                             </div>
-                            {/* QN */}
+
                             <div className=" col-12 col-md-4 Content-Address">
-                                <p className="Content-Address_0">
-                                    <i className="fas fa-envelope" />
-                                    info@playzone.vn
-          </p>
-                                <p className="Content-Address_1">
-                                    <i className="fas fa-envelope" />
-                                    info@playzone.vn
-          </p>
-                                <p className="Content-Address_2">
-                                    <i className="fas fa-envelope" />
-                                    info@playzone.vn
-          </p>
+                                <ReactCSSTransitionGroup
+                                    transitionName="Information567"
+                                    transitionEnterTimeout={500}
+                                    transitionLeaveTimeout={800}>
+
+
+                                    {info}
+                                </ReactCSSTransitionGroup>
+
                             </div>
                         </div>
                     </div>
@@ -155,7 +228,7 @@ class Footer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-       }
+    }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {

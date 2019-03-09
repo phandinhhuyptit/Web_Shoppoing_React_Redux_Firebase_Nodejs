@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Header from './component/Header/Header';
 import Path from './component/Path/Path';
 import Footer from './component/Footer/Footer';
+import Carousel from './component/Home/Carousel/Carousel';
+import Blog from './component/Home/Blog/Blog';
 
 
 class App extends Component {
@@ -42,6 +44,8 @@ class App extends Component {
       <div className="App">
         <Header ShowLogin={ShowLogin} ClickShowLogin={this.OnShowLogin} ClickCloseLogin={this.OffShowLogin}></Header>       
         <Path></Path>
+        <Carousel></Carousel>
+        <Blog></Blog>
         <Footer ></Footer>
       </div>
     );

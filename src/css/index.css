@@ -265,6 +265,7 @@ ul[class*="support-policy"]{
      padding-left: 0;
      display: none;
      z-index: 2;
+     position: absolute;
 }
 .Header-Navigation ul > li {
     height: 59px;
@@ -719,7 +720,6 @@ div#Pagination {
 
 .Content_Items .Content .grid-items {
     width: 100%;
-    float: left;
     position: relative;
     transition: all 1s ease;
    
@@ -924,9 +924,9 @@ a.carousel-control-prev.previous:hover,a.carousel-control-next.next:hover {
     color: #007bff;
     cursor: default;    
 }
-.Content-Address_0 {clear: both;transition: all 2s;display: block;padding-top: 35px;text-align: center;font-size: 16px;color: white;opacity: 1;}
-.Content-Address_1 {clear: both;transition: all 2s;display: none;padding-top: 35px;text-align: center;font-size: 16px;color: white;opacity: 0;}
-.Content-Address_2 {clear: both;transition: all 2s;display:none;padding-top: 35px;text-align: center;font-size: 16px;color: white;opacity: 0;}
+.Content-Address_0 {clear: both;padding-top: 35px;text-align: center;font-size: 16px;color: white}
+.Content-Address_1 {clear: both;padding-top: 35px;text-align: center;font-size: 16px;color: white}
+.Content-Address_2 {clear: both;padding-top: 35px;text-align: center;font-size: 16px;color: white}
 
 .Contact-Footer .Contact .Content-Contact a {
     color: #FAFAF9;
@@ -2225,6 +2225,7 @@ align-items: center;
     @media only screen and (min-width: 576px)
     {
         
+        
         *{}
         #Video_Tech {
             width:500px;
@@ -2256,11 +2257,13 @@ align-items: center;
     header.Header.Scroll_Header .rowHeader .Search .header-search input.InputSeach {
         width:76% ;    
     }
+    
 
 
 }
 @media only screen and (min-width: 1px){
     *{}
+    
     header.Header.Scroll_Header .rowHeader .Logo .Menu-Mobile {
         position: absolute;
         z-index: 2;
@@ -2383,18 +2386,20 @@ header.Header.Scroll_Header .rowHeader .Search .header-search input.InputSeach {
         margin: auto;
         float: none;
     }
-    
+   
+ 
 }
 
 @media only screen and (min-width: 768px)  {
     *{}
+    
     .product_info .image-product  .thumb-items {
         top:50%;
     }
     .Zoom_Thumb_Items .Sub_Thumb_items_Image img.Thumb_Items_Image {
         width: 600px;
     }
-
+    
 
     #Video_Tech {
         width:600px;
