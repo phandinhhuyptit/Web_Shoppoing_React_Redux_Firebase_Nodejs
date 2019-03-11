@@ -2,10 +2,16 @@ import React, { Component } from 'react';
 import Header from './component/Header/Header';
 import Path from './component/Path/Path';
 import Footer from './component/Footer/Footer';
-import Carousel from './component/Home/Carousel/Carousel';
-import Blog from './component/Home/Blog/Blog';
-import Product from './component/Home/Product/Product';
-import Multiple_Slider from './component/Home/Multiple_Slider/Multiple_Slider';
+import Cart  from './component/Cart/Cart';
+import DetailProduct from './component/Detail_Product/Detail_Product';
+import Home from './component/Home/Home';
+import NotFound404 from './component/404/Not_Found_404';
+import Product from './component/Product/Product';
+
+
+
+
+
 
 class App extends Component {
   constructor(props) {
@@ -15,8 +21,6 @@ class App extends Component {
 
     }
   }
-
-
   OnShowLogin = () => {
 
 
@@ -25,8 +29,8 @@ class App extends Component {
       ShowLogin: true
 
     })
-
   }
+  
   OffShowLogin = () => {
 
 
@@ -35,20 +39,15 @@ class App extends Component {
       ShowLogin: false
 
     })
-
-  }
-  
+  }  
 
   render() {
+ 
     const { ShowLogin } = this.state
     return (
       <div className="App">
         <Header ShowLogin={ShowLogin} ClickShowLogin={this.OnShowLogin} ClickCloseLogin={this.OffShowLogin}></Header>       
-        <Path></Path>
-        <Carousel></Carousel>
-        <Product></Product>        
-        <Blog></Blog>
-        <Multiple_Slider></Multiple_Slider>
+        <Path></Path>               
         <Footer ></Footer>
       </div>
     );

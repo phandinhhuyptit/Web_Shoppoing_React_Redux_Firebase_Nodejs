@@ -60,7 +60,7 @@ class Header extends Component {
                     </div>
                     <div className="container" style={{ backgroundColor: '#f1f1f1' }}>
                         <button onClick={() => this.CloseLogin()} type="button" className="cancelbtn">Hủy</button>
-                        <span className="psw">Quên <a href="#">Mật Khẩu?</a></span>
+                        <span className="psw">Quên <a href="9">Mật Khẩu?</a></span>
                     </div>
                 </form>
             </div>
@@ -88,7 +88,7 @@ class Header extends Component {
                                 <i className="fas fa-align-justify icon-menu" />
                             </button>
                             <div className="header-logo">
-                                <a href="#">
+                                <a href="35">
                                     <img className="img-fluid img-logo" src=" https://cdn.worldvectorlogo.com/logos/react-native-firebase-1.svg" alt="Đồ Điện Tử Giá Rẻ" />
                                 </a>
                             </div>
@@ -105,7 +105,7 @@ class Header extends Component {
                             </div>
                         </div>
                         <div className="col-md-2 col-lg-2 Account  d-none d-lg-flex">
-                            <a onClick={(event) => this.ShowLogin(event)} href="#" className="Account_Infomation ">
+                            <a onClick={(event) => this.ShowLogin(event)} href="1" className="Account_Infomation ">
                                 <i className="fas fa-user fa-lg Icon-User" />
                                 <span className="sign_up">Đăng Nhập </span>
                                 <span className="Tool_Tip_Sign_Up">Đăng Nhập</span>
@@ -123,12 +123,12 @@ class Header extends Component {
                                         <tbody>
                                             <tr>
                                                 <td className="image border_Mini_Cart">
-                                                    <a href="#">
-                                                        <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-di/qck-pubg/1-90x90.jpg" alt="error" className="img-fluid" />
+                                                    <a href="2">
+                                                        <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/dare-u/ban-phim/dk87-b/1-90x90.jpg" alt="error" className="img-fluid" />
                                                     </a>
                                                 </td>
                                                 <td className="name border_Mini_Cart">
-                                                    <a href="#">
+                                                    <a href="3">
                                                         Bàn Di Chuột Qck+ Miramar PUBG Edition
                       </a>
                                                     <p>1 x 6.940.000 đ</p>
@@ -162,10 +162,10 @@ class Header extends Component {
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <a href="#" className="btn btn-success">Xem Giỏ Hàng</a>
+                                                    <a href="4" className="btn btn-success">Xem Giỏ Hàng</a>
                                                 </td>
                                                 <td>
-                                                    <a href="#" className="btn btn-success">Thanh Toán </a>
+                                                    <a href="5" className="btn btn-success">Thanh Toán </a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -190,70 +190,70 @@ class Header extends Component {
                                         <div className="Nav-Sub">
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="6">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="7">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="8">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="9">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="10">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="11">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="12">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="13">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="14">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="15">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
@@ -262,77 +262,77 @@ class Header extends Component {
                                         <i className="fas fa-angle-right angle-right" />
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="17">
                                             <span><i className="fas fa-mobile-alt fa-md" /></span>
                                             <span className="Text">Điện Thoại</span>
                                         </a>
                                         <div className="Nav-Sub">
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="18">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="19">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="20">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="21">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="22">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="23">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="24">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="25">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="26">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="28">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
@@ -341,63 +341,63 @@ class Header extends Component {
                                         <i className="fas fa-angle-right angle-right" />
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="29">
                                             <span><i className="fas fa-headphones fa-md" /></span>
                                             <span className="Text">Tai Nghe</span>
                                         </a>
                                         <div className="Nav-Sub">
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="30">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="31">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="32">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="33">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="34">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="35">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="36">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="37">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
@@ -406,77 +406,77 @@ class Header extends Component {
                                         <i className="fas fa-angle-right angle-right" />
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="38">
                                             <span><i className="fas fa-gamepad fa-md" /></span>
                                             <span className="Text">Chuột Gamming</span>
                                         </a>
                                         <div className="Nav-Sub">
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="39">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="40">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="41">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="42">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="43">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="44">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="45">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="46">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="47">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="48">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
@@ -485,63 +485,63 @@ class Header extends Component {
                                         <i className="fas fa-angle-right angle-right" />
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="49">
                                             <span><i className="fab fa-cc-amazon-pay fa-md" /></span>
                                             <span className="Text">Phụ Kiện</span>
                                         </a>
                                         <div className="Nav-Sub">
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="50">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="51">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="52">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="53">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="54">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="55">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="56">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="57">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
@@ -550,70 +550,70 @@ class Header extends Component {
                                         <i className="fas fa-angle-right angle-right" />
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="58">
                                             <span><i className="fas fa-desktop fa-md" /></span>
                                             <span className="Text">Linh Kiện Máy Tính</span>
                                         </a>
                                         <div className="Nav-Sub">
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="59">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="60">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="61">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="62">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="63">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="64">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="65">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="66">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="67">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
@@ -622,84 +622,84 @@ class Header extends Component {
                                         <i className="fas fa-angle-right angle-right" />
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="68">
                                             <span><i className="fas fa-camera fa-md" /></span>
                                             <span className="Text">Máy Ảnh</span>
                                         </a>
                                         <div className="Nav-Sub">
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="69">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="70">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="71">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="72">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="73">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="74">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="75">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="76">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="77">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="78">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
                                             </div>
                                             <div className="row-menu">
                                                 <div className="ItemMenu">
-                                                    <a href="#">
+                                                    <a href="79">
                                                         <span>Bàn phím cơ Keywalker</span>
                                                     </a>
                                                 </div>
@@ -713,11 +713,11 @@ class Header extends Component {
                         <div className="col-lg-9 col-md-9 d-none d-md-block ">
                             <ul className="support-policy">
                                 <li>
-                                    <a href="#" className="text-information">GIAO HÀNG MIỄN PHÍ &lt; 5km </a> </li> <li>
-                                    <a href="#" className="text-information d-none d-xl-inline">THANH TOÁN KHI NHẬN HÀNG </a>
+                                    <a href="80" className="text-information">GIAO HÀNG MIỄN PHÍ &lt; 5km </a> </li> <li>
+                                    <a href="81" className="text-information d-none d-xl-inline">THANH TOÁN KHI NHẬN HÀNG </a>
                                 </li>
                                 <li>
-                                    <a href="#" className="text-information">
+                                    <a href="82" className="text-information">
                                         <span className="HotLine">HOTLINE:</span>
                                         <b className="number_phone">0967 707 003 - 0961934198</b>
                                     </a>

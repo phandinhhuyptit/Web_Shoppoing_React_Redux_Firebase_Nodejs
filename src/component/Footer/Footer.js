@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Scroll_Top from './Scroll_Top/Scroll_Top';
+import ScrollTop from './Scroll_Top/Scroll_Top';
 import { connect } from 'react-redux';
 import './Footer.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 
 
 
@@ -12,22 +13,16 @@ class Footer extends Component {
         this.state = {
 
             Name: 'HCM'
-
-
         }
-
         this.Adress = [];
     }
 
     On_Click_Data_Location = (event) => {
 
-
-        event.preventDefault();    
+        event.preventDefault();   
 
         this.setState({
-
             Name: event.target.name
-
 
         })
 
@@ -96,7 +91,7 @@ class Footer extends Component {
                             </h3>
                             <div className="col-12  col-md-4 Content-Contact">
                                 <div className="Location-Information1 ">
-                                    <a onClick={(event) => this.On_Click_Data_Location(event)} name="HCM" data="HCM" className={`Adress_And_Area_Content ${this.state.Name === 'HCM' ? 'Active' : ''}`} href="#" ref={(ref) => this.Adress[0] = ref} >
+                                    <a onClick={(event) => this.On_Click_Data_Location(event)} name="HCM" data="HCM" className={`Adress_And_Area_Content ${this.state.Name === 'HCM' ? 'Active' : ''}`} href="4" ref={(ref) => this.Adress[0] = ref} >
                                         HỒ CHÍ MINH
                                     </a>
                                 </div>
@@ -104,14 +99,14 @@ class Footer extends Component {
                             <div />
                             <div className="col-12 col-md-4 Content-Contact">
                                 <div className="Location-Information2">
-                                    <a onClick={(event) => this.On_Click_Data_Location(event)} name="HN" data="HN" className={`Adress_And_Area_Content ${this.state.Name === 'HN' ? 'Active' : ''}`} href="#" ref={(ref) => this.Adress[1] = ref}>
+                                    <a onClick={(event) => this.On_Click_Data_Location(event)} name="HN" data="HN" className={`Adress_And_Area_Content ${this.state.Name === 'HN' ? 'Active' : ''}`} href="5678" ref={(ref) => this.Adress[1] = ref}>
                                         HÀ NỘI
                                      </a>
                                 </div>
                             </div>
                             <div className="col-12 col-md-4 Content-Contact">
                                 <div className="Location-Information3">
-                                    <a onClick={(event) => this.On_Click_Data_Location(event)} name="QN" data="QN" className={`Adress_And_Area_Content ${this.state.Name === 'QN' ? 'Active' : ''}`} href="#" ref={(ref) => this.Adress[2] = ref} >
+                                    <a onClick={(event) => this.On_Click_Data_Location(event)} name="QN" data="QN" className={`Adress_And_Area_Content ${this.state.Name === 'QN' ? 'Active' : ''}`} href="56" ref={(ref) => this.Adress[2] = ref} >
                                         QUẢNG NINH(ĐẠI LÝ)
                                     </a>
                                 </div>
@@ -199,11 +194,11 @@ class Footer extends Component {
                             </div>
                             <div className="col-lg-3 col-md-6">
                                 <h3>CHỨNG NHẬN WEBSITE TMDT</h3>
-                                <a href="#" className="Image-Footer">
-                                    <img src="https://www.playzone.vn/image/dathongbao.png" />
+                                <a href="5345" className="Image-Footer">
+                                    <img src="https://www.playzone.vn/image/dathongbao.png" aria-hidden alt="Card image cap" />
                                 </a>
                                 <p className="Email-Wrapper">
-                                    Email:<a href="#" className="My_Email">sihaojunvn2012@gmail.com</a>
+                                    Email:<a href="4645" className="My_Email">sihaojunvn2012@gmail.com</a>
                                 </p>
                                 <div className="newsletter_module">
                                     <p>Đăng ký nhận thông tin khuyến mãi và sự kiện</p>
@@ -220,7 +215,7 @@ class Footer extends Component {
                         </div>
                     </div>
                 </div>
-                <Scroll_Top ></Scroll_Top>
+                <ScrollTop ></ScrollTop>
             </div>
         );
     }

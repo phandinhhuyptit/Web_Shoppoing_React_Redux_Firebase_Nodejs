@@ -11,8 +11,8 @@ class Path extends Component {
                         <div className="col-12">
                             <nav aria-label="breadcrumb  ">
                                 <ol className="breadcrumb edit_breadcrumb">
-                                    <li className="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li className="breadcrumb-item"><a href="#">Library</a></li>
+                                    <li className="breadcrumb-item"><a href="23">Home</a></li>
+                                    <li className="breadcrumb-item"><a href="21">Library</a></li>
                                     <li className="breadcrumb-item active" aria-current="page">Data</li>
                                 </ol>
                             </nav>

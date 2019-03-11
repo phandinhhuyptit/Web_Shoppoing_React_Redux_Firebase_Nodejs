@@ -1,26 +1,20 @@
 import React, { Component } from 'react';
-import Title_Product from './Title_Product/Title_Product';
+import TitleProduct from './Title_Product/Title_Product';
 import Products from './Products/Products';
-import Notification_Product from './Notification/Notification_Product';
+import NotificationProduct from './Notification/Notification_Product';
 import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import './Product.css';
 import * as Action from '../../../Actions/Actions';
-
-
-
-
-
 
 class Product extends Component {
 
 
     Close_Notification_Product = () =>{
 
-        this.props.On_Close_Notification_Product();
+        this.props.On_Close_Notification_Product(false);
 
-    } 
-    
+    }  
 
 
     render() 
@@ -30,15 +24,14 @@ class Product extends Component {
         if(this.props.OnNotificationProduct){
 
             Background_Notification =<div onClick={() => this.Close_Notification_Product()} className="Backgroud-Navbar"></div>    
-            Duplicate_Notification_Product=<Notification_Product/>   
+            Duplicate_Notification_Product=<NotificationProduct/>   
             
 
         }
         return (
             <div>
-                 <Title_Product></Title_Product>
+                 <TitleProduct></TitleProduct>
                  <Products></Products>
-
                  <ReactCSSTransitionGroup
                  transitionName="Notification"
                  transitionEnterTimeout={500}
@@ -72,6 +65,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
     }
 }
-
-
-export default connect(mapStateToProps)(Product)
+export default connect(mapStateToProps,mapDispatchToProps)(Product)

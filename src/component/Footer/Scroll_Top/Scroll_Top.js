@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { animateScroll as scroll } from 'react-scroll'
 
 class Scroll_Top extends Component {
     constructor(props) {
@@ -11,8 +11,7 @@ class Scroll_Top extends Component {
 
     on_Click_Scroll_Top = () => {
 
-        window.scrollTo(0, 0);
-
+        scroll.scrollToTop();
 
     }
 
@@ -37,5 +36,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         }
     }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(Scroll_Top)

@@ -83,11 +83,21 @@ body{
     padding: 15px 20px 0px 20px;
 }
 
-.Header .Mini_Cart .Mini_Cart_Info td.image {text-align: left;vertical-align: top;padding: 15px 0px 0px 0px;}
-
+.Header .Mini_Cart .Mini_Cart_Info td.image {
+    
+    
+    text-align: left;
+    vertical-align: top;
+    padding: 16px 0px 0px 8px;
+    width: 90px;
+    height: 90px;
+}
+.Header .Mini_Cart .Mini_Cart_Check_Out_Button a.btn.btn-success {
+    margin-right: 3px;
+}
 .Header .Mini_Cart .Mini_Cart_Info td.remove {
     vertical-align: top;
-    padding: 15px 20px;
+    padding: 15px 9px;
 }
 .Header .Cart .Mini_Cart {
     border: 1px solid #eaeaea;
@@ -524,8 +534,7 @@ div#Navbar_Toggle {
     left: 0;
     padding-top: 60px;
     background-color: #454545;
-    z-index: 2;  
-    
+    z-index: 2;    
 }
 #Navbar_Toggle .Dropdown_Menu {
     width: 100%;
@@ -539,6 +548,11 @@ div#Navbar_Toggle {
 
 .Carousel {
     padding-top: 22px;
+}
+
+
+.Carousel .carousel-indicators {
+    z-index: 1;
 }
 /* End Carousel */
 
@@ -1761,7 +1775,7 @@ a.carousel-control-prev.previous:hover,a.carousel-control-next.next:hover {
   
   /* Hide the images by default */
 .product_info .image-product .mySlides {
-    display: none;
+    display: block;
   }
   
   /* Add a pointer when hovering over the thumbnail images */

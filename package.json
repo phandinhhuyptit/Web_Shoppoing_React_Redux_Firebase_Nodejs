@@ -8,6 +8,7 @@
     "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",
     "react-scripts": "2.1.8",
+    "react-scroll": "^1.7.11",
     "redux": "^4.0.1",
     "redux-devtools": "^3.5.0",
     "redux-thunk": "^2.3.0"
