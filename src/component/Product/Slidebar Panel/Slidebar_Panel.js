@@ -6,14 +6,14 @@ class Slidebar_Panel extends Component {
 
     Handle_Close_Slidebar_Panel = () =>{
 
-        console.log("OK");
+       this.props.On_Close_Slidebar_Panel(false);
 
     }
 
     render() {
         return (
             <div className="Slidebar_Panel">
-                <div className="Button-Close-Slide ">
+                <div onClick = {this.Handle_Close_Slidebar_Panel}  className="Button-Close-Slide ">
                     <i className="fas fa-times" />
                 </div>
                 <div className="SlideBars_Panel_Info">

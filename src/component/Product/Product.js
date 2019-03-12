@@ -5,16 +5,24 @@ import TitleProduct from './Title Product/TitleProduct';
 import Slidebar_Panel from './Slidebar Panel/Slidebar_Panel';
 import Refine from './Refine/Refine';
 import { connect } from 'react-redux';
+import * as Action from '../../Actions/Actions';
 
 
 class Product extends Component {
+
+    Handle_Close_Background_Panel_And_Slider_Panel = () => {
+
+        this.props.On_Close_Slidebar_Panel()
+
+    }
+
     render() {
-        let SliderPanel; 
+        let SliderPanel,Background_Panel; 
 
         if(this.props.onSliderPanel){
 
             SliderPanel = <Slidebar_Panel/>
-
+            Background_Panel = <div class="Backgroud_Slidebar_Panel"></div>
         }
         return (
             <div>
@@ -384,8 +392,8 @@ class Product extends Component {
                     </div>
 
                         {SliderPanel}
-                  
-                    <div class="Backgroud_Slidebar_Panel"></div>
+                        {Background_Panel}
+                    
                 </div>
             </div>
         );
@@ -398,8 +406,8 @@ const mapStateToProps = (state, ownProps) => {
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        dispatch1: () => {
-            dispatch()
+        On_Close_Slidebar_Panel: (Close_Slidebar_Panel) => {
+            dispatch(Action.Close_Slidebar_Panel(Close_Slidebar_Panel))
         }
     }
 }

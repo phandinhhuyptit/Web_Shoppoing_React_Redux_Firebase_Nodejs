@@ -1335,8 +1335,8 @@ a.carousel-control-prev.previous:hover,a.carousel-control-next.next:hover {
     left: 0;
     background-color: rgba(0,0,0,0.4);
     /* visibility: hidden;   
-    opacity: 0; */    
-    display: none;
+    opacity: 0; */   
+  
     transition: 1s;
 }
 .Slidebar_Panel .Button-Close-Slide {
@@ -1346,7 +1346,6 @@ a.carousel-control-prev.previous:hover,a.carousel-control-next.next:hover {
     cursor: pointer;
     color: #9b9b9b;
 }
-
 .Slidebar_Panel .Button-Close-Slide:hover {
     color: #424141;
 }
