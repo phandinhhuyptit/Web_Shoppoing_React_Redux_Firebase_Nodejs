@@ -6,8 +6,21 @@ class TitleProduct extends Component {
     render() {
         return (
             <div className="col-12 Header_Items">
-                <h4 className="Title_Items">Tên Sảm Phẩm</h4>
+                <div className="View_Icon">
+                    <a className="Grid_View_Icon">
+
+                        <i class="fas fa-th"></i>
+
+                    </a>
+                    <a className="List_View_Icon">
+
+                        <i class="fas fa-list"></i>
+
+                    </a>
+                </div>
+
                 <div className="form-group Size_Form">
+
                     <select className="custom-select background_image_of_Select" required>
                         <option value>Giá (Thấp &gt; Cao)</option>
                         <option value={1}>Giá (Cao &gt; Thấp)</option>

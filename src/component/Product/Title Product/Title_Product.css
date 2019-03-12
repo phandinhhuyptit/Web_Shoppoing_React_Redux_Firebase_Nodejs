@@ -1,0 +1,53 @@
+.Header_Items .View_Icon {
+
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right
+
+}
+.Header_Items .View_Icon .Grid_View_Icon:hover,
+.Header_Items .View_Icon .List_View_Icon:hover {
+
+    color: white;
+    background-color: #2196F3;
+
+}
+
+
+.Header_Items .View_Icon .Grid_View_Icon{    
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    font-size: 18px;
+    display: inline-block;
+    background: white;
+    border-radius: 3px;
+    margin-left: 5px;
+    color: #2196F3;
+    cursor: pointer;
+
+}
+/* .Shop_Wrap .Size_Form {
+    display: inline-flex;
+}
+.Shop_Wrap .Size_Form .View_Icon {
+
+    display: inline-flex;
+
+} */
+.Header_Items .View_Icon .List_View_Icon{
+
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    font-size: 18px;
+    display: inline-block;
+    background: white;
+    border-radius: 3px;
+    margin-left: 5px;
+    color: #2196F3;
+    cursor: pointer;
+
+}

@@ -4,7 +4,8 @@ const ShoppingInitialState = {
 
     onShowNav: false,
     onNotification_Product: false,
-    onVideo: false
+    onVideo: false,
+    onSliderPanel: false
 }
 
 const rootReducer = (state = ShoppingInitialState, action) => {
@@ -46,7 +47,19 @@ const rootReducer = (state = ShoppingInitialState, action) => {
             return {
                 ...state,
                 onVideo : action.Close_Video
-            }     
+            }
+        case Action.Show_Slidebar_Panel : 
+            return {
+                ...state,
+                onSliderPanel : action.Show_Slidebar_Panel
+            }
+        case Action.Close_Slidebar_Panel : 
+            return {
+
+                ...state,
+                onSliderPanel : action.Close_Slidebar_Panel
+            }    
+            
         default:
             return state;
     }

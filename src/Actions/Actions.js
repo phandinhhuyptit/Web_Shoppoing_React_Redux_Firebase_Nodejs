@@ -60,3 +60,21 @@ export function Close_Video(Close_Video){
     }
 
 }
+export function Show_Slidebar_Panel(Show_Slidebar_Panel){
+
+    return {
+           type : Action.Show_Slidebar_Panel,
+           Show_Slidebar_Panel 
+    }
+
+}
+export function Close_Slidebar_Panel(Close_Slidebar_Panel){
+
+        return {
+
+                type : Action.Close_Slidebar_Panel,
+                Close_Slidebar_Panel
+
+        }
+
+}

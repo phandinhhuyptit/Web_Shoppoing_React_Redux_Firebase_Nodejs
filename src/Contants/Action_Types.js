@@ -5,3 +5,5 @@ export const Show_Notification_Product = "SHOW NOTIFICATION CART";
 export const Close_Notification_Product="CLOSE NOTIFICATION PRODUCT";
 export const Show_Video = "SHOW VIDEO";
 export const Close_Video = "CLOSE VIDEO";
+export const Show_Slidebar_Panel = "SHOW SLIDEBAR PANEL";
+export const Close_Slidebar_Panel = "CLOSE SLIDEBAR PANEL";

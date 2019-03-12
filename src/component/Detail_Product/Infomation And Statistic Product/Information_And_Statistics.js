@@ -21,7 +21,6 @@ class InformationAndStatistics extends Component {
                 Destription_Review: true
 
             })
-
         }
         else {
 
@@ -31,7 +30,6 @@ class InformationAndStatistics extends Component {
 
             })
         }
-
     }
     Handle_Show_Video = () => {
         this.props.on_Show_Video(true);
@@ -166,7 +164,6 @@ class InformationAndStatistics extends Component {
                 </form>
             </div>            
         }
-
 
         return (
             <div className="Destription_Review">
