@@ -3,7 +3,8 @@ import * as Action from '../Contants/Action_Types';
 const ShoppingInitialState = {
 
     onShowNav: false,
-    onNotification_Product: false
+    onNotification_Product: false,
+    onVideo: false
 }
 
 const rootReducer = (state = ShoppingInitialState, action) => {
@@ -36,6 +37,16 @@ const rootReducer = (state = ShoppingInitialState, action) => {
                 ...state,
                 onNotification_Product: action.Close_Product
             }
+        case Action.Show_Video:
+            return {
+                ...state,
+                onVideo: action.Show_Video
+            }
+        case Action.Close_Video:
+            return {
+                ...state,
+                onVideo : action.Close_Video
+            }     
         default:
             return state;
     }

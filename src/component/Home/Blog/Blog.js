@@ -17,118 +17,118 @@ class Blog extends Component {
                     <div className="container">
                         <div className="Content">
                             <div className="grid-big-items rs-pd">
-                                <img className="img-fluid" src="https://cwsmgmt.corsair.com/hybris/homepage/images/CIA_K70_RGB_MK2_SE_22.jpg" />
+                                <img aria-hidden alt="Card image cap"className="img-fluid" src="https://cwsmgmt.corsair.com/hybris/homepage/images/CIA_K70_RGB_MK2_SE_22.jpg" />
 
                                 <div className="Content_Items_2 ">
                                     <h1>K70 RGB MK.2 SE</h1>
                                     <p>MECHANICAL GAMING KEYBOARD</p>
                                 </div>
                                 <div className="Button-Learn">
-                                    <a href="#" className="Sub_Button_Learn">
+                                    <a href="35" className="Sub_Button_Learn">
                                         Tìm Hiểu
                </a>
                                 </div>
                             </div>
                             <div className="grid-items rs-pd">
-                                <img src="https://www.corsair.com/corsairmedia/sys_master/productcontent/cia_spec_omega_rgb_690x690.jpg?clear=true" />
+                                <img aria-hidden alt="Card image cap"src="https://www.corsair.com/corsairmedia/sys_master/productcontent/cia_spec_omega_rgb_690x690.jpg?clear=true" />
 
                                 <div className="Content_Items_2 ">
                                     <h1>K70 RGB MK.2 SE</h1>
                                     <p>MECHANICAL GAMING KEYBOARD</p>
                                 </div>
                                 <div className="Button-Learn">
-                                    <a href="#" className="Sub_Button_Learn">
+                                    <a href="1" className="Sub_Button_Learn">
                                         Tìm Hiểu
                </a>
                                 </div>
                             </div>
                             <div className="grid-items rs-pd">
-                                <img src="https://www.lense.fr/wp-content/uploads/2018/10/razer-blade-15-1180_700_-couv-690x690.jpg" />
+                                <img aria-hidden alt="Card image cap"src="https://www.lense.fr/wp-content/uploads/2018/10/razer-blade-15-1180_700_-couv-690x690.jpg" />
 
                                 <div className="Content_Items_2 ">
                                     <h1>K70 RGB MK.2 SE</h1>
                                     <p>MECHANICAL GAMING KEYBOARD</p>
                                 </div>
                                 <div className="Button-Learn">
-                                    <a href="#" className="Sub_Button_Learn">
+                                    <a href="2" className="Sub_Button_Learn">
                                         Tìm Hiểu
                </a>
                                 </div>
                             </div>
                             <div className="grid-items rs-pd">
-                                <img src="./img/iCue_Section_2.png" />
+                                <img aria-hidden alt="Card image cap"src="./img/iCue_Section_2.png" />
 
                                 <div className="Content_Items_2 ">
                                     <h1>K70 RGB MK.2 SE</h1>
                                     <p>MECHANICAL GAMING KEYBOARD</p>
                                 </div>
                                 <div className="Button-Learn">
-                                    <a href="#" className="Sub_Button_Learn">
+                                    <a href="3" className="Sub_Button_Learn">
                                         Tìm Hiểu
                </a>
                                 </div>
                             </div>
                             <div className="grid-items rs-pd">
-                                <img src="./img/geforce-gtx-1080-ti-large-001.jpg" />
+                                <img aria-hidden alt="Card image cap"src="./img/geforce-gtx-1080-ti-large-001.jpg" />
 
                                 <div className="Content_Items_2 ">
                                     <h1>K70 RGB MK.2 SE</h1>
                                     <p>MECHANICAL GAMING KEYBOARD</p>
                                 </div>
                                 <div className="Button-Learn">
-                                    <a href="#" className="Sub_Button_Learn">
+                                    <a href="4" className="Sub_Button_Learn">
                                         Tìm Hiểu
                </a>
                                 </div>
                             </div>
                             <div className="grid-items rs-pd">
-                                <img src="./img/2385_corsair_vengence_rgb_pro_32gb_2666mhz_ddr4_white_ram_1000px_v2_0003.jpg" />
+                                <img aria-hidden alt="Card image cap"src="./img/2385_corsair_vengence_rgb_pro_32gb_2666mhz_ddr4_white_ram_1000px_v2_0003.jpg" />
 
                                 <div className="Content_Items_2 ">
                                     <h1>K70 RGB MK.2 SE</h1>
                                     <p>MECHANICAL GAMING KEYBOARD</p>
                                 </div>
                                 <div className="Button-Learn">
-                                    <a href="#" className="Sub_Button_Learn">
+                                    <a href="5" className="Sub_Button_Learn">
                                         Tìm Hiểu
-                   </a>
+                                    </a>
                                 </div>
                             </div>
                             <div className="grid-items rs-pd">
-                                <img src="./img/kv (1).jpg" alt="error" />
-                                <a href="#" className="Backgroud-Items" />
+                                <img aria-hidden src="./img/kv (1).jpg" alt="error" />
+                                
                                 <div className="Content_Items_2 ">
                                     <h1>K70 RGB MK.2 SE</h1>
                                     <p>MECHANICAL GAMING KEYBOARD</p>
                                 </div>
                                 <div className="Button-Learn">
-                                    <a href="#" className="Sub_Button_Learn">
+                                    <a href="7" className="Sub_Button_Learn">
+                                        Tìm Hiểu
+                                     </a>
+                                </div>
+                            </div>
+                            <div className="grid-items rs-pd">
+                                <img aria-hidden alt="Card image cap"src="./img/Basilisk_Hero.jpg" />
+
+                                <div className="Content_Items_2 ">
+                                    <h1>K70 RGB MK.2 SE</h1>
+                                    <p>MECHANICAL GAMING KEYBOARD</p>
+                                </div>
+                                <div className="Button-Learn">
+                                    <a href="8" className="Sub_Button_Learn">
                                         Tìm Hiểu
                </a>
                                 </div>
                             </div>
                             <div className="grid-items rs-pd">
-                                <img src="./img/Basilisk_Hero.jpg" />
+                                <img aria-hidden alt="Card image cap"src="./img/8889265651742.jpg" />
 
                                 <div className="Content_Items_2 ">
                                     <h1>K70 RGB MK.2 SE</h1>
                                     <p>MECHANICAL GAMING KEYBOARD</p>
                                 </div>
                                 <div className="Button-Learn">
-                                    <a href="#" className="Sub_Button_Learn">
-                                        Tìm Hiểu
-               </a>
-                                </div>
-                            </div>
-                            <div className="grid-items rs-pd">
-                                <img src="./img/8889265651742.jpg" />
-
-                                <div className="Content_Items_2 ">
-                                    <h1>K70 RGB MK.2 SE</h1>
-                                    <p>MECHANICAL GAMING KEYBOARD</p>
-                                </div>
-                                <div className="Button-Learn">
-                                    <a href="#" className="Sub_Button_Learn">
+                                    <a href="9" className="Sub_Button_Learn">
                                         Tìm Hiểu
                </a>
                                 </div>

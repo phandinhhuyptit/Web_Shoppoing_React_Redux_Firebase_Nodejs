@@ -7,6 +7,7 @@ import DetailProduct from './component/Detail_Product/Detail_Product';
 import Home from './component/Home/Home';
 import NotFound404 from './component/404/Not_Found_404';
 import Product from './component/Product/Product';
+import Detail_Product from './component/Detail_Product/Detail_Product';
 
 
 
@@ -33,7 +34,6 @@ class App extends Component {
   
   OffShowLogin = () => {
 
-
     this.setState({
 
       ShowLogin: false
@@ -41,13 +41,13 @@ class App extends Component {
     })
   }  
 
-  render() {
- 
+  render() { 
     const { ShowLogin } = this.state
     return (
       <div className="App">
         <Header ShowLogin={ShowLogin} ClickShowLogin={this.OnShowLogin} ClickCloseLogin={this.OffShowLogin}></Header>       
-        <Path></Path>               
+        <Path></Path>
+         <Detail_Product></Detail_Product>            
         <Footer ></Footer>
       </div>
     );

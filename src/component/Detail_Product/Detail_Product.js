@@ -1,10 +1,87 @@
 import React, { Component } from 'react';
 import InformationAndStatistics from './Infomation And Statistic Product/Information_And_Statistics';
 import Products from './Products/Products';
+import './Detail_Product.css';
+import { connect } from 'react-redux';
+import * as Action from '../../Actions/Actions';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
 class Detail_Product extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            position: '0',
+            backgroundImage: `url(${"https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/2-1000x1000.jpg"})`,
+            backgroundPosition: '0% 0%'
+        }
+    }
+
+    Handle_Close_Video = () =>{
+
+        this.props.On_Close_Video();
+
+    }
+    handleMouseMove = e => {
+
+        const { left, top, width, height } = e.target.getBoundingClientRect();
+        const x = (e.pageX - left) / width * 100;
+        const y = (e.pageY - top) / height * 100;
+
+        this.setState({
+
+            backgroundPosition: `${x}% ${y}%`
+
+        })
+
+    }
+    Handle_Choose_Image = (e) => {
+
+        const Position = e.target.getAttribute('data-image');
+        let Src;
+        if (Position === '0') {
+
+            Src = "https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/2-1000x1000.jpg";
+
+
+        }
+        else if (Position === '1') {
+
+            Src = "https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/3-1000x1000.jpg";
+
+        }
+        else if (Position === '2') {
+
+            Src = "https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/4-1000x1000.jpg";
+        }
+        else if (Position === '3') {
+
+            Src = "https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/5-1000x1000.jpg";
+        }
+        else {
+
+            Src = "https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/1-1000x1000.jpg";
+        }
+        this.setState({
+            backgroundImage: `url(${`${Src}`})`,
+            position: Position
+
+        })
+    }
     render() {
+     
+        let OnVideo;      
+
+        if (this.props.Onvideo) {
+
+            OnVideo = <div>
+                <iframe title="This is a unique title" id="Video_Tech"  src="https://www.youtube.com/embed/uvfaXQSVCPM">
+                </iframe>
+                <div onClick={this.Handle_Close_Video} className="Backgroud_Video" />
+            </div>
+
+        }
+
         return (
             <div>
                 <div className="product_info">
@@ -12,19 +89,19 @@ class Detail_Product extends Component {
                         <div className="row">
                             <div className="d-none d-lg-block  col-lg-1">
                                 <div className="column">
-                                    <img className="Small-Image cursor" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/2-83x83.jpg" data-image={0} aria-hidden alt="The Woods" />
+                                    <img onClick={this.Handle_Choose_Image} className={`Small-Image cursor ${this.state.position === '0' ? 'ActiveImage' : ''}`} src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/2-83x83.jpg" data-image={0} aria-hidden alt="The Woods" />
                                 </div>
                                 <div className="column">
-                                    <img className="Small-Image cursor" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/3-83x83.jpg" data-image={1} aria-hidden alt="Cinque Terre" />
+                                    <img onClick={this.Handle_Choose_Image} className={`Small-Image cursor ${this.state.position === '1' ? 'ActiveImage' : ''}`} src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/3-83x83.jpg" data-image={1} aria-hidden alt="Cinque Terre" />
                                 </div>
                                 <div className="column">
-                                    <img className="Small-Image cursor" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/4-83x83.jpg" data-image={2} aria-hidden alt="Mountains and fjords" />
+                                    <img onClick={this.Handle_Choose_Image} className={`Small-Image cursor ${this.state.position === '2' ? 'ActiveImage' : ''}`} src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/4-83x83.jpg" data-image={2} aria-hidden alt="Mountains and fjords" />
                                 </div>
                                 <div className="column">
-                                    <img className="Small-Image cursor" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/5-83x83.jpg" data-image={3} aria-hidden alt="Northern Lights" />
+                                    <img onClick={this.Handle_Choose_Image} className={`Small-Image cursor ${this.state.position === '3' ? 'ActiveImage' : ''}`} src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/5-83x83.jpg" data-image={3} aria-hidden alt="Northern Lights" />
                                 </div>
                                 <div className="column">
-                                    <img className="Small-Image cursor" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/1-83x83.jpg" data-image={4} aria-hidden alt="Nature and sunrise" />
+                                    <img onClick={this.Handle_Choose_Image} className={`Small-Image cursor ${this.state.position === '4' ? 'ActiveImage' : ''}`} src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/1-83x83.jpg" data-image={4} aria-hidden alt="Nature and sunrise" />
                                 </div>
                             </div>
                             <div className="col-md-6 col-lg-4">
@@ -33,42 +110,43 @@ class Detail_Product extends Component {
                                     <div className="thumb-items d-none d-md-flex">
                                         <i className="fas fa-expand-arrows-alt" />
                                     </div>
-                                    <div className="mySlides">
-                                        <img className="myimage" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/2-1000x1000.jpg"  aria-hidden alt="Nature and sunrise"/>
-                                        <div onmousemove="zoom(event)" ontouchmove="zoom(event)" className="numbertext">1 / 5</div>
+                                    <div className={`mySlides ${this.state.position === '0' ? '' : 'd-none'}`}>
+
+                                        <img className="myimage" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/2-1000x1000.jpg" aria-hidden alt="Nature and sunrise" />
+                                        <div onMouseMove={this.handleMouseMove} style={this.state} className="numbertext">1 / 5</div>
                                     </div>
-                                    <div className="mySlides">
-                                        <div onmousemove="zoom(event)" ontouchmove="zoom(event)" className="numbertext">2 / 5</div>
-                                        <img className="myimage" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/3-1000x1000.jpg"   aria-hidden alt="Nature and sunrise"/>
+                                    <div className={`mySlides ${this.state.position === '1' ? '' : 'd-none'}`} >
+                                        <div onMouseMove={this.handleMouseMove} style={this.state} className="numbertext">2 / 5</div>
+                                        <img className="myimage" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/3-1000x1000.jpg" aria-hidden alt="Nature and sunrise" />
                                     </div>
-                                    <div className="mySlides">
-                                        <div onmousemove="zoom(event)" ontouchmove="zoom(event)" className="numbertext">3 / 5</div>
-                                        <img className="myimage" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/4-1000x1000.jpg"  aria-hidden alt="Nature and sunrise" />
+                                    <div className={`mySlides ${this.state.position === '2' ? '' : 'd-none'}`}>
+                                        <div onMouseMove={this.handleMouseMove} style={this.state} className="numbertext">3 / 5</div>
+                                        <img className="myimage" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/4-1000x1000.jpg" aria-hidden alt="Nature and sunrise" />
                                     </div>
-                                    <div className="mySlides">
-                                        <div onmousemove="zoom(event)" ontouchmove="zoom(event)" className="numbertext">4 / 5</div>
-                                        <img className="myimage" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/5-1000x1000.jpg"  aria-hidden alt="Nature and sunrise" />
+                                    <div className={`mySlides ${this.state.position === '3' ? '' : 'd-none'}`}>
+                                        <div onMouseMove={this.handleMouseMove} style={this.state} className="numbertext">4 / 5</div>
+                                        <img className="myimage" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/5-1000x1000.jpg" aria-hidden alt="Nature and sunrise" />
                                     </div>
-                                    <div className="mySlides">
-                                        <div onmousemove="zoom(event)" ontouchmove="zoom(event)" className="numbertext">5 / 5</div>
-                                        <img className="myimage" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/1-1000x1000.jpg"  aria-hidden alt="Nature and sunrise" />
+                                    <div className={`mySlides ${this.state.position === '4' ? '' : 'd-none'}`}>
+                                        <div onMouseMove={this.handleMouseMove} style={this.state} className="numbertext">5 / 5</div>
+                                        <img className="myimage" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/1-1000x1000.jpg" aria-hidden alt="Nature and sunrise" />
                                     </div>
 
                                     <div className="col-12 Sub_Image d-none ">
                                         <div className="column2">
-                                            <img className="Small-Image2 cursor" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/2-83x83.jpg" data-image={0} aria-hidden alt="The Woods"   />
+                                            <img onClick={this.Handle_Choose_Image} className="Small-Image2 cursor" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/2-83x83.jpg" data-image={0} aria-hidden alt="The Woods" />
                                         </div>
                                         <div className="column2">
-                                            <img className="Small-Image2 cursor" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/3-83x83.jpg" data-image={1} aria-hidden alt="Cinque Terre" />
+                                            <img onClick={this.Handle_Choose_Image} className="Small-Image2 cursor" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/3-83x83.jpg" data-image={1} aria-hidden alt="Cinque Terre" />
                                         </div>
                                         <div className="column2">
-                                            <img className="Small-Image2 cursor" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/4-83x83.jpg" data-image={2} aria-hidden alt="Mountains and fjords" />
+                                            <img onClick={this.Handle_Choose_Image} className="Small-Image2 cursor" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/4-83x83.jpg" data-image={2} aria-hidden alt="Mountains and fjords" />
                                         </div>
                                         <div className="column2">
-                                            <img className="Small-Image2 cursor" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/5-83x83.jpg" data-image={3} aria-hidden alt="Northern Lights" />
+                                            <img onClick={this.Handle_Choose_Image} className="Small-Image2 cursor" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/5-83x83.jpg" data-image={3} aria-hidden alt="Northern Lights" />
                                         </div>
                                         <div className="column2">
-                                            <img className="Small-Image2 cursor" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/1-83x83.jpg" data-image={4} aria-hidden alt="Nature and sunrise" />
+                                            <img onClick={this.Handle_Choose_Image} className="Small-Image2 cursor" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/1-83x83.jpg" data-image={4} aria-hidden alt="Nature and sunrise" />
                                         </div>
                                     </div>
                                 </div>
@@ -103,17 +181,31 @@ class Detail_Product extends Component {
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <iframe title="This is a unique title" id="Video_Tech" src="https://www.youtube.com/embed/uvfaXQSVCPM">
-                        </iframe>
-                        <div className="Backgroud_Video" />
-                    </div>
+                    <ReactCSSTransitionGroup
+                    transitionName="onVideo"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={300}>
+                                        
+                        {OnVideo}
 
-                </div>
+                    </ReactCSSTransitionGroup>    
+                    </div>
                 <InformationAndStatistics></InformationAndStatistics>
                 <Products></Products>
             </div>
         );
     }
 }
-export default Detail_Product;
+const mapStateToProps = (state, ownProps) => {
+    return {
+        Onvideo: state.onVideo
+    }
+}
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        On_Close_Video: (Close_Video) => {
+            dispatch(Action.Close_Video(Close_Video));  
+        }
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Detail_Product)

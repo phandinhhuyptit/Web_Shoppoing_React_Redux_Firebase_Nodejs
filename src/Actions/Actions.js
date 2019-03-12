@@ -43,3 +43,20 @@ export function Close_Notification_Product(Close_Product){
 
     }
 }
+export function Show_Video(Show_Video){
+
+    return {
+
+        type : Action.Show_Video,
+        Show_Video
+
+    }
+}
+export function Close_Video(Close_Video){
+
+    return {
+        type: Action.Close_Video,
+        Close_Video
+    }
+
+}

@@ -1,0 +1,41 @@
+.ActiveImage {
+
+    border: 1px solid #189eff
+
+}
+
+.onVideo-enter {
+    position: fixed;    
+    opacity: 0.01;
+    transform: scale(0);
+    top: 50%;
+    right: 50%;
+    z-index: 100;
+
+    
+}
+.onVideo-enter.onVideo-enter-active {
+
+    opacity: 1;
+    z-index: 100;
+    transform: scale(1);
+    transition: all 300ms ease-in;
+}     
+
+.onVideo-leave {
+    opacity: 1;
+    transform: scale(1);
+    position: fixed;
+    top: 50%;
+    z-index: 100;
+    right: 50%;
+}
+.onVideo-leave.onVideo-leave-active {
+    opacity: 0.01;
+    z-index: 100;
+    transform: scale(0);
+    transition: all 300ms ease-in;
+    /* transform: scale(0);
+    transition: scale 300ms ease-out; */
+}     
+
