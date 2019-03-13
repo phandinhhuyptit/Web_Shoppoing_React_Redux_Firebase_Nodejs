@@ -561,8 +561,7 @@ div#Navbar_Toggle {
 
 
 .Items .Border-Card .equal_Cards .image-hover:hover {
-    opacity: 1;
-  
+    opacity: 1;  
 }
 
 
@@ -598,6 +597,8 @@ div#Pagination {
 }
 .Items .Border-Card {
     border: 1px solid #EAEAEA;
+    
+    
 }
 .Border-Card .card {
     box-shadow: 0 1px 3px rgba(0,0,0,.1);
@@ -1154,8 +1155,7 @@ a.carousel-control-prev.previous:hover,a.carousel-control-next.next:hover {
   
   .modal_login button:hover {
     opacity: 0.8;
-  }
-  
+  }  
   
   .modal_login .cancelbtn {
     width: auto;

@@ -5,7 +5,8 @@ const ShoppingInitialState = {
     onShowNav: false,
     onNotification_Product: false,
     onVideo: false,
-    onSliderPanel: false
+    onSliderPanel: false,
+    onGridOrList : true
 }
 
 const rootReducer = (state = ShoppingInitialState, action) => {
@@ -59,7 +60,11 @@ const rootReducer = (state = ShoppingInitialState, action) => {
                 ...state,
                 onSliderPanel : action.Close_Slidebar_Panel
             }    
-            
+        case Action.Change_List_Or_Grid : 
+            return {
+                ...state,
+                onGridOrList : action.List_Or_Grid
+            }    
         default:
             return state;
     }

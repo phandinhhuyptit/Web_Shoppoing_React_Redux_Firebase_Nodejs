@@ -12,7 +12,12 @@
     background-color: #2196F3;
 
 }
+.Active_List_Or_Grid {
 
+    color: white!important;
+    background-color: #2196F3!important ;
+
+}
 
 .Header_Items .View_Icon .Grid_View_Icon{    
     width: 38px;
@@ -20,6 +25,7 @@
     line-height: 38px;
     text-align: center;
     font-size: 18px;
+    align-items: end;
     display: inline-block;
     background: white;
     border-radius: 3px;

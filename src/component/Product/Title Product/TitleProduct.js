@@ -1,18 +1,37 @@
 import React, { Component } from 'react';
 import './Title_Product.css';
+import { connect } from 'react-redux'
+import * as Action from '../../../Actions/Actions';
 
 
 class TitleProduct extends Component {
-    render() {
+    Handle_List_And_Grid = (e) =>{
+        e.preventDefault();
+      const Check_Grid_Or_List = e.currentTarget.getAttribute('data-grid');     
+        if(Check_Grid_Or_List==="Grid"){          
+            this.props.On_Change_List_Or_Grid(true);
+
+
+        }
+        else {
+
+            this.props.On_Change_List_Or_Grid(false);
+
+        }
+
+    }
+    render() {     
+      
+        // Active_List_Or_Grid
         return (
             <div className="col-12 Header_Items">
                 <div className="View_Icon">
-                    <a className="Grid_View_Icon">
+                    <a onClick={(e)=>this.Handle_List_And_Grid(e)} className={`Grid_View_Icon ${this.props.onGridOrList ? 'Active_List_Or_Grid' : ''}`} data-grid="Grid">
 
                         <i class="fas fa-th"></i>
 
                     </a>
-                    <a className="List_View_Icon">
+                    <a onClick={(e)=>this.Handle_List_And_Grid(e)} className={`List_View_Icon ${!this.props.onGridOrList ? 'Active_List_Or_Grid' : ''}`} data-grid="List">
 
                         <i class="fas fa-list"></i>
 
@@ -33,5 +52,17 @@ class TitleProduct extends Component {
         );
     }
 }
+const mapStateToProps = (state, ownProps) => {
+    return {
+        onGridOrList : state.onGridOrList
+    }
+}
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        On_Change_List_Or_Grid: (List_Or_Grid) => {
+            dispatch(Action.Change_List_Or_Grid(List_Or_Grid))
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(TitleProduct);
 
-export default TitleProduct;

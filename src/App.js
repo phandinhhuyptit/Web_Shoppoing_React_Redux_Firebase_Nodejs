@@ -47,7 +47,7 @@ class App extends Component {
       <div className="App">
         <Header ShowLogin={ShowLogin} ClickShowLogin={this.OnShowLogin} ClickCloseLogin={this.OffShowLogin}></Header>       
         <Path></Path>
-        <Product></Product>     
+        <Home></Home>  
         <Footer ></Footer>
       </div>
     );

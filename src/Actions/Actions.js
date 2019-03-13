@@ -78,3 +78,13 @@ export function Close_Slidebar_Panel(Close_Slidebar_Panel){
         }
 
 }
+export function Change_List_Or_Grid(List_Or_Grid) {
+
+    return {
+
+            type : Action.Change_List_Or_Grid,
+            List_Or_Grid
+    }
+
+
+}

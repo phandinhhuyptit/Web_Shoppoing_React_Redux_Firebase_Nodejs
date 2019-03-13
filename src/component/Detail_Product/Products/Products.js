@@ -29,7 +29,7 @@ class Products extends Component {
                                         <a href="25" className="card-text Text_Items ">Chuột SteelSeries Rival 310 - CS:GO HOWL EDITION</a>
                                         <p className="Price">
                                             3.289.000 đ
-                        </p>
+                                        </p>
                                         <button type="button" className="btn btn-success Button_Add_Cart">Thêm Vào Giỏ</button>
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@ class Products extends Component {
                                         <a href="28" className="card-text Text_Items ">Chuột SteelSeries Rival 310 - CS:GO HOWL EDITION</a>
                                         <p className="Price">
                                             3.289.000 đ
-                        </p>
+                                        </p>
                                         <button type="button" className="btn btn-success Button_Add_Cart">Thêm Vào Giỏ</button>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@ class Products extends Component {
                                         <a href="32" className="card-text Text_Items ">Chuột SteelSeries Rival 310 - CS:GO HOWL EDITION</a>
                                         <p className="Price">
                                             3.289.000 đ
-                        </p>
+                                        </p>
                                         <button type="button" className="btn btn-success Button_Add_Cart">Thêm Vào Giỏ</button>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@ class Products extends Component {
                                         <a href="35" className="card-text Text_Items ">Chuột SteelSeries Rival 310 - CS:GO HOWL EDITION</a>
                                         <p className="Price">
                                             3.289.000 đ
-                        </p>
+                                        </p>
                                         <button type="button" className="btn btn-success Button_Add_Cart">Thêm Vào Giỏ</button>
                                     </div>
                                 </div>
