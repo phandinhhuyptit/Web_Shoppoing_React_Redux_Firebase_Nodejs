@@ -6,33 +6,98 @@ import { connect } from 'react-redux';
 import * as Action from '../../Actions/Actions';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-
 class Detail_Product extends Component {
     constructor(props) {
         super(props);
         this.state = {
             position: '0',
             backgroundImage: `url(${"https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/2-1000x1000.jpg"})`,
-            backgroundPosition: '0% 0%'
+            backgroundPosition: '0% 0%',
+            Zoom_Thumb_Product : false,
+            Position_Slide_Product : 1
         }
     }
 
-    Handle_Close_Video = () =>{
+    Show_Zomm_Thumb_Product = () =>{
+
+            this.setState((previousState, currentProps)=>{
+
+                    return {...previousState ,Zoom_Thumb_Product : true }
+
+            })       
+    }
+    Close_Zomm_Thumb_Product = () =>{
+
+
+        this.setState((previousState, currentProps)=>{
+
+            return {...previousState ,Zoom_Thumb_Product : false , Position_Slide_Product : 1}
+
+    })       
+
+    }
+
+
+    Handle_Close_Video = () => {
 
         this.props.On_Close_Video();
 
     }
+
+    Handle_Prev_And_Next = (e) => {
+
+        const Prev_Or_Next = e.currentTarget.getAttribute('data');
+       
+
+        if (Prev_Or_Next === "Previous") {
+
+            console.log("OK previous");
+            if (this.state.Position_Slide_Product >= 2) {
+
+                this.setState((previousState, currentProps) => {
+
+                    return { ...previousState, Position_Slide_Product: this.state.Position_Slide_Product - 1 }
+
+                })
+            }
+        }
+            else {
+
+                if (this.state.Position_Slide_Product <= 4) {
+
+
+                    this.setState((previousState, currentProps) => {
+
+                        return {...previousState, Position_Slide_Product: this.state.Position_Slide_Product + 1 }
+
+                    })
+                }
+
+
+            }
+
+        }
+
+    
+
+
     handleMouseMove = e => {
 
         const { left, top, width, height } = e.target.getBoundingClientRect();
         const x = (e.pageX - left) / width * 100;
         const y = (e.pageY - top) / height * 100;
 
-        this.setState({
 
-            backgroundPosition: `${x}% ${y}%`
+        this.setState((previousState, currentProps)=>{
 
-        })
+            return {...previousState ,backgroundPosition : `${x}% ${y}%` }
+
+         })           
+        // this.setState({
+                
+        //     backgroundPosition: `${x}% ${y}%`
+
+        // })
 
     }
     Handle_Choose_Image = (e) => {
@@ -69,17 +134,16 @@ class Detail_Product extends Component {
         })
     }
     render() {
-     
-        let OnVideo;      
+
+        let OnVideo;
 
         if (this.props.Onvideo) {
 
             OnVideo = <div>
-                <iframe title="This is a unique title" id="Video_Tech"  src="https://www.youtube.com/embed/uvfaXQSVCPM">
+                <iframe title="This is a unique title" id="Video_Tech" src="https://www.youtube.com/embed/uvfaXQSVCPM">
                 </iframe>
                 <div onClick={this.Handle_Close_Video} className="Backgroud_Video" />
             </div>
-
         }
 
         return (
@@ -107,7 +171,7 @@ class Detail_Product extends Component {
                             <div className="col-md-6 col-lg-4">
                                 <div className="image-product">
 
-                                    <div className="thumb-items d-none d-md-flex">
+                                    <div onClick={this.Show_Zomm_Thumb_Product} className="thumb-items d-none d-md-flex">
                                         <i className="fas fa-expand-arrows-alt" />
                                     </div>
                                     <div className={`mySlides ${this.state.position === '0' ? '' : 'd-none'}`}>
@@ -182,16 +246,38 @@ class Detail_Product extends Component {
                         </div>
                     </div>
                     <ReactCSSTransitionGroup
-                    transitionName="onVideo"
-                    transitionEnterTimeout={500}
-                    transitionLeaveTimeout={300}>
-                                        
+                        transitionName="onVideo"
+                        transitionEnterTimeout={500}
+                        transitionLeaveTimeout={300}>
+
                         {OnVideo}
 
-                    </ReactCSSTransitionGroup>    
-                    </div>
+                    </ReactCSSTransitionGroup>
+                </div>
                 <InformationAndStatistics></InformationAndStatistics>
                 <Products></Products>
+                <ReactCSSTransitionGroup 
+                transitionName="Zoom_Thumb_Items_Aniamtion"
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={300}              
+                >
+                <div className={`Zoom_Thumb_Items ${this.state.Zoom_Thumb_Product ? '' : 'd-none'}`}>
+                    <div className="Sub_Thumb_items_Image">
+                        <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/2-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 1 ? 'Watching' : '' } `}/>
+                        <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/3-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 2 ? 'Watching' : '' } `}/>
+                        <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/4-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 3 ? 'Watching' : '' } `}/>
+                        <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/5-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 4 ? 'Watching' : '' } `}/>
+                        <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/1-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 5 ? 'Watching' : '' } `}/>
+                    </div>
+                    <button onClick={this.Handle_Prev_And_Next} className={`Previous_Thumb_Items ${this.state.Position_Slide_Product === 1 ? 'Litmit' : ''}` } data="Previous">
+                        <i className="fas fa-chevron-left" />
+                    </button>
+                    <button onClick={this.Handle_Prev_And_Next} className={`Next_Thumb_Items ${this.state.Position_Slide_Product === 5 ? 'Litmit' : ''} `} data="Next">
+                        <i className="fas fa-chevron-right" />
+                    </button>
+                    <i onClick = {this.Close_Zomm_Thumb_Product} className="fas fa-times Close_Thumb_Items" />
+                </div>
+                </ReactCSSTransitionGroup>
             </div>
         );
     }
@@ -204,8 +290,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         On_Close_Video: (Close_Video) => {
-            dispatch(Action.Close_Video(Close_Video));  
+            dispatch(Action.Close_Video(Close_Video));
         }
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Detail_Product)
+export default connect(mapStateToProps, mapDispatchToProps)(Detail_Product)

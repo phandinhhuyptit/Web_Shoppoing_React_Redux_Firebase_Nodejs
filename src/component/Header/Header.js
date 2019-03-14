@@ -32,7 +32,7 @@ class Header extends Component {
     
 
     render() {
-        let Login, Background, Backgroud_Nav, Nav;
+        let Login, Background, Backgroud_Nav, Nav;        
         if (this.props.ShowLogin) {
 
             Login = <div className="modal_login ">
@@ -80,7 +80,7 @@ class Header extends Component {
         }
 
         return (
-            <header className="Header ">
+            <header className={`Header ${this.props.PositionY >= 20 ? 'Scroll_Header' : ''} `}>
                 <div className="container">
                     <div className="row rowHeader">
                         <div className="col-md-3 col-lg-3 Logo">

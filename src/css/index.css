@@ -1373,12 +1373,7 @@ a.carousel-control-prev.previous:hover,a.carousel-control-next.next:hover {
     list-style: none;
 }
 .Slidebar_Panel .SlideBars_Panel_Info .content-SlidebarPanel span {padding-right: 8px;}
-.Slidebar_Panel .content-SlidebarPanel .fa-chevron-down.down {
-    display: none;
-}
-.Slidebar_Panel .List-SlidebarPanel {
-    display: none;
-}
+
 .Slidebar_Panel .SlideBars_Panel_Info {
     padding-right: 50px;
     padding-left: 50px;
@@ -1950,7 +1945,7 @@ span.plus_quantity{
     height: 100%;
     transform: translate(-50%, -50%);
     background-color: #000000d9;
-    display: none;
+   
     z-index: 3;
 }
 .Zoom_Thumb_Items button.Previous_Thumb_Items {

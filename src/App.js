@@ -2,26 +2,46 @@ import React, { Component } from 'react';
 import Header from './component/Header/Header';
 import Path from './component/Path/Path';
 import Footer from './component/Footer/Footer';
-import Cart  from './component/Cart/Cart';
+import Cart from './component/Cart/Cart';
 import DetailProduct from './component/Detail_Product/Detail_Product';
 import Home from './component/Home/Home';
 import NotFound404 from './component/404/Not_Found_404';
 import Product from './component/Product/Product';
-import Detail_Product from './component/Detail_Product/Detail_Product';
-
-
-
-
+import { connect } from 'react-redux';
+import *  as Action from './Actions/Actions';
 
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ShowLogin: false
-
+      ShowLogin: false,
+      PositionY : 0 
     }
   }
+
+
+
+  Handle_Scroll = () => {
+
+
+    this.setState({
+
+      PositionY : window.scrollY    
+
+    })  
+  }
+
+  
+
+  componentDidMount = () => {
+
+    window.addEventListener('scroll', this.Handle_Scroll);
+  
+  }
+
+
+
   OnShowLogin = () => {
 
 
@@ -31,7 +51,7 @@ class App extends Component {
 
     })
   }
-  
+
   OffShowLogin = () => {
 
     this.setState({
@@ -39,18 +59,40 @@ class App extends Component {
       ShowLogin: false
 
     })
-  }  
+  }
 
-  render() { 
-    const { ShowLogin } = this.state
+  render() {
+    const { ShowLogin , PositionY } = this.state   
+
+    if(PositionY >= 250 ){
+
+      this.props.on_Get_PositionY_Window(true);
+    }
+    else{
+
+      this.props.on_Get_PositionY_Window(false);
+    }
+
     return (
       <div className="App">
-        <Header ShowLogin={ShowLogin} ClickShowLogin={this.OnShowLogin} ClickCloseLogin={this.OffShowLogin}></Header>       
+        <Header ShowLogin={ShowLogin} ClickShowLogin={this.OnShowLogin} ClickCloseLogin={this.OffShowLogin} PositionY = {PositionY}></Header>
         <Path></Path>
-        <Home></Home>  
+        <DetailProduct></DetailProduct>
         <Footer ></Footer>
       </div>
     );
   }
 }
-export default App;
+const mapStateToProps = (state, ownProps) => {
+  return {
+  }
+}
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+      on_Get_PositionY_Window: (PositionY) => {
+          dispatch(Action.Get_PositionY_Window(PositionY))
+      }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)( App)
+

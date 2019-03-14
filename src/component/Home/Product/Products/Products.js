@@ -318,9 +318,10 @@ class Products extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-12 " id="Pagination">
+                        
+                        <div className="col-12  " id="Pagination">
                             <nav>
-                                <ul className="pagination ">
+                                <ul className="pagination">
                                     <li className="page-item disabled">
                                         <a className="page-link" href="7567" tabIndex={-1}>Previous</a>
                                     </li>

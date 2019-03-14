@@ -39,3 +39,35 @@
     transition: scale 300ms ease-out; */
 }     
 
+.Zoom_Thumb_Items_Aniamtion-enter {
+
+    opacity: 0.01;
+
+}
+.Zoom_Thumb_Items_Aniamtion-enter.Zoom_Thumb_Items_Aniamtion-enter-active {
+
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+}
+
+.Zoom_Thumb_Items_Aniamtion-enter {
+
+    opacity: 1;
+
+}
+.Zoom_Thumb_Items_Aniamtion-leave.Zoom_Thumb_Items_Aniamtion-leave-active {
+
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+}
+
+.Litmit {
+
+    border: 2px solid #736666!important;
+    color: #908080!important;
+
+}
+button:focus {
+    outline: 0px dotted;
+    /* outline: 5px auto -webkit-focus-ring-color; */
+}

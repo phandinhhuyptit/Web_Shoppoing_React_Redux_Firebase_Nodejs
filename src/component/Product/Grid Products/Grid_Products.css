@@ -1,0 +1,85 @@
+.Items.Border-Card2 .equal_Cards .image-hover:hover {
+    opacity: 1;  
+}
+
+
+.Items.Border-Card2 .equal_Cards .image-hover {
+    display: block;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;   
+    transition:1s;
+    width: 100%;
+}
+.Items.Border-Card2 .equal_Cards {
+    height: 95%;
+}
+div#Pagination {
+    display: flex;
+    justify-content: center;
+}
+.Items.Border-Card2 .Information_Items .Price {
+    font-size: 20px;
+    font-weight: 800;
+    color: #CB2027;
+}
+
+.Items.Border-Card2 .Information_Items .Text_Items {
+    text-decoration: none;
+    font-size: 14px;
+    font-family: 'Quando', serif;
+}
+.Items.Border-Card2 .Information_Items {
+    text-align: center;
+}
+.Items.Border-Card2 {
+    border: 1px solid #EAEAEA;
+    padding-left: 10px;
+    padding-right: 10px;
+    
+}
+
+.Items.Border-Card2 .List_Cards {
+
+    height: 100% ;
+    border-bottom: 1px solid #EAEAEA;
+
+} 
+
+.Items.Border-Card2 .List_Cards .image-hover {
+
+    display: block;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: 1s;
+    width: 100%;
+    height: 100% ;
+    cursor: pointer;
+
+
+}
+.Items.Border-Card2 .List_Cards .Information_Items{
+
+
+    text-align: left;
+    height: 100%;
+} 
+.Items.Border-Card2 .List_Cards .Information_Items .Text_Items {
+
+    text-decoration: none;
+    font-size: 14px;
+    font-family: 'Quando', serif;
+
+}
+.Items.Border-Card2 .List_Cards .Information_Items .Price {
+    font-size: 20px;
+    font-weight: 800;
+    color: #CB2027;
+}
+.Items.Border-Card2 .List_Cards .image-hover:hover {
+
+    opacity: 1;
+}

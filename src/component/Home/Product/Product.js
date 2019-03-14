@@ -9,7 +9,6 @@ import * as Action from '../../../Actions/Actions';
 
 class Product extends Component {
 
-
     Close_Notification_Product = () =>{
 
         this.props.On_Close_Notification_Product(false);

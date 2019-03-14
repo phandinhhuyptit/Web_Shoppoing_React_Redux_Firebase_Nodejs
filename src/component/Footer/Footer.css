@@ -15,3 +15,25 @@
     opacity: 0.01;
     transition: opacity 500ms ease-in;
   }
+  .ScrollTop-enter {
+
+    opacity: 0.01;
+
+
+  }
+  .ScrollTop-enter.ScrollTop-enter-active {
+
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+
+
+  }
+  .ScrollTop-leave{
+
+    opacity: 1;
+  }
+  .ScrollTop-leave.ScrollTop-leave-active{
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+
+  }

@@ -85,6 +85,13 @@ export function Change_List_Or_Grid(List_Or_Grid) {
             type : Action.Change_List_Or_Grid,
             List_Or_Grid
     }
+}
+export function Get_PositionY_Window(PositionY) {
 
 
+    return {
+
+            type : Action.Get_PositionY_Window,
+            PositionY
+    }
 }

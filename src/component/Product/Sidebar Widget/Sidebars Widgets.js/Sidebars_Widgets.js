@@ -8,7 +8,7 @@ class SidebarsWidgets extends Component {
                 <div className="sidebar-widget ">
                     <div className="widget-Headding">
                         LIGHTING
-                                 </div>
+                    </div>
                     <div className="widget-Name">
                         <ul className="List-Text">
                             <li>

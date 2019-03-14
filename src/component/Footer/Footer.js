@@ -19,19 +19,32 @@ class Footer extends Component {
 
     On_Click_Data_Location = (event) => {
 
-        event.preventDefault();   
+        event.preventDefault();
+        const name =  event.target.name; 
+        this.setState((previousState, currentProps)=>{
 
-        this.setState({
-            Name: event.target.name
+            return {...previousState , Name: name }
 
-        })
+         })             
+
+        // this.setState({
+        //     Name: event.target.name
+
+        // })
 
     }
 
     render() {
 
 
-        let adress, info, hotline;
+        let adress, info, hotline, Scroll_Top;
+
+
+        if (this.props.onPositionY) {
+
+            Scroll_Top = <ScrollTop></ScrollTop>
+
+        }
 
         if (this.state.Name === 'HCM') {
 
@@ -215,7 +228,16 @@ class Footer extends Component {
                         </div>
                     </div>
                 </div>
-                <ScrollTop ></ScrollTop>
+
+                <ReactCSSTransitionGroup
+                    transitionName="ScrollTop"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={300}>
+
+                    {Scroll_Top}
+                </ReactCSSTransitionGroup>
+
+
             </div>
         );
     }
@@ -223,6 +245,9 @@ class Footer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
+
+
+        onPositionY: state.onPositionY
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {

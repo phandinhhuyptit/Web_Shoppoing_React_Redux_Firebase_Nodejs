@@ -73,14 +73,58 @@
   opacity: 0.01;
   transition: opacity 500ms ease-in;
 }
-.Items.Border-Card .List_Cards {
+
+
+/* .Items.Border-Card2 .equal_Cards .image-hover:hover {
+    opacity: 1;  
+}
+
+
+.Items.Border-Card2 .equal_Cards .image-hover {
+    display: block;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;   
+    transition:1s;
+    width: 100%;
+}
+.Items.Border-Card2 .equal_Cards {
+    height: 95%;
+}
+div#Pagination {
+    display: flex;
+    justify-content: center;
+}
+.Items.Border-Card2 .Information_Items .Price {
+    font-size: 20px;
+    font-weight: 800;
+    color: #CB2027;
+}
+
+.Items.Border-Card2 .Information_Items .Text_Items {
+    text-decoration: none;
+    font-size: 14px;
+    font-family: 'Quando', serif;
+}
+.Items.Border-Card2 .Information_Items {
+    text-align: center;
+}
+.Items.Border-Card2 {
+    border: 1px solid #EAEAEA;
+    padding-left: 10px;
+    padding-right: 10px;
+    
+}
+
+.Items.Border-Card2 .List_Cards {
 
     height: 100% ;
     border-bottom: 1px solid #EAEAEA;
 
 } 
 
-.Items.Border-Card .List_Cards .image-hover {
+.Items.Border-Card2 .List_Cards .image-hover {
 
     display: block;
     opacity: 0;
@@ -94,28 +138,37 @@
 
 
 }
-.Items.Border-Card .List_Cards .Information_Items{
+.Items.Border-Card2 .List_Cards .Information_Items{
 
 
     text-align: left;
     height: 100%;
 } 
-.Items.Border-Card .List_Cards .Information_Items .Text_Items {
+.Items.Border-Card2 .List_Cards .Information_Items .Text_Items {
 
     text-decoration: none;
     font-size: 14px;
     font-family: 'Quando', serif;
 
 }
-.Items.Border-Card .List_Cards .Information_Items .Price {
+.Items.Border-Card2 .List_Cards .Information_Items .Price {
     font-size: 20px;
     font-weight: 800;
     color: #CB2027;
 }
-.Items.Border-Card .List_Cards .image-hover:hover {
+.Items.Border-Card2 .List_Cards .image-hover:hover {
 
     opacity: 1;
+} */
+
+div#Pagination_Product {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    margin-top: 20px;
 }
+
 .Information_Items .btn.btn-icon {
     padding: 0;
     width: 38px;

@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import './Grid_Products.css';
 
 class GridProducts extends Component {
     render() {

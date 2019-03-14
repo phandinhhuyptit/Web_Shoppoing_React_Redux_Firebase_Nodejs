@@ -6,7 +6,8 @@ const ShoppingInitialState = {
     onNotification_Product: false,
     onVideo: false,
     onSliderPanel: false,
-    onGridOrList : true
+    onGridOrList : true,
+    onPositionY : 0
 }
 
 const rootReducer = (state = ShoppingInitialState, action) => {
@@ -64,7 +65,14 @@ const rootReducer = (state = ShoppingInitialState, action) => {
             return {
                 ...state,
                 onGridOrList : action.List_Or_Grid
-            }    
+            }
+        case Action.Get_PositionY_Window : 
+        
+            return {
+
+                ...state, 
+                onPositionY : action.PositionY    
+            }
         default:
             return state;
     }

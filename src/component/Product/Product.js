@@ -16,28 +16,28 @@ class Product extends Component {
 
     Handle_Close_Background_Panel_And_Slider_Panel = () => {
 
-        this.props.On_Close_Slidebar_Panel();
+        this.props.On_Close_Slidebar_Panel(false);
     }
 
     render() {
-        let SliderPanel, Background_Panel,List_Product,Grid_Product;
+        let SliderPanel, Background_Panel, List_Product, Grid_Product;
 
-       
-       
-        if(this.props.onGridOrList){
 
-            Grid_Product =  <GridProducts/>;
+
+        if (this.props.onGridOrList) {
+
+            Grid_Product = <GridProducts />;
 
         }
         else {
 
-            List_Product =   <ListProducts/>;
+            List_Product = <ListProducts />;
 
         }
         if (this.props.onSliderPanel) {
 
             SliderPanel = <Slidebar_Panel />
-            Background_Panel = <div class="Backgroud_Slidebar_Panel"></div>
+            Background_Panel = <div onClick ={this.Handle_Close_Background_Panel_And_Slider_Panel} class="Backgroud_Slidebar_Panel"></div>
         }
         return (
             <div>
@@ -48,22 +48,35 @@ class Product extends Component {
                             <SidebarWidget />
                             <div className="col-lg-9  col-12">
                                 <div className="Items Border-Card2">
-                                        <TitleProduct></TitleProduct>
+                                    <TitleProduct></TitleProduct>
 
                                     <ReactCSSTransitionGroup
                                         transitionName="Grid_List"
                                         transitionEnterTimeout={500}
                                         transitionLeaveTimeout={300}>
 
-
-
                                         {List_Product}
 
                                         {Grid_Product}
 
-                                    </ReactCSSTransitionGroup>    
+                                    </ReactCSSTransitionGroup>
 
-                                        
+                                    <div className="col-12 " id="Pagination_Product">
+                                        <nav>
+                                            <ul className="pagination ">
+                                                <li className="page-item disabled">
+                                                    <a className="page-link" href="7567" tabIndex={-1}>Previous</a>
+                                                </li>
+                                                <li className="page-item"><a className="page-link" href="45">1</a></li>
+                                                <li className="page-item"><a className="page-link" href="12">2</a></li>
+                                                <li className="page-item"><a className="page-link" href="45">3</a></li>
+                                                <li className="page-item">
+                                                    <a className="page-link" href="45654">Next</a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -71,21 +84,21 @@ class Product extends Component {
 
 
                     <ReactCSSTransitionGroup
-                         transitionName="SliderPanel"
-                         transitionEnterTimeout={500}
-                         transitionLeaveTimeout={300}>
-                    
-                    
+                        transitionName="SliderPanel"
+                        transitionEnterTimeout={500}
+                        transitionLeaveTimeout={300}>
+
+
 
                         {SliderPanel}
 
                     </ReactCSSTransitionGroup>
                     <ReactCSSTransitionGroup
-                     transitionName="BackgroundPanel"
-                     transitionEnterTimeout={500}
-                     transitionLeaveTimeout={300}>   
-                    
-                    {Background_Panel}
+                        transitionName="BackgroundPanel"
+                        transitionEnterTimeout={500}
+                        transitionLeaveTimeout={300}>
+
+                        {Background_Panel}
                     </ReactCSSTransitionGroup>
 
                 </div>
@@ -96,7 +109,7 @@ class Product extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         onSliderPanel: state.onSliderPanel,
-        onGridOrList : state.onGridOrList
+        onGridOrList: state.onGridOrList
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
