@@ -25,7 +25,7 @@ class Footer extends Component {
 
             return {...previousState , Name: name }
 
-         })             
+         })            
 
         // this.setState({
         //     Name: event.target.name

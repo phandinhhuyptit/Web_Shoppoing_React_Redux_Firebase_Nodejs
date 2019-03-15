@@ -9,6 +9,7 @@ import NotFound404 from './component/404/Not_Found_404';
 import Product from './component/Product/Product';
 import { connect } from 'react-redux';
 import *  as Action from './Actions/Actions';
+import SignUp from './component/Sign Up/Sign_Up';
 
 
 class App extends Component {
@@ -77,7 +78,7 @@ class App extends Component {
       <div className="App">
         <Header ShowLogin={ShowLogin} ClickShowLogin={this.OnShowLogin} ClickCloseLogin={this.OffShowLogin} PositionY = {PositionY}></Header>
         <Path></Path>
-        <DetailProduct></DetailProduct>
+        <SignUp></SignUp>       
         <Footer ></Footer>
       </div>
     );
