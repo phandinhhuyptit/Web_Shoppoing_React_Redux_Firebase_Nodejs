@@ -10,6 +10,7 @@ import Product from './component/Product/Product';
 import { connect } from 'react-redux';
 import *  as Action from './Actions/Actions';
 import SignUp from './component/Sign Up/Sign_Up';
+import Login from './component/Login/Login';
 
 
 class App extends Component {
@@ -78,7 +79,7 @@ class App extends Component {
       <div className="App">
         <Header ShowLogin={ShowLogin} ClickShowLogin={this.OnShowLogin} ClickCloseLogin={this.OffShowLogin} PositionY = {PositionY}></Header>
         <Path></Path>
-        <SignUp></SignUp>       
+        <SignUp></SignUp>
         <Footer ></Footer>
       </div>
     );

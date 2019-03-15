@@ -1,0 +1,97 @@
+#content-login-up .box {
+    margin-bottom: 40px;
+}
+#content-login-up .bordered_content {
+    border-radius: 3px;
+    border: 1px solid #eaeaea;
+    background: #fff;
+}
+#content-login-up .row.login_screen {
+    position: relative;
+}
+#content-login-up .row.no_margin {
+    margin: 0;
+}
+#content-login-up .row.login_screen {
+    position: relative
+}
+#content-login-up .row.login_screen h2 {
+    font-size: 18px;
+    margin: 0 0 15px
+}
+
+#content-login-up .padded {
+    padding: 20px 19px;
+}
+@media only screen and (min-width: 768px) {
+    #content-login-up  .row.login_screen:before {
+        position: absolute;
+        width: 1px;
+        content: " ";
+        display: block;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        background: #eaeaea
+    }
+    #content-login-up  .login_screen .top {
+        min-height: 275px
+    }
+    #content-login-up   .login_screen .bottom {
+        border-top: 1px solid #eaeaea
+    }
+}
+b#content-login-up tn-icon.btn-primary,#content-login-up .btn-primary {  
+    font-weight: bold;
+    color: #fff;
+}
+#content-login-up .btn {
+    padding: 8px 20px 9px;
+    font-size: 16px;
+    border: none;
+    line-height: 1.3;
+    border-radius: 3px;
+    white-space: normal;
+}
+#content-login-up .row.no_margin [class*=col-] {
+    padding: 0
+}
+#content-login-up form {
+    padding: 0;
+    margin: 0;
+    display: inline
+}
+#content-login-up .form-group {
+    margin-bottom: 12px
+}
+#content-login-up control-label,#content-login-up .form-horizontal .control-label {
+    margin-bottom: 5px;
+}
+#content-login-up label {
+    font-weight: inherit;
+    margin-bottom: 0;
+    color: #777;
+}
+#content-login-up input[type=text],#content-login-up  input[type=password],#content-login-up input[type=email],#content-login-up input[type=tel],#content-login-up select, #content-login-up select.form-control {
+    height: 38px;
+}
+
+#content-login-up a.forgotten {
+    display: block;
+    font-size: 12px
+}
+#content-login-up .form-control,
+#content-login-up input,
+#content-login-up select,
+#content-login-up textarea {
+    outline: 0;
+    color: #777;
+    border: 1px solid #eaeaea;
+    padding: 6px 8px;
+    max-width: 100%;
+    border-radius: 3px;
+    box-shadow: none
+}
+#content-login-up h1 {
+    line-height: 3em;
+}

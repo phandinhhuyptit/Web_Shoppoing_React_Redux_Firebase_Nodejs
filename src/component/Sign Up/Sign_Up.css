@@ -8,76 +8,78 @@
 	    font-size: 16px;
 	}
 }
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.container.Sign-Up {
+    margin-bottom: 4em;
+}
+#content-sign-up h1,
+#content-sign-up h2,
+#content-sign-up h3,
+#content-sign-up h4,
+#content-sign-up h5,
+#content-sign-up h6 {
     color: #333;
     font-weight: inherit;
     line-height: 1em;
     margin-bottom: 14px;
     margin-top: 0;
 }
-.margin-b,
-p.margin-b {
+#content-sign-up .margin-b,
+#content-sign-up p.margin-b {
     margin-bottom: 25px
 }
-p {
+#content-sign-up p {
     margin-top: 0;
     margin-bottom: 15px;
     line-height: 21px;
     color: #777
 }
-p:last-child {
+#content-sign-up p:last-child {
     margin-bottom: 0
 }
-.padded_ex_bottom {
+#content-sign-up .padded_ex_bottom {
     padding: 20px 19px 0;
 }
-.bordered_content {
+#content-sign-up .bordered_content {
     border-radius: 3px;
     border: 1px solid #eaeaea;
     background: #fff;
 }
-fieldset {
+#content-sign-up fieldset {
     margin-bottom: 10px
 }
-fieldset+fieldset {
+#content-sign-up fieldset+fieldset {
     margin-top: 5px
 }
-.form-group {
+#content-sign-up .form-group {
     margin-bottom: 12px;    
     width: 100%;
    
 }
 
-.form-group.no_b_margin {
+#content-sign-up .form-group.no_b_margin {
     margin-bottom: 0
 }
-.control-label,
-.form-horizontal .control-label {
+#content-sign-up .control-label,
+#content-sign-up .form-horizontal .control-label {
     margin-bottom: 5px;
     font-size: 13px;
     font-weight: 600;
 }
-div.required .control-label:after {
+#content-sign-up div.required .control-label:after {
     content: " *";
     color: #ff456f;
     font-weight: 400
 }
-.input-group {
+#content-sign-up .input-group {
     width: 100%
 }
-.input-group-addon.captcha_wrap {
+#content-sign-up .input-group-addon.captcha_wrap {
     background: #fff;
     border-color: #eaeaea;
     position: relative;
     width: 78px
 }
-.input-group-addon.captcha_wrap img {
+#content-sign-up .input-group-addon.captcha_wrap img {
     position: absolute;
     width: 58px;
     height: 22px;
@@ -85,20 +87,20 @@ div.required .control-label:after {
     left: 10px;
     max-width: none
 }
-form {
+#content-sign-up form {
     padding: 0;
     margin: 0;
     display: inline
 }
-label {
+#content-sign-up label {
     font-weight: inherit;
     margin-bottom: 0;
     color: #777
 }
-.form-control,
-input,
-select,
-textarea {
+#content-sign-up .form-control,
+#content-sign-up input,
+#content-sign-up select,
+#content-sign-up textarea {
     outline: 0;
     color: #777;
     border: 1px solid #eaeaea;
@@ -107,50 +109,55 @@ textarea {
     border-radius: 3px;
     box-shadow: none
 }
-.form-control:focus,
-input:focus,
-select:focus,
-textarea:focus {
+#content-sign-up .form-control:focus,
+#content-sign-up input:focus,
+#content-sign-up select:focus,
+#content-sign-up textarea:focus {
     box-shadow: none;
     border-color: #eaeaea
 }
-input[type=text],
-input[type=password],
-input[type=email],
-input[type=tel],
-select,
-select.form-control {
+#content-sign-up input[type=text],
+#content-sign-up input[type=password],
+#content-sign-up input[type=email],
+#content-sign-up input[type=tel],
+#content-sign-up select,
+#content-sign-up select.form-control {
     height: 38px
 }
 
-select::-ms-expand {
+#content-sign-up select::-ms-expand {
     display: none
 }
-.box {
+#column-left .box {
     margin-bottom: 40px;
 }
 
-.bottom_buttons {
+#content-sign-up .bottom_buttons {
+
     border-top: 1px solid #eaeaea;
     padding: 15px 20px
 }
-.btn-icon.btn-primary,
-.btn-primary {
+#content-sign-up .btn-icon.btn-primary,
+#content-sign-up .btn-primary {
 
     font-weight: bold;
     color: #fff
 }
-.btn-primary:focus,
-.btn-primary:hover,
-.btn.btn-icon.btn-primary:focus,
-.btn.btn-icon.btn-primary:hover {
+#content-sign-up .btn-primary {
+  
+    border-radius: 6px;
+}
+#content-sign-up .btn-primary:focus,
+#content-sign-up .btn-primary:hover,
+#content-sign-up .btn.btn-icon.btn-primary:focus,
+#content-sign-up .btn.btn-icon.btn-primary:hover {
  
     color: #fff
 }
-form.form-horizontal h3 {
+#content-sign-up form.form-horizontal h3 {
     font-size: 1.5em;
 }
-div#content h1 {
+#content-sign-up div#content h1 {
     line-height: 1.8em;
     font-size: 2.2em;
 }
@@ -160,7 +167,7 @@ div#content h1 {
     
 }
 
-a.list-group-item.dark_hover:hover{
+#column-left a.list-group-item.dark_hover:hover{
     color: #fff!important;
     border-color: transparent!important;
     background: #018bc8!important
@@ -169,7 +176,7 @@ a.list-group-item.dark_hover:hover{
 
 @media(min-width: 576px){
 
-        .form-group {
+       #content-sign-up .form-group {
        
         display: inline-flex;
         width: 100%;
@@ -177,3 +184,4 @@ a.list-group-item.dark_hover:hover{
     }
 
 }
+div#content-sign-up h1 {margin-top: 1em;margin-bottom: 0.5em;}

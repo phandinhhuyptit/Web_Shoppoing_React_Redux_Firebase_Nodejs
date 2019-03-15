@@ -4,7 +4,7 @@ import './Sign_Up.css';
 class SignUp extends Component {
     render() {
         return (
-            <div className="container">
+            <div className="container Sign-Up">
                 <div className="row">
                     <div id="column-left" className=" col-12 col-lg-3 col-xl-3 col-md-4 col-sm-12">
                         <h3>Tài khoản</h3>
@@ -23,8 +23,8 @@ class SignUp extends Component {
                             <a href="https://www.playzone.vn/index.php?route=account/transaction" className="list-group-item dark_hover">Lịch sử Giao dịch</a>
                             <a href="https://www.playzone.vn/index.php?route=account/newsletter" className="list-group-item dark_hover">Thư thông báo</a>
                         </div></div>
-                    <div id="content" className="col-12 col-md-8 col-sm-12 col-lg-9 col-xl-9">      <h1>Đăng Ký Tài Khoản</h1>
-                        <p className="margin-b">Nếu bạn đã đăng ký tài khoản, vui lòng đăng nhập <a href="https://www.playzone.vn/login">Tại Đây</a>.</p><p> <b>Lưu ý:</b> Các mục dấu sao <b>màu đỏ</b> không được bỏ trống &amp; phải điền đầy đủ, chính xác</p>
+                    <div id="content-sign-up" className="col-12 col-md-8 col-sm-12 col-lg-9 col-xl-9">      <h1>Đăng Ký Tài Khoản</h1>
+                        <p className="margin-b  ">Nếu bạn đã đăng ký tài khoản, vui lòng đăng nhập <a href="https://www.playzone.vn/login">Tại Đây</a>.</p><p> <b>Lưu ý:</b> Các mục dấu sao <b>màu đỏ</b> không được bỏ trống &amp; phải điền đầy đủ, chính xác</p>
                         <form action="https://www.playzone.vn/register" method="post" encType="multipart/form-data" className="form-horizontal">
                             <h3>Thông tin cá nhân</h3>
                             <div className="bordered_content padded_ex_bottom margin-b">
