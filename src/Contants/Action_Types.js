@@ -9,3 +9,6 @@ export const Show_Slidebar_Panel = "SHOW SLIDEBAR PANEL";
 export const Close_Slidebar_Panel = "CLOSE SLIDEBAR PANEL";
 export const Change_List_Or_Grid = "CHANGE LIST OR GRID";
 export const Get_PositionY_Window = "GET POSITION Y WIDOW";
+export const Fetch_Data = "FETCH_DATA";
+export const Get_Data = "GET_DATA";
+export const Get_Product_For_Notification = "GET_PRODUCT_FOR_NOTIFICATION";

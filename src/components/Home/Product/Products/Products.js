@@ -2,38 +2,79 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import * as Action from '../../../../Actions/Actions'
 class Products extends Component {
-    On_Notification_Product = () =>{
+    On_Notification_Product = (event) =>{
+
+
+        const IDProduct = event.currentTarget.value;
 
         this.props.On_Show_Notification_Cart(true);
+
+        
+        this.props.On_Get_Product_For_Notification(IDProduct);
     }
-    
+    coverStringMoney = (Price) => {
+        var _tmpString = '';
+        var _returnString = '';
+        Price = Price.toString();
+        var _count = 0;
+        for (var i = Price.length; i > 0; i--) {
+            if (_count % 3 === 0 && i !== Price.length) {
+                _tmpString += '.';
+            }
+            _tmpString += Price[i - 1];
+            _count++;
+        }
+        for (var i = _tmpString.length; i > 0; i--) {
+            _returnString += _tmpString[i - 1];
+        }
+        return _returnString;
+    }   
+
     
     render() {
 
+        let Products;
+
+        if(this.props.OnDataApi){
+
+
+
+            Products = this.props.OnDataApi.map((Product,Key) =>{
+
+
+                    return <div className="col-sm-6 col-md-4 col-lg-3 " key={Key}>
+                                         <div className="card mb-4 equal_Cards ">
+                                    <a href="54" className="Image-main">
+                                        <img className="card-img-top img-fluid" src={Product.Image.Image} aria-hidden alt="Card image cap" />
+                                    </a>
+                                    <div className="image-hover">
+                                        <a href={`DetailProduct/${Product.ID_Product}`}>
+                                            <img  className="card-img-top img-fluid" src={Product.Image.ImageHover} aria-hidden alt="Card image cap" />
+                                        </a>
+                                    </div>
+                                    <div className="card-body Information_Items">
+                                        <a href={`DetailProduct/${Product.ID_Product}`} className="card-text Text_Items ">{Product.Name}</a>
+                                        <p className="Price">
+                                            {this.coverStringMoney(Product.Price)} đ
+                                         </p> 
+                                        <button onClick = {(event)=>this.On_Notification_Product(event)} type="button" value={Product.ID_Product } className="btn btn-success Button_Add_Cart">Thêm Vào Giỏ</button>
+                                    </div>
+                                </div>
+                            </div>
+            })
+        }
+        
+        
+        
         return (
             <div className="Items">
                 <div className="container">
                     <div className="row Border-Card">
-                        <div className="col-sm-6 col-md-4 col-lg-3 ">
-                            <div className="card mb-4 equal_Cards ">
-                                <a href="54" className="Image-main">
-                                    <img className="card-img-top img-fluid" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/chuot/rival-310-howl/2-1-400x400.jpg" aria-hidden alt="Card image cap" />
-                                </a>
-                                <div className="image-hover">
-                                    <a href="12">
-                                        <img  className="card-img-top img-fluid" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/chuot/rival-310-howl/3-400x400.jpg" aria-hidden alt="Card image cap" />
-                                    </a>
-                                </div>
-                                <div className="card-body Information_Items">
-                                    <a href="325" className="card-text Text_Items ">Chuột SteelSeries Rival 310 - CS:GO HOWL EDITION</a>
-                                    <p className="Price">
-                                        3.289.000 đ
-                                     </p>
-                                    <button onClick = {()=>this.On_Notification_Product()} type="button" className="btn btn-success Button_Add_Cart">Thêm Vào Giỏ</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-md-4 col-lg-3 ">
+
+
+                            {Products}
+
+                        {/* <div className="col-sm-6 col-md-4 col-lg-3 ">
                             <div className="card mb-4 equal_Cards ">
                                 <a href="46" className="Image-main">
                                     <img className="card-img-top img-fluid" src="https://www.playzone.vn/image/cache/catalog/san%20pham/razer/chuot-razer/mamba-elite/1-400x400.jpg" aria-hidden alt="Card image cap" />
@@ -318,7 +359,7 @@ class Products extends Component {
                                 </div>
                             </div>
                         </div>
-                        
+                         */}
                         <div className="col-12  " id="Pagination">
                             <nav>
                                 <ul className="pagination">
@@ -342,14 +383,22 @@ class Products extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
     return {
-        OnNotificationProduct : state.onNotification_Product
+        OnNotificationProduct : state.onNotification_Product,
+        OnDataApi : state.DataApi        
+
+
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         On_Show_Notification_Cart: (Show_Product) => {
             dispatch(Action.Show_Notification_Product(Show_Product))
-        }
+        },
+        On_Get_Product_For_Notification: (IDProduct) => {
+            dispatch(Action.Get_Product_For_Notification(IDProduct))
+        },
+        
+
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Products)

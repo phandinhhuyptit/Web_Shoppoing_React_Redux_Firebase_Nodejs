@@ -2,18 +2,10 @@ import React, { Component } from 'react';
 import Header from './components/Header/Header';
 import Path from './components/Path/Path';
 import Footer from './components/Footer/Footer';
-import Cart from './components/Cart/Cart';
-import DetailProduct from './components/Detail_Product/Detail_Product';
-import Home from './components/Home/Home';
-import NotFound404 from './components/404/Not_Found_404';
-import Product from './components/Product/Product';
 import { connect } from 'react-redux';
 import *  as Action from './Actions/Actions';
-import SignUp from './components/Sign Up/Sign_Up';
-import Login from './components/Login/Login';
 import { BrowserRouter as Router } from "react-router-dom";
 import DirectionalURL from './Router/DirectionalURL';
-
 
 
 class App extends Component {
@@ -38,11 +30,11 @@ class App extends Component {
   }
 
 
-
   componentDidMount = () => {
 
     window.addEventListener('scroll', this.Handle_Scroll);
-
+  
+    this.props.on_Get_Data();
   }
 
 
@@ -98,7 +90,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     on_Get_PositionY_Window: (PositionY) => {
       dispatch(Action.Get_PositionY_Window(PositionY))
+    },
+    on_Get_Data :() =>{
+
+      dispatch(Action.Get_Data_Firebase())
     }
+
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App)

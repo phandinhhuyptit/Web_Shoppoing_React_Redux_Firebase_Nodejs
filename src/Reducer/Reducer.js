@@ -7,7 +7,9 @@ const ShoppingInitialState = {
     onVideo: false,
     onSliderPanel: false,
     onGridOrList : true,
-    onPositionY : 0
+    onPositionY : 0,
+    DataApi : [],
+    ProductNotification :{}
 }
 
 const rootReducer = (state = ShoppingInitialState, action) => {
@@ -73,7 +75,32 @@ const rootReducer = (state = ShoppingInitialState, action) => {
                 ...state, 
                 onPositionY : action.PositionY    
             }
-        default:
+        case Action.Get_Data :
+            return {
+
+                    ...state,
+                    DataApi : action.DataFirebase
+              } 
+              
+        case Action.Get_Product_For_Notification :          
+
+              let DataApi = state.DataApi;
+
+              for (const key in DataApi) {
+                    if(DataApi[key].ID_Product === action.IDProduct ){
+
+                        return {
+
+                            ...state, 
+                            ProductNotification :DataApi[key]
+                        }               
+
+
+                    }
+              }           
+        return state;      
+           
+        default:    
             return state;
     }
 }

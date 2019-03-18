@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as Action from '../../../../Actions/Actions';
-import  './Notification_Product.css'
-
-
-    
+import  './Notification_Product.css';   
 
 
 class Notification_Product extends Component {
@@ -15,20 +12,21 @@ class Notification_Product extends Component {
     }
 
     render() {
+             
         return (
             <div className="Notification">
                 <div className="info_product">
-                    <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/corsair/ban-phim/K70%20MK2/Black/1-80x80.jpg" alt="true" />
+                    <img src={this.props.onProductNotification.GeneralImage} alt="true" />
                     <span>
                         Thành công: Bạn đã thêm
-                <a href="true">Bàn phím cơ Corsair K70 MK.2 - RGB - Cherry MX</a>
-                        vào
-                <a href="true">Giỏ Hàng</a>
+                <a className="ml-1" href={`Detail/${this.props.onProductNotification.ID_Product}`}>{this.props.onProductNotification.Name}</a>                        
+                 <span className="SpaceContent">vào</span>       
+                <a href="/Cart">Giỏ Hàng</a>
                     </span>
                 </div>
                 <div className="CheckOutButton">
-                    <a href="true" className="btn btn-success">Xem Giỏ Hàng</a>
-                    <a href="true" className="btn btn-success">Thanh Toán </a>
+                    <a href="/Cart" className="btn btn-success">Xem Giỏ Hàng</a>
+                    <a href="/Payment" className="btn btn-success">Thanh Toán </a>
                 </div>
                 <i  onClick  ={()=>this.Close_Notification_Product_Handdler()}  className="fas fa-times" />
             </div>
@@ -37,7 +35,7 @@ class Notification_Product extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
     return {
-        
+        onProductNotification : state.ProductNotification
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
