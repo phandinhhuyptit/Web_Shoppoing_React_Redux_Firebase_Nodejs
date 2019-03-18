@@ -61,13 +61,16 @@ class App extends Component {
   render() {
     const { ShowLogin, PositionY } = this.state
 
-    if (PositionY >= 250) {
+    if (PositionY >= 250 && this.props.onPositionY === false ) {
 
+      
       this.props.on_Get_PositionY_Window(true);
     }
-    else {
+    else if (PositionY < 250 && this.props.onPositionY === true)
+    {
 
       this.props.on_Get_PositionY_Window(false);
+
     }
 
     return (
@@ -84,6 +87,9 @@ class App extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
+
+    onPositionY : state.onPositionY
+
   }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {

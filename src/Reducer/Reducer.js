@@ -7,7 +7,7 @@ const ShoppingInitialState = {
     onVideo: false,
     onSliderPanel: false,
     onGridOrList : true,
-    onPositionY : 0,
+    onPositionY : false,
     DataApi : [],
     ProductNotification :{}
 }
@@ -85,7 +85,7 @@ const rootReducer = (state = ShoppingInitialState, action) => {
         case Action.Get_Product_For_Notification :          
 
               let DataApi = state.DataApi;
-
+              
               for (const key in DataApi) {
                     if(DataApi[key].ID_Product === action.IDProduct ){
 

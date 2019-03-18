@@ -11,32 +11,30 @@ class Detail_Product extends Component {
         super(props);
         this.state = {
             position: '0',
-            backgroundImage: `url(${"https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/2-1000x1000.jpg"})`,
+            backgroundImage: "",
             backgroundPosition: '0% 0%',
-            Zoom_Thumb_Product : false,
-            Position_Slide_Product : 1
+            Zoom_Thumb_Product: false,
+            Position_Slide_Product: 1,
+            DataProduct : []            
         }
     }
+    Show_Zomm_Thumb_Product = () => {
 
-    Show_Zomm_Thumb_Product = () =>{
+        this.setState((previousState, currentProps) => {
 
-            this.setState((previousState, currentProps)=>{
+            return { ...previousState, Zoom_Thumb_Product: true }
 
-                    return {...previousState ,Zoom_Thumb_Product : true }
-
-            })       
+        })
     }
-    Close_Zomm_Thumb_Product = () =>{
+    Close_Zomm_Thumb_Product = () => {
 
+        this.setState((previousState, currentProps) => {
 
-        this.setState((previousState, currentProps)=>{
+            return { ...previousState, Zoom_Thumb_Product: false, Position_Slide_Product: 1 }
 
-            return {...previousState ,Zoom_Thumb_Product : false , Position_Slide_Product : 1}
-
-    })       
+        })
 
     }
-
 
     Handle_Close_Video = () => {
 
@@ -45,13 +43,29 @@ class Detail_Product extends Component {
     }
 
     Handle_Prev_And_Next = (e) => {
-
+        let DataProduct,Length_Big_Image;   
         const Prev_Or_Next = e.currentTarget.getAttribute('data');
-       
+          
+
+        if(this.props.OnDataProduct){
+
+            this.props.OnDataProduct.forEach(Product => {
+
+                if (this.props.match.params.id === Product.ID_Product){
+                       
+                    DataProduct = Product;
+                
+                }    
+            })
+        }        
+        if(DataProduct){
+            
+            Length_Big_Image = DataProduct.BigImage.length;
+        }    
 
         if (Prev_Or_Next === "Previous") {
 
-            console.log("OK previous");
+            
             if (this.state.Position_Slide_Product >= 2) {
 
                 this.setState((previousState, currentProps) => {
@@ -61,26 +75,19 @@ class Detail_Product extends Component {
                 })
             }
         }
-            else {
+        else {
 
-                if (this.state.Position_Slide_Product <= 4) {
-
-
-                    this.setState((previousState, currentProps) => {
-
-                        return {...previousState, Position_Slide_Product: this.state.Position_Slide_Product + 1 }
-
-                    })
-                }
+            if (this.state.Position_Slide_Product <= Length_Big_Image-1) {
 
 
+                this.setState((previousState, currentProps) => {
+
+                    return { ...previousState, Position_Slide_Product: this.state.Position_Slide_Product + 1 }
+                })
             }
 
         }
-
-    
-
-
+    }
     handleMouseMove = e => {
 
         const { left, top, width, height } = e.target.getBoundingClientRect();
@@ -88,55 +95,106 @@ class Detail_Product extends Component {
         const y = (e.pageY - top) / height * 100;
 
 
-        this.setState((previousState, currentProps)=>{
+        this.setState((previousState, currentProps) => {
 
-            return {...previousState ,backgroundPosition : `${x}% ${y}%` }
+            return { ...previousState, backgroundPosition: `${x}% ${y}%` }
 
-         })           
-        // this.setState({
-                
-        //     backgroundPosition: `${x}% ${y}%`
-
-        // })
+        })    
 
     }
-    Handle_Choose_Image = (e) => {
 
+    Handle_Choose_Image = (e) => {  
+        
+
+        let DataProduct;         
         const Position = e.target.getAttribute('data-image');
         let Src;
-        if (Position === '0') {
+        if (this.props.OnDataProduct) {
 
-            Src = "https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/2-1000x1000.jpg";
+            this.props.OnDataProduct.forEach(Product => {
 
+                if (this.props.match.params.id === Product.ID_Product) {
 
-        }
-        else if (Position === '1') {
+                        DataProduct =  Product;
+                }
+            })
 
-            Src = "https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/3-1000x1000.jpg";
+    }
+        if(DataProduct){
+            let ArrayProduct =DataProduct.BigImage;
+            for (const index in ArrayProduct) {
+                if(Position === index)
+                {
+                    
+                   Src=ArrayProduct[index].Image                   
 
-        }
-        else if (Position === '2') {
-
-            Src = "https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/4-1000x1000.jpg";
-        }
-        else if (Position === '3') {
-
-            Src = "https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/5-1000x1000.jpg";
-        }
-        else {
-
-            Src = "https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/1-1000x1000.jpg";
-        }
+                }
+               
+             }
+        }       
         this.setState({
             backgroundImage: `url(${`${Src}`})`,
             position: Position
 
         })
     }
-    render() {
+    render() {      
+        
+        let OnVideo,DataImageOfProduct,Data_Images_Of_Zoom_Thumb_Items,Big_Image_Product,SubDataImageOfProduct,Length_Big_Image ;
+        let DataProduct;      
 
-        let OnVideo;
+        if(this.props.OnDataProduct){
 
+            this.props.OnDataProduct.forEach(Product => {
+
+                if (this.props.match.params.id === Product.ID_Product){
+                       
+                    DataProduct = Product;
+                
+                }    
+            })
+        }        
+        if(DataProduct){
+            
+            Length_Big_Image = DataProduct.BigImage.length;
+
+            SubDataImageOfProduct = DataProduct.Small_Image.map((Product,Key) =>{
+
+                    return (<div className="column" key={Key}>
+                    <img onClick={this.Handle_Choose_Image} className={`Small-Image cursor ${this.state.position === `${Key}` ? 'ActiveImage' : ''}`} src={Product.Image} data-image={Key} aria-hidden alt="The Woods" />
+                    </div>)
+
+            })
+
+            Big_Image_Product =DataProduct.BigImage.map((Image_Product,Key)=>{
+
+                return (
+
+                    <div key={Key} className={`mySlides ${this.state.position === `${Key}` ? '' : 'd-none'}`}>
+
+                    <img className="myimage" src={`${Image_Product.Image}`} aria-hidden alt="Nature and sunrise" />
+                    <div onMouseMove={this.handleMouseMove} style={this.state} className="numbertext"></div>
+                </div>
+                )
+            })
+            Data_Images_Of_Zoom_Thumb_Items = DataProduct.BigImage.map((Images,Key)=>{
+
+
+               return <img src={Images.Image} alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === (Key+1) ? 'Watching' : ''} `} />
+                    
+
+
+            })
+
+
+        }       
+                
+        if(SubDataImageOfProduct){
+
+            DataImageOfProduct=SubDataImageOfProduct;
+           
+        }      
+       
         if (this.props.Onvideo) {
 
             OnVideo = <div>
@@ -144,29 +202,18 @@ class Detail_Product extends Component {
                 </iframe>
                 <div onClick={this.Handle_Close_Video} className="Backgroud_Video" />
             </div>
-        }
+        } 
 
         return (
             <div>
                 <div className="product_info">
                     <div className="container">
                         <div className="row">
-                            <div className="d-none d-lg-block  col-lg-1">
-                                <div className="column">
-                                    <img onClick={this.Handle_Choose_Image} className={`Small-Image cursor ${this.state.position === '0' ? 'ActiveImage' : ''}`} src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/2-83x83.jpg" data-image={0} aria-hidden alt="The Woods" />
-                                </div>
-                                <div className="column">
-                                    <img onClick={this.Handle_Choose_Image} className={`Small-Image cursor ${this.state.position === '1' ? 'ActiveImage' : ''}`} src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/3-83x83.jpg" data-image={1} aria-hidden alt="Cinque Terre" />
-                                </div>
-                                <div className="column">
-                                    <img onClick={this.Handle_Choose_Image} className={`Small-Image cursor ${this.state.position === '2' ? 'ActiveImage' : ''}`} src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/4-83x83.jpg" data-image={2} aria-hidden alt="Mountains and fjords" />
-                                </div>
-                                <div className="column">
-                                    <img onClick={this.Handle_Choose_Image} className={`Small-Image cursor ${this.state.position === '3' ? 'ActiveImage' : ''}`} src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/5-83x83.jpg" data-image={3} aria-hidden alt="Northern Lights" />
-                                </div>
-                                <div className="column">
-                                    <img onClick={this.Handle_Choose_Image} className={`Small-Image cursor ${this.state.position === '4' ? 'ActiveImage' : ''}`} src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/1-83x83.jpg" data-image={4} aria-hidden alt="Nature and sunrise" />
-                                </div>
+                            <div className="d-none d-lg-block  col-lg-1">                               
+                                {
+                                    DataImageOfProduct
+                                    
+                                }
                             </div>
                             <div className="col-md-6 col-lg-4">
                                 <div className="image-product">
@@ -174,28 +221,10 @@ class Detail_Product extends Component {
                                     <div onClick={this.Show_Zomm_Thumb_Product} className="thumb-items d-none d-md-flex">
                                         <i className="fas fa-expand-arrows-alt" />
                                     </div>
-                                    <div className={`mySlides ${this.state.position === '0' ? '' : 'd-none'}`}>
+                                   {
+                                       Big_Image_Product
 
-                                        <img className="myimage" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/2-1000x1000.jpg" aria-hidden alt="Nature and sunrise" />
-                                        <div onMouseMove={this.handleMouseMove} style={this.state} className="numbertext">1 / 5</div>
-                                    </div>
-                                    <div className={`mySlides ${this.state.position === '1' ? '' : 'd-none'}`} >
-                                        <div onMouseMove={this.handleMouseMove} style={this.state} className="numbertext">2 / 5</div>
-                                        <img className="myimage" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/3-1000x1000.jpg" aria-hidden alt="Nature and sunrise" />
-                                    </div>
-                                    <div className={`mySlides ${this.state.position === '2' ? '' : 'd-none'}`}>
-                                        <div onMouseMove={this.handleMouseMove} style={this.state} className="numbertext">3 / 5</div>
-                                        <img className="myimage" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/4-1000x1000.jpg" aria-hidden alt="Nature and sunrise" />
-                                    </div>
-                                    <div className={`mySlides ${this.state.position === '3' ? '' : 'd-none'}`}>
-                                        <div onMouseMove={this.handleMouseMove} style={this.state} className="numbertext">4 / 5</div>
-                                        <img className="myimage" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/5-1000x1000.jpg" aria-hidden alt="Nature and sunrise" />
-                                    </div>
-                                    <div className={`mySlides ${this.state.position === '4' ? '' : 'd-none'}`}>
-                                        <div onMouseMove={this.handleMouseMove} style={this.state} className="numbertext">5 / 5</div>
-                                        <img className="myimage" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/1-1000x1000.jpg" aria-hidden alt="Nature and sunrise" />
-                                    </div>
-
+                                   }
                                     <div className="col-12 Sub_Image d-none ">
                                         <div className="column2">
                                             <img onClick={this.Handle_Choose_Image} className="Small-Image2 cursor" src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/2-83x83.jpg" data-image={0} aria-hidden alt="The Woods" />
@@ -256,27 +285,32 @@ class Detail_Product extends Component {
                 </div>
                 <InformationAndStatistics></InformationAndStatistics>
                 <Products></Products>
-                <ReactCSSTransitionGroup 
-                transitionName="Zoom_Thumb_Items_Aniamtion"
-                transitionEnterTimeout={500}
-                transitionLeaveTimeout={300}              
+                <ReactCSSTransitionGroup
+                    transitionName="Zoom_Thumb_Items_Aniamtion"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={300}
                 >
-                <div className={`Zoom_Thumb_Items ${this.state.Zoom_Thumb_Product ? '' : 'd-none'}`}>
-                    <div className="Sub_Thumb_items_Image">
-                        <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/2-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 1 ? 'Watching' : '' } `}/>
-                        <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/3-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 2 ? 'Watching' : '' } `}/>
-                        <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/4-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 3 ? 'Watching' : '' } `}/>
-                        <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/5-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 4 ? 'Watching' : '' } `}/>
-                        <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/1-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 5 ? 'Watching' : '' } `}/>
+                    <div className={`Zoom_Thumb_Items ${this.state.Zoom_Thumb_Product ? '' : 'd-none'}`}>
+                        <div className="Sub_Thumb_items_Image">
+                        
+                        
+                        { Data_Images_Of_Zoom_Thumb_Items }
+
+
+                            {/* <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/2-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 1 ? 'Watching' : ''} `} />
+                            <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/3-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 2 ? 'Watching' : ''} `} />
+                            <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/4-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 3 ? 'Watching' : ''} `} />
+                            <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/5-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 4 ? 'Watching' : ''} `} />
+                            <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/1-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 5 ? 'Watching' : ''} `} /> */}
+                        </div>
+                        <button onClick={this.Handle_Prev_And_Next} className={`Previous_Thumb_Items ${this.state.Position_Slide_Product === 1 ? 'Litmit' : ''}`} data="Previous">
+                            <i className="fas fa-chevron-left" />
+                        </button>
+                        <button onClick={this.Handle_Prev_And_Next} className={`Next_Thumb_Items ${this.state.Position_Slide_Product === Length_Big_Image ? 'Litmit' : ''} `} data="Next">
+                            <i className="fas fa-chevron-right" />
+                        </button>
+                        <i onClick={this.Close_Zomm_Thumb_Product} className="fas fa-times Close_Thumb_Items" />
                     </div>
-                    <button onClick={this.Handle_Prev_And_Next} className={`Previous_Thumb_Items ${this.state.Position_Slide_Product === 1 ? 'Litmit' : ''}` } data="Previous">
-                        <i className="fas fa-chevron-left" />
-                    </button>
-                    <button onClick={this.Handle_Prev_And_Next} className={`Next_Thumb_Items ${this.state.Position_Slide_Product === 5 ? 'Litmit' : ''} `} data="Next">
-                        <i className="fas fa-chevron-right" />
-                    </button>
-                    <i onClick = {this.Close_Zomm_Thumb_Product} className="fas fa-times Close_Thumb_Items" />
-                </div>
                 </ReactCSSTransitionGroup>
             </div>
         );
@@ -284,7 +318,8 @@ class Detail_Product extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
     return {
-        Onvideo: state.onVideo
+        Onvideo: state.onVideo,
+        OnDataProduct: state.DataApi
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {

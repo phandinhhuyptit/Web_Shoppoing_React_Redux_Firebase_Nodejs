@@ -7,8 +7,7 @@ import Blog from './Blog/Blog';
 
 class Home extends Component {
     render() {
-      console.log(this.props.match);
-      console.log(this.props.location);  
+      
         return (
             <div>
                 <Carousel></Carousel>

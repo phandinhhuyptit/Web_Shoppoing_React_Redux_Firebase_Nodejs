@@ -29,31 +29,55 @@ class Products extends Component {
         }
         return _returnString;
     }   
+    ChangeToSlug = ((str) =>{
+        // Change To LowerCase
+    str = str.toLowerCase();     
+ 
+    // delete sign
+    str = str.replace(/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/g, 'a');
+    str = str.replace(/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/g, 'e');
+    str = str.replace(/(ì|í|ị|ỉ|ĩ)/g, 'i');
+    str = str.replace(/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/g, 'o');
+    str = str.replace(/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/g, 'u');
+    str = str.replace(/(ỳ|ý|ỵ|ỷ|ỹ)/g, 'y');
+    str = str.replace(/(đ)/g, 'd');
+ 
+    // Delete Special Characters
+    str = str.replace(/([^0-9a-z-\s])/g, '');
+ 
+    //Delete Space and Charater '-'
+    str = str.replace(/(\s+)/g, '-');
+ 
+    // delete the remainder at the head
+    str = str.replace(/^-+/g, '');
+     // delete the remainder at the end 
+    str = str.replace(/-+$/g, '');
+ 
+    // return
+    return str;
+    })
 
     
     render() {
 
         let Products;
-
         if(this.props.OnDataApi){
-
-
 
             Products = this.props.OnDataApi.map((Product,Key) =>{
 
 
                     return <div className="col-sm-6 col-md-4 col-lg-3 " key={Key}>
                                          <div className="card mb-4 equal_Cards ">
-                                    <a href="54" className="Image-main">
+                                    <a href={`DetailProduct/${this.ChangeToSlug(Product.Name)}.${Product.ID_Product}.html`} className="Image-main">
                                         <img className="card-img-top img-fluid" src={Product.Image.Image} aria-hidden alt="Card image cap" />
                                     </a>
                                     <div className="image-hover">
-                                        <a href={`DetailProduct/${Product.ID_Product}`}>
+                                        <a href={`DetailProduct/${this.ChangeToSlug(Product.Name)}.${Product.ID_Product}.html`}>
                                             <img  className="card-img-top img-fluid" src={Product.Image.ImageHover} aria-hidden alt="Card image cap" />
                                         </a>
                                     </div>
                                     <div className="card-body Information_Items">
-                                        <a href={`DetailProduct/${Product.ID_Product}`} className="card-text Text_Items ">{Product.Name}</a>
+                                        <a href={`DetailProduct/${this.ChangeToSlug(Product.Name)}.${Product.ID_Product}.html`} className="card-text Text_Items ">{Product.Name}</a>
                                         <p className="Price">
                                             {this.coverStringMoney(Product.Price)} đ
                                          </p> 
