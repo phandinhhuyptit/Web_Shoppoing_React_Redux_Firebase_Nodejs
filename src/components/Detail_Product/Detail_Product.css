@@ -71,3 +71,18 @@ button:focus {
     outline: 0px dotted;
     /* outline: 5px auto -webkit-focus-ring-color; */
 }
+
+.Out_of_stock {
+
+    color: #dc3545;
+    font-size: 1em;
+    font-weight: 800   
+
+}
+.Stock {
+
+
+    color: #1e76d6;
+    font-size: 1em;
+    font-weight: 800;
+}

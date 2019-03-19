@@ -8,18 +8,13 @@ const UsersRef = db.collection('Users');
 
 
 export function Get_Product_For_Notification  ( IDProduct ) {
-
     return {
 
             type: Action.Get_Product_For_Notification,
             IDProduct
-
     }
 
 }
-
-
-
 export function Show_Nav(ShowNav) {
 
     return {
@@ -144,8 +139,6 @@ export const Fetch_All_Product = () =>{
           })
     }
 }
-
-
 
 export function Get_Data_Firebase () {
 

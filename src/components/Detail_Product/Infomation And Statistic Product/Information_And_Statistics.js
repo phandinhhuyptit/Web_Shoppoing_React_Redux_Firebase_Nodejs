@@ -11,6 +11,22 @@ class InformationAndStatistics extends Component {
 
 
     }
+    Handle_Statistics_Item =() =>{
+
+        if(this.props.DataProduct.Statistics){
+          return Object.keys(this.props.DataProduct.Statistics).map((Key)=>{
+
+               return (
+                   <tr>
+                       <td>{Key}</td>
+                       <td>{this.props.DataProduct.Statistics[Key]}</td>
+                   </tr>                    
+               )
+           });
+        }
+   }
+
+
     Handle_Destription_Review = (e) => {
 
         const State_Destription = e.target.getAttribute('data-destription');
@@ -35,7 +51,39 @@ class InformationAndStatistics extends Component {
         this.props.on_Show_Video(true);
     }
     render() {
-        let  Content_Destription_Review;
+        let  Content_Destription_Review,Content_Features_Of_Product;
+        
+
+
+
+
+        if (this.props.DataProduct) {
+
+            if (this.props.DataProduct.Information.Features) {
+
+
+                Content_Features_Of_Product = this.props.DataProduct.Information.Features.map((ContentProduct, Key) => {
+
+                    return (
+
+                        <div key={Key}>
+                            <p className="Title_Feature"> {ContentProduct.Title}</p>
+                            <p>
+                                {
+
+                                    ContentProduct.Content
+
+                                }
+                            </p>
+                            <img src={ContentProduct.Image} aria-hidden alt="Card image cap" />
+                        </div>
+
+                    )
+                })
+            }
+
+        }   
+       
 
         if (this.state.Destription_Review) {
 
@@ -46,7 +94,7 @@ class InformationAndStatistics extends Component {
                         <source src="//cwsmgmt.corsair.com/responsive/videos/k70-low-profile-loop.mp4" type="video/mp4" />
                     </video>
                     <div className="Content_Video">
-                        <h1 className="d-none d-sm-block ">K70 RGB MK.2 LOW PROFILE GAMING KEYBOARD</h1>
+                        <h1 className="d-none d-sm-block ">{this.props.DataProduct.Name}</h1>
                         <p className="d-none d-sm-block "> TYPE ALL DAY. PLAY ALL NIGHT </p>
                         <p onClick={this.Handle_Show_Video} className="Button_Watch_Video">
                             WATCH VIDEO
@@ -54,76 +102,23 @@ class InformationAndStatistics extends Component {
                     </div>
                 </div>
                 <h3>2. TÍNH NĂNG NỔI BẬT</h3>
-                <p className="Title_Feature"> Mắt đọc chuẩn thi đấu Esport tiên tiến nhất trên Thế Giới </p>
-                <p>TrueMove3 có độ nhạy lên tới 12000 CPI, 350 IPS được thừa hưởng nhiều tinh túy từ nhà sản xuất
-                  cảm
-                  biến hàng đầu Thế Giới PixArt. Thay vì chỉ tập trung vào độ nhạy CPI, cảm biến TrueMove3 có khả
-                  năng
-                  tracking 1:1 cực kì chính xác.
-            </p>
-                <img src="https://www.playzone.vn/image/catalog/san%20pham/steelseries/chuot/rival-310-howl/2.jpg" aria-hidden alt="Card image cap" />
-                <p className="Title_Feature">Kiểu dáng công thái học</p>
-                <p>Mọi góc cạnh trong thiết kế của Rival 310 PUBG Edition đều đáp ứng được sự thoải mái cần thiết
-                  của người
-                  dùng trong mọi điều kiện sử dụng. Cho dù bạn có ưa thích kiểu cầm Claw Grip hay Palm Grip,
-                  Rival 310
-            đều đem lại cho bạn sự thoải mái cao độ khi sử dụng trong thời gian dài.</p>
-                <img src="https://www.playzone.vn/image/catalog/san%20pham/steelseries/chuot/rival-310-howl/3.png" aria-hidden alt="Card image cap" />
-                <p className="Title_Feature">Cài đặt thông số dễ dàng</p>
-                <p>Lưu tất cả các cài đặt của bạn và hiệu chỉnh đèn led trên Rival 310 1 cách cực kì đơn giản thông
-                  qua
-                  SteelSeries Engine 3 (SSE3). Với việc trang bị bộ xử lý ARM 32-Bit mạnh mẽ cho phép bạn lưu các
-                  cài đặt
-                  thông số CPI, gán nút và các hiệu ứng đèn led rực rỡ, bạn sẽ không cần phải cài đặt lại nữa và
-                  có thể
-                  mang đi và sử dụng với những cài đặt bạn đã lưu sẵn.
-             </p>
-                <img src="https://www.playzone.vn/image/catalog/k70%20lux%20rgb/K70_LUX_RGB_NA_02-700x700.jpg" aria-hidden alt="Card image cap" />
+
+                    {
+                            Content_Features_Of_Product
+           
+                    }                 
+
                 <h3>3.THÔNG SỐ KĨ THUẬT</h3>
                 <table className="Statistic_table">
-                    <tbody><tr>
-                        <td>Bàn phím</td>
-                        <td>Full size</td>
-                    </tr>
-                        <tr>
-                            <td>Màu vỏ</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td>Chất liệu vỏ</td>
-                            <td>Nhôm phay có lớp cách điện</td>
-                        </tr>
-                        <tr>
-                            <td>Đèn nền</td>
-                            <td>RGB</td>
-                        </tr>
-                        <tr>
-                            <td>Chức năng đặc biệt</td>
-                            <td>Anti-ghosting và NKRO trên tất cả các phím</td>
-                        </tr>
-                        <tr>
-                            <td>Các phím multimedia</td>
-                            <td>Có</td>
-                        </tr>
-                        <tr>
-                            <td>Gán Macro</td>
-                            <td>Tất cả các phím</td>
-                        </tr>
-                        <tr>
-                            <td>Phím tắt chế độ chơi games</td>
-                            <td>Có</td>
-                        </tr>
-                        <tr>
-                            <td>Report rate</td>
-                            <td>1000 Hz (lựa chọn 1ms, 2ms, 4ms, 8ms và chế độ BIOS)</td>
-                        </tr>
-                        <tr>
-                            <td>Kích thước</td>
-                            <td>436 x 165 x 38 (mm)</td>
-                        </tr>
-                    </tbody></table>
-            </div>
+                    <tbody ref="Progress1" id="Progress1">
+                        {
 
+                            this.Handle_Statistics_Item()
+
+                        }
+                    </tbody>
+                </table>
+            </div>
         }
         else {
 
@@ -190,6 +185,8 @@ class InformationAndStatistics extends Component {
 }
 const mapStateToProps = (state) => {
     return {
+
+        
 
     }
 }

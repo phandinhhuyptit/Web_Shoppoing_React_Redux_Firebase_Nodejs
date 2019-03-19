@@ -18,6 +18,23 @@ class Detail_Product extends Component {
             DataProduct : []            
         }
     }
+    coverStringMoney = (Price) => {
+        var _tmpString = '';
+        var _returnString = '';
+        Price = Price.toString();
+        var _count = 0;
+        for (var i = Price.length; i > 0; i--) {
+            if (_count % 3 === 0 && i !== Price.length) {
+                _tmpString += '.';
+            }
+            _tmpString += Price[i - 1];
+            _count++;
+        }
+        for (var i = _tmpString.length; i > 0; i--) {
+            _returnString += _tmpString[i - 1];
+        }
+        return _returnString;
+    }  
     Show_Zomm_Thumb_Product = () => {
 
         this.setState((previousState, currentProps) => {
@@ -59,7 +76,7 @@ class Detail_Product extends Component {
             })
         }        
         if(DataProduct){
-            
+
             Length_Big_Image = DataProduct.BigImage.length;
         }    
 
@@ -138,10 +155,12 @@ class Detail_Product extends Component {
 
         })
     }
+    
     render() {      
         
         let OnVideo,DataImageOfProduct,Data_Images_Of_Zoom_Thumb_Items,Big_Image_Product,SubDataImageOfProduct,Length_Big_Image ;
-        let DataProduct;      
+        let DataProduct,Check_Quantity;      
+
 
         if(this.props.OnDataProduct){
 
@@ -180,39 +199,37 @@ class Detail_Product extends Component {
             Data_Images_Of_Zoom_Thumb_Items = DataProduct.BigImage.map((Images,Key)=>{
 
 
-               return <img src={Images.Image} alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === (Key+1) ? 'Watching' : ''} `} />
-                    
+               return <img key={Key} src={Images.Image} alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === (Key+1) ? 'Watching' : ''} `} />                  
 
 
             })
-
-
-        }       
+            Check_Quantity = <span className={DataProduct.Quanity === 0 ? 'Out_of_stock' : 'Stock'}>{DataProduct.Quanity === 0 ? 'Tạm Hết' : 'Có Hàng'}</span>
+              
+        }     
                 
         if(SubDataImageOfProduct){
 
             DataImageOfProduct=SubDataImageOfProduct;
            
         }      
-       
         if (this.props.Onvideo) {
 
             OnVideo = <div>
-                <iframe title="This is a unique title" id="Video_Tech" src="https://www.youtube.com/embed/uvfaXQSVCPM">
+                <iframe title="This is a unique title" id="Video_Tech" src={`${ DataProduct ? DataProduct.Information.Video :''}`}>
                 </iframe>
                 <div onClick={this.Handle_Close_Video} className="Backgroud_Video" />
             </div>
         } 
 
         return (
+
             <div>
                 <div className="product_info">
                     <div className="container">
                         <div className="row">
                             <div className="d-none d-lg-block  col-lg-1">                               
                                 {
-                                    DataImageOfProduct
-                                    
+                                    DataImageOfProduct                                    
                                 }
                             </div>
                             <div className="col-md-6 col-lg-4">
@@ -246,7 +263,7 @@ class Detail_Product extends Component {
                                 <div className="multiple-image-product" />
                             </div>
                             <div className="col-md-6 col-lg-5 statistic_product ">
-                                <h4 className="Title_Items">Bàn Phím Cơ SteelSeries Apex M750 RGB TKL - PUBG Edition</h4>
+                                <h4 className="Title_Items">{ DataProduct ?  DataProduct.Name :''}</h4>
                                 <p className="border_product" />
                                 <div className="review">
                                     <i className="far fa-star" />
@@ -257,14 +274,14 @@ class Detail_Product extends Component {
                                     <a href="1"> 0 Bình luận</a>
                                     <a href="2">Gửi Bình luận</a>
                                 </div>
-                                <p className="producer">Nhà sản xuất: <a href="3" className="brand">Steelseries</a></p>
-                                <p className="text_Items"> Mã Sản Phẩm: <span className="ID_Items">M15</span> </p>
-                                <p className="Text_Quantity">Số lượng sản phẩm trong kho: <span>Tạm hết</span></p>
+                                <p className="producer">Nhà sản xuất: <a href="3" className="brand">{ DataProduct ? DataProduct.Brand :''}</a></p>
+                                <p className="text_Items"> Mã Sản Phẩm: <span className="ID_Items">{DataProduct ? DataProduct.ID_Product :''}</span> </p>
+                                <p className="Text_Quantity">Số lượng sản phẩm trong kho: {Check_Quantity}</p>
                                 <div className="Wrap_Guarantee">
                                     <span className="Guarantee">Bảo Hành:</span>
-                                    <span className="Month_Guarantee">12</span>
+                                    <span className="Month_Guarantee">{DataProduct ? DataProduct.Guarantee : ''}</span>
                                 </div>
-                                <p className="Price_Products">3.348.000 đ</p>
+                                <p className="Price_Products">{DataProduct ? this.coverStringMoney(DataProduct.Price) : ''} đ</p>
                                 <div className="Quantity_Button_Add">
                                     <span className="minus_quantity">-</span>
                                     <input type="text" id="quantity" min={0} />
@@ -280,10 +297,9 @@ class Detail_Product extends Component {
                         transitionLeaveTimeout={300}>
 
                         {OnVideo}
-
                     </ReactCSSTransitionGroup>
                 </div>
-                <InformationAndStatistics></InformationAndStatistics>
+                <InformationAndStatistics DataProduct={ DataProduct ? DataProduct :''}></InformationAndStatistics>
                 <Products></Products>
                 <ReactCSSTransitionGroup
                     transitionName="Zoom_Thumb_Items_Aniamtion"
@@ -292,16 +308,9 @@ class Detail_Product extends Component {
                 >
                     <div className={`Zoom_Thumb_Items ${this.state.Zoom_Thumb_Product ? '' : 'd-none'}`}>
                         <div className="Sub_Thumb_items_Image">
-                        
-                        
-                        { Data_Images_Of_Zoom_Thumb_Items }
 
+                            {Data_Images_Of_Zoom_Thumb_Items}   
 
-                            {/* <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/2-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 1 ? 'Watching' : ''} `} />
-                            <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/3-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 2 ? 'Watching' : ''} `} />
-                            <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/4-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 3 ? 'Watching' : ''} `} />
-                            <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/5-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 4 ? 'Watching' : ''} `} />
-                            <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/steelseries/ban-phim/m750-tkl-pubg/1-1000x1000.jpg" alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === 5 ? 'Watching' : ''} `} /> */}
                         </div>
                         <button onClick={this.Handle_Prev_And_Next} className={`Previous_Thumb_Items ${this.state.Position_Slide_Product === 1 ? 'Litmit' : ''}`} data="Previous">
                             <i className="fas fa-chevron-left" />
