@@ -9,7 +9,6 @@ class InformationAndStatistics extends Component {
 
         Destription_Review: true
 
-
     }    
     Handle_Statistics_Item =() =>{
 
@@ -212,9 +211,7 @@ class InformationAndStatistics extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    return {
-
-        
+    return {        
 
     }
 }

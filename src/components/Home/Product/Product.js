@@ -6,6 +6,19 @@ import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import './Product.css';
 import * as Action from '../../../Actions/Actions';
+import PropTypes from 'prop-types'
+
+const propTypes = {
+
+    OnNotificationProduct  : PropTypes.bool.isRequired         
+
+}
+const defaultProps = {
+
+    On_Close_Notification_Product : ()=>{}
+
+}   
+
 
 class Product extends Component {
 
@@ -51,6 +64,8 @@ class Product extends Component {
         );
     }
 }
+Product.propTypes = propTypes;    
+Product.defaultProps = defaultProps;    
 const mapStateToProps = (state, ownProps) => {
     return {
         OnNotificationProduct : state.onNotification_Product

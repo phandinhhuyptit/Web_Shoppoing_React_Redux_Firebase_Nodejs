@@ -5,6 +5,56 @@ import './Detail_Product.css';
 import { connect } from 'react-redux';
 import * as Action from '../../Actions/Actions';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import PropTypes from 'prop-types'; 
+
+const propTypes = {
+
+    Onvideo : PropTypes.bool.isRequired,
+    OnDataProduct : PropTypes.arrayOf(
+        PropTypes.shape({
+
+                Brand : PropTypes.string.isRequired,
+                Evaluate : PropTypes.number.isRequired,
+                GeneralImage :PropTypes.string.isRequired,
+                Guarantee : PropTypes.number.isRequired,    
+                ID_Product : PropTypes.string.isRequired,
+                Image : PropTypes.shape({
+
+                    Image : PropTypes.string.isRequired,
+                    ImageHover : PropTypes.string.isRequired
+
+                }),
+                Information : PropTypes.shape({
+
+                     Video : PropTypes.string.isRequired,
+                     ShortVideo : PropTypes.string.isRequired,                            
+                     Features : PropTypes.array.isRequired
+                }),
+                KindOfProduct1 : PropTypes.string,
+                KindOfProduct2 : PropTypes.string.isRequired,
+                Name : PropTypes.string.isRequired,
+                Price : PropTypes.number.isRequired,   
+                Promotion : PropTypes.string,
+                Quanity : PropTypes.number.isRequired,
+                Small_Image : PropTypes.arrayOf(
+
+
+                    PropTypes.shape({
+
+                        Image : PropTypes.string.isRequired
+
+                    })
+                ).isRequired,
+                Statistics : PropTypes.objectOf(PropTypes.string)    
+
+        })
+    ).isRequired,
+    On_Close_Video : PropTypes.func.isRequired
+}
+const defaultProps = {
+
+    On_Close_Video : () =>{}
+}
 
 class Detail_Product extends Component {
     constructor(props) {
@@ -55,7 +105,6 @@ class Detail_Product extends Component {
         this.props.On_Close_Video();
 
     }
-
     Handle_Prev_And_Next = (e) => {
         let DataProduct,Length_Big_Image;   
         const Prev_Or_Next = e.currentTarget.getAttribute('data');
@@ -71,7 +120,7 @@ class Detail_Product extends Component {
                 
                 }    
             })
-        }        
+       }        
         if(DataProduct){
 
             Length_Big_Image = DataProduct.BigImage.length;
@@ -93,7 +142,6 @@ class Detail_Product extends Component {
 
             if (this.state.Position_Slide_Product <= Length_Big_Image-1) {
 
-
                 this.setState((previousState, currentProps) => {
 
                     return { ...previousState, Position_Slide_Product: this.state.Position_Slide_Product + 1 }
@@ -108,12 +156,11 @@ class Detail_Product extends Component {
         const x = (e.pageX - left) / width * 100;
         const y = (e.pageY - top) / height * 100;
 
-
         this.setState((previousState, currentProps) => {
 
             return { ...previousState, backgroundPosition: `${x}% ${y}%` }
 
-        })    
+        })   
 
     }
 
@@ -134,6 +181,7 @@ class Detail_Product extends Component {
             })
 
     }
+
         if(DataProduct){
             let ArrayProduct =DataProduct.BigImage;
             for (const index in ArrayProduct) {
@@ -169,7 +217,8 @@ class Detail_Product extends Component {
                 
                 }    
             })
-        }        
+        }
+
         if(DataProduct){
             
             Length_Big_Image = DataProduct.BigImage.length;
@@ -322,6 +371,12 @@ class Detail_Product extends Component {
         );
     }
 }
+
+
+Detail_Product.propTypes =propTypes;
+Detail_Product.defaultProps =defaultProps;  
+
+
 const mapStateToProps = (state, ownProps) => {
     return {
         Onvideo: state.onVideo,

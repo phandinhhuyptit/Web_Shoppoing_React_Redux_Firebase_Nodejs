@@ -9,7 +9,19 @@ import * as Action from '../../Actions/Actions';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ListProducts from './List Products/List_Products';
 import GridProducts from './Grid Products/Grid_Products';
+import PropTypes from 'prop-types'
 
+const propTypes = {
+
+    onSliderPanel : PropTypes.bool.isRequired,
+    onGridOrList : PropTypes.bool.isRequired,
+    On_Close_Slidebar_Panel : PropTypes.func.isRequired
+}
+const defaultProps ={
+
+    On_Close_Slidebar_Panel : () =>{}
+
+} 
 
 
 class Product extends Component {
@@ -81,8 +93,6 @@ class Product extends Component {
                             </div>
                         </div>
                     </div>
-
-
                     <ReactCSSTransitionGroup
                         transitionName="SliderPanel"
                         transitionEnterTimeout={500}
@@ -106,6 +116,10 @@ class Product extends Component {
         );
     }
 }
+
+Product.propTypes =propTypes;
+Product.defaultProps =defaultProps;  
+
 const mapStateToProps = (state, ownProps) => {
     return {
         onSliderPanel: state.onSliderPanel,

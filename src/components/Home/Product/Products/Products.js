@@ -1,6 +1,58 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import * as Action from '../../../../Actions/Actions'
+import { connect } from 'react-redux';
+import * as Action from '../../../../Actions/Actions';
+import PropTypes from 'prop-types';
+
+const proppTypes = {
+
+    OnNotificationProduct : PropTypes.bool.isRequired,  
+    OnDataApi : PropTypes.arrayOf(
+        PropTypes.shape({
+
+                Brand : PropTypes.string.isRequired,
+                Evaluate : PropTypes.number.isRequired,
+                GeneralImage :PropTypes.string.isRequired,
+                Guarantee : PropTypes.number.isRequired,    
+                ID_Product : PropTypes.string.isRequired,
+                Image : PropTypes.shape({
+
+                    Image : PropTypes.string.isRequired,
+                    ImageHover : PropTypes.string.isRequired
+
+                }),
+                Information : PropTypes.shape({
+
+                     Video : PropTypes.string.isRequired,
+                     ShortVideo : PropTypes.string.isRequired,                            
+                     Features : PropTypes.array.isRequired
+                }),
+                KindOfProduct1 : PropTypes.string,
+                KindOfProduct2 : PropTypes.string.isRequired,
+                Name : PropTypes.string.isRequired,
+                Price : PropTypes.number.isRequired,   
+                Promotion : PropTypes.string,
+                Quanity : PropTypes.number.isRequired,
+                Small_Image : PropTypes.arrayOf(
+
+
+                    PropTypes.shape({
+
+                        Image : PropTypes.string.isRequired
+
+                    })
+                ).isRequired,
+                Statistics : PropTypes.objectOf(PropTypes.string)    
+
+        })
+    ).isRequired,
+    On_Show_Notification_Cart : PropTypes.func.isRequired,
+    On_Get_Product_For_Notification : PropTypes.func.isRequired         
+}
+const defaultProps = {
+
+    On_Show_Notification_Cart : ()=>{},
+    On_Get_Product_For_Notification : ()=>{}
+}
 class Products extends Component {
     On_Notification_Product = (event) =>{
 
@@ -405,6 +457,10 @@ class Products extends Component {
         );
     }
 }
+
+Products.proppTypes = proppTypes;
+Products.defaultProps = defaultProps;    
+
 const mapStateToProps = (state, ownProps) => {
     return {
         OnNotificationProduct : state.onNotification_Product,

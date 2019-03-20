@@ -3,6 +3,13 @@ import ScrollTop from './Scroll_Top/Scroll_Top';
 import { connect } from 'react-redux';
 import './Footer.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import PropTypes from 'prop-types'
+
+const propTypes = {
+
+    onPositionY : PropTypes.bool.isRequired  
+
+}
 
 
 
@@ -236,13 +243,11 @@ class Footer extends Component {
 
                     {Scroll_Top}
                 </ReactCSSTransitionGroup>
-
-
             </div>
         );
     }
 }
-
+Footer.propTypes = propTypes;
 const mapStateToProps = (state, ownProps) => {
     return {
 
