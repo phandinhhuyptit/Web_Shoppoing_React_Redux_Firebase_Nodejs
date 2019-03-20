@@ -1,6 +1,4 @@
-
-
-import React, { Component } from 'react';
+import React from 'react';
 import Home from './../components/Home/Home';
 import DetailProduct from './../components/Detail_Product/Detail_Product';
 import Cart from './../components/Cart/Cart';

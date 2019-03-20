@@ -10,14 +10,14 @@ class InformationAndStatistics extends Component {
         Destription_Review: true
 
 
-    }
+    }    
     Handle_Statistics_Item =() =>{
 
         if(this.props.DataProduct.Statistics){
           return Object.keys(this.props.DataProduct.Statistics).map((Key)=>{
 
                return (
-                   <tr>
+                   <tr key ={Key}>
                        <td>{Key}</td>
                        <td>{this.props.DataProduct.Statistics[Key]}</td>
                    </tr>                    
@@ -25,8 +25,6 @@ class InformationAndStatistics extends Component {
            });
         }
    }
-
-
     Handle_Destription_Review = (e) => {
 
         const State_Destription = e.target.getAttribute('data-destription');
@@ -47,21 +45,20 @@ class InformationAndStatistics extends Component {
             })
         }
     }
+
     Handle_Show_Video = () => {
         this.props.on_Show_Video(true);
     }
     render() {
-        let  Content_Destription_Review,Content_Features_Of_Product;
+        let Content_Destription_Review, Content_Features_Of_Product,Content_Statistics_Of_Product;
         
 
-
-
-
+        // Features Of Product
         if (this.props.DataProduct) {
 
             if (this.props.DataProduct.Information.Features) {
 
-
+               setTimeout(
                 Content_Features_Of_Product = this.props.DataProduct.Information.Features.map((ContentProduct, Key) => {
 
                     return (
@@ -79,11 +76,47 @@ class InformationAndStatistics extends Component {
                         </div>
 
                     )
-                })
-            }
+                }) , 1000)
 
-        }   
-       
+                 
+            }
+           else {
+
+            setTimeout(
+
+                Content_Features_Of_Product = <span className="text-center d-block" >------------------------------------------------</span>  
+
+         ,1000)
+           }
+        }        
+        //Statistics Of Product 
+        if (this.props.DataProduct) {
+
+            if (this.props.DataProduct.Statistics) {                
+
+              setTimeout(
+
+                  Content_Statistics_Of_Product = <table className="Statistic_table">
+                      <tbody ref="Progress1" id="Progress1">
+                          {
+
+                              this.Handle_Statistics_Item()
+
+                          }
+                      </tbody>
+                  </table>,1000)
+        }
+            else {
+                // Async
+                setTimeout(
+
+                      Content_Statistics_Of_Product = <span className="text-center d-block" >------------------------------------------------</span>
+
+               ,1000)
+                
+ 
+            }
+        } 
 
         if (this.state.Destription_Review) {
 
@@ -109,15 +142,10 @@ class InformationAndStatistics extends Component {
                     }                 
 
                 <h3>3.THÔNG SỐ KĨ THUẬT</h3>
-                <table className="Statistic_table">
-                    <tbody ref="Progress1" id="Progress1">
-                        {
+                    {
 
-                            this.Handle_Statistics_Item()
-
-                        }
-                    </tbody>
-                </table>
+                        Content_Statistics_Of_Product
+                    }
             </div>
         }
         else {

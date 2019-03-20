@@ -2,11 +2,6 @@ import * as Action from '../Contants/Action_Types';
 import { CallApi} from '../utils/apiCaller';
 import { db } from '../Firebase/config';
 
-
-const UsersRef = db.collection('Users');
-
-
-
 export function Get_Product_For_Notification  ( IDProduct ) {
     return {
 

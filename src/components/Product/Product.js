@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Product.css';
 import SidebarWidget from './Sidebar Widget/SidebarWidget';
 import TitleProduct from './Title Product/TitleProduct';
-import Slidebar_Panel from './Slidebar Panel/Slidebar_Panel';
+import SlidebarPanel from './Slidebar Panel/Slidebar_Panel';
 import Refine from './Refine/Refine';
 import { connect } from 'react-redux';
 import * as Action from '../../Actions/Actions';
@@ -36,7 +36,7 @@ class Product extends Component {
         }
         if (this.props.onSliderPanel) {
 
-            SliderPanel = <Slidebar_Panel />
+            SliderPanel = <SlidebarPanel />
             Background_Panel = <div onClick ={this.Handle_Close_Background_Panel_And_Slider_Panel} class="Backgroud_Slidebar_Panel"></div>
         }
         return (

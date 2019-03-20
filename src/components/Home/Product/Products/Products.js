@@ -13,19 +13,19 @@ class Products extends Component {
         this.props.On_Get_Product_For_Notification(IDProduct);
     }
     coverStringMoney = (Price) => {
-        var _tmpString = '';
-        var _returnString = '';
+        let _tmpString = '';
+        let _returnString = '';
         Price = Price.toString();
-        var _count = 0;
-        for (var i = Price.length; i > 0; i--) {
+        let _count = 0;
+        for (let i = Price.length; i > 0; i--) {
             if (_count % 3 === 0 && i !== Price.length) {
                 _tmpString += '.';
             }
             _tmpString += Price[i - 1];
             _count++;
         }
-        for (var i = _tmpString.length; i > 0; i--) {
-            _returnString += _tmpString[i - 1];
+        for (let j = _tmpString.length; j > 0; j--) {
+            _returnString += _tmpString[j - 1];
         }
         return _returnString;
     }   

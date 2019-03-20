@@ -19,19 +19,19 @@ class Detail_Product extends Component {
         }
     }
     coverStringMoney = (Price) => {
-        var _tmpString = '';
-        var _returnString = '';
+        let _tmpString = '';
+        let _returnString = '';
         Price = Price.toString();
-        var _count = 0;
-        for (var i = Price.length; i > 0; i--) {
+        let _count = 0;
+        for (let i = Price.length; i > 0; i--) {
             if (_count % 3 === 0 && i !== Price.length) {
                 _tmpString += '.';
             }
             _tmpString += Price[i - 1];
             _count++;
         }
-        for (var i = _tmpString.length; i > 0; i--) {
-            _returnString += _tmpString[i - 1];
+        for (let j = _tmpString.length; j > 0; j--) {
+            _returnString += _tmpString[j - 1];
         }
         return _returnString;
     }  
@@ -48,11 +48,8 @@ class Detail_Product extends Component {
         this.setState((previousState, currentProps) => {
 
             return { ...previousState, Zoom_Thumb_Product: false, Position_Slide_Product: 1 }
-
         })
-
     }
-
     Handle_Close_Video = () => {
 
         this.props.On_Close_Video();
@@ -199,7 +196,7 @@ class Detail_Product extends Component {
             Data_Images_Of_Zoom_Thumb_Items = DataProduct.BigImage.map((Images,Key)=>{
 
 
-               return <img key={Key} src={Images.Image} alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === (Key+1) ? 'Watching' : ''} `} />                  
+               return <img key={Key} src={Images.Image} alt="Image" className={`Thumb_Items_Image ${this.state.Position_Slide_Product === (Key+1) ? 'Watching' : ''} `} aria-hidden />                  
 
 
             })
