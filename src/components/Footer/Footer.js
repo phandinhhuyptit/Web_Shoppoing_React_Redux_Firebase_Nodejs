@@ -7,13 +7,9 @@ import PropTypes from 'prop-types'
 
 const propTypes = {
 
-    onPositionY : PropTypes.bool.isRequired  
+    onPositionY: PropTypes.bool.isRequired
 
 }
-
-
-
-
 class Footer extends Component {
     constructor(props) {
         super(props);
@@ -27,12 +23,12 @@ class Footer extends Component {
     On_Click_Data_Location = (event) => {
 
         event.preventDefault();
-        const name =  event.target.name; 
-        this.setState((previousState, currentProps)=>{
+        const name = event.target.name;
+        this.setState((previousState, currentProps) => {
 
-            return {...previousState , Name: name }
+            return { ...previousState, Name: name }
 
-         })            
+        })
 
         // this.setState({
         //     Name: event.target.name
@@ -102,7 +98,7 @@ class Footer extends Component {
         }
 
         return (
-            <div>
+            <div className = "Footer">
                 <div className="Contact-Footer">
                     <div className="container">
                         <div className="row Contact">
@@ -235,14 +231,14 @@ class Footer extends Component {
                         </div>
                     </div>
                 </div>
-
                 <ReactCSSTransitionGroup
                     transitionName="ScrollTop"
                     transitionEnterTimeout={500}
                     transitionLeaveTimeout={300}>
 
                     {Scroll_Top}
-                </ReactCSSTransitionGroup>
+                </ReactCSSTransitionGroup>       
+
             </div>
         );
     }
@@ -252,7 +248,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
 
 
-        onPositionY: state.onPositionY
+        onPositionY: state.project.onPositionY
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {

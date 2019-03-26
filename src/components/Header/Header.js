@@ -3,10 +3,58 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import './Header.css';
 import Navigation from './Navigation/Navigation';
 import { connect } from 'react-redux';
-import * as Action from '../../Actions/Actions'
+import * as Action from '../../Actions/ProjectActions';
+import PropTypes from 'prop-types';
+import * as AuthAction from '../../Actions/AuthAction';
+const propTypes = {
+
+    OnNav: PropTypes.bool.isRequired,
+    onShow_Nav: PropTypes.func.isRequired,
+    on_Close_Silde_Bar: PropTypes.func.isRequired,
+    on_signIn: PropTypes.func.isRequired,
+    on_Sign_Out : PropTypes.func.isRequired
+
+}
+const defaultProps = {
+
+    onShow_Nav: () => { },
+    on_Close_Silde_Bar: () => { },
+    on_signIn: () => { },
+    on_Sign_Out : () =>{ }
+
+}
 
 class Header extends Component {
 
+    state = {
+
+        Email: '',
+        Password: ''
+
+    }
+
+    handleChange = (e) => {
+
+        this.setState({
+
+            [e.target.name]: e.target.value
+        })
+
+    }
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.on_signIn(this.state);
+        // Async
+        setTimeout(() => {
+            console.log(this.props.AuthError);
+            if (this.props.AuthError === null) {
+                console.log("OK");
+
+                this.props.ClickCloseLogin();
+            }
+        }, 3000)
+
+    }
 
     ShowLogin = (e) => {
 
@@ -29,14 +77,73 @@ class Header extends Component {
         this.props.on_Close_Silde_Bar(this.props.OnNav);
 
     }
-    
+    Handle_Log_Out = (e) =>{
+        e.preventDefault();
+        console.log("OK Sucessfull Log Out");
+        this.props.on_Sign_Out();
+
+    }
 
     render() {
-        let Login, Background, Backgroud_Nav, Nav;        
+        let { AuthError,StateAuth } = this.props;
+        let SignIn_Error,State_SignIn;
+        let Login, Background, Backgroud_Nav, Nav;
+        if(StateAuth===true){               
+                
+                State_SignIn =    <a className="Detail_Account">
+                <i className="fas fa-user fa-lg Icon-User" />
+                <span className="sign_up">Xin Chào</span>
+                  <div className="box">
+    
+                    <ul className="user-ajax-customer">
+                        <li>
+                            <a href="/sales/order/history/">
+                            
+                              Đơn hàng của tôi
+                            
+                            </a>
+                        </li>
+                        <li className="book-profile" />
+                        <li className="notification-count">
+                            <a title="Thông báo của tôi" href="/customer/notification/" >
+                                Thông báo của tôi
+                               <strong>2</strong>
+                            </a>
+                        </li>
+                        <li><a title="Tài khoản của tôi" href="/customer/account/edit" >Tài khoản của tôi</a></li>
+                        <li><a href="/nhan-xet-san-pham-ban-da-mua" title="Nhận xét sản phẩm đã mua">Nhận xét sản phẩm đã mua</a></li>
+                        <li><a href="/danh-rieng-cho-ban" title="Sản phẩm đã xem">Sản phẩm đã xem</a></li>
+                        <li><a href="/customer/wishlist/" title="Sản phẩm yêu thích">Sản phẩm yêu thích</a></li>
+                        <li><a href="/customer/save_for_later/" title="Sản phẩm mua sau">Sản phẩm mua sau</a></li>
+                        <li><a href="/customer/review/" title="Nhận xét của tôi">Nhận xét của tôi</a></li>
+                        <li><a href="/doi-tra-de-dang" title="Hướng dẫn đổi trả">Đổi trả dễ dàng</a></li>
+                        <li><a onClick={(event) => this.Handle_Log_Out(event)} href="/customer/account/logout" title="Thoát tài khoản">Thoát tài khoản</a></li>
+                    </ul>
+                </div>
+    
+            </a>
+
+        }else if(StateAuth===false){
+            
+                    
+            State_SignIn =<a onClick={(event) => this.ShowLogin(event)} href="1" className="Account_Infomation ">
+            <i className="fas fa-user fa-lg Icon-User" />
+            <span className="sign_up">Đăng Nhập </span>
+            <span className="Tool_Tip_Sign_Up">Đăng Nhập</span>
+            </a>
+
+        }
+
+        if (AuthError) {
+
+            SignIn_Error = <span class="AuthError">{this.props.AuthError}</span>            
+
+        }       
+
         if (this.props.ShowLogin) {
 
             Login = <div className="modal_login ">
-                <form className="modal-content animate" action="/action_page.php">
+                <form className="modal-content animate">
                     <div className="container Container_Login">
                         <div onClick={() => this.CloseLogin()} className="CloseX">
                             <i className="fas fa-times Close_Login" />
@@ -50,10 +157,16 @@ class Header extends Component {
                             </div>
                         </div>
                         <label htmlFor="uname"><b>Tài khoản</b></label>
-                        <input type="text" placeholder="Enter Username" name="uname" required />
+                        <input className={`${AuthError ? 'SignIn-Error' : ''}`} onChange={(e) => this.handleChange(e)} type="text" placeholder="Enter Username" name="Email" required />
                         <label htmlFor="psw"><b>Mật Khẩu</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" required />
-                        <button type="submit">Đăng Nhập</button>
+                        <input className={`${AuthError ? 'SignIn-Error' : ''}`} onChange={(e) => this.handleChange(e)} type="password" placeholder="Enter Password" name="Password" required />
+
+                        {
+                            SignIn_Error
+                        }
+
+                        <button onClick={(e) => this.handleSubmit(e)} type="button">Đăng Nhập</button>
+
                         <label>
                             <input type="checkbox" defaultChecked="checked" name="remember" /> Remember me
                 </label>
@@ -105,11 +218,11 @@ class Header extends Component {
                             </div>
                         </div>
                         <div className="col-md-2 col-lg-2 Account  d-none d-lg-flex">
-                            <a onClick={(event) => this.ShowLogin(event)} href="1" className="Account_Infomation ">
-                                <i className="fas fa-user fa-lg Icon-User" />
-                                <span className="sign_up">Đăng Nhập </span>
-                                <span className="Tool_Tip_Sign_Up">Đăng Nhập</span>
-                            </a>
+                                   {
+
+                                                State_SignIn
+
+                                   }
                         </div>
                         <div className="col-md-3 col-lg-2 Cart d-none d-md-block">
                             <a href="/Cart.html" className="Border-Cart border">
@@ -130,7 +243,7 @@ class Header extends Component {
                                                 <td className="name border_Mini_Cart">
                                                     <a href="3">
                                                         Bàn Di Chuột Qck+ Miramar PUBG Edition
-                      </a>
+                                                    </a>
                                                     <p>1 x 6.940.000 đ</p>
                                                 </td>
                                                 <td className="remove border_Mini_Cart">
@@ -150,7 +263,7 @@ class Header extends Component {
                                             <tr>
                                                 <td>
                                                     Total:
-                    </td>
+                                                 </td>
                                                 <td>6.940.000 đ</td>
                                                 <td />
                                             </tr>
@@ -726,10 +839,6 @@ class Header extends Component {
                         </div>
                     </div>
                 </div>
-
-
-
-
                 <ReactCSSTransitionGroup
                     transitionName="example"
                     transitionEnterTimeout={500}
@@ -748,16 +857,19 @@ class Header extends Component {
                     {Nav}
                     {Backgroud_Nav}
                 </ReactCSSTransitionGroup>
-
-
             </header>
         );
     }
 }
 
+Header.propTypes = propTypes
+Header.defaultProps = defaultProps
+
 const mapStateToProps = (state, ownProps) => {
     return {
-        OnNav: state.onShowNav
+        OnNav: state.project.onShowNav,
+        AuthError: state.auth.authError,
+        StateAuth : state.auth.stateAuth
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -768,8 +880,29 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         on_Close_Silde_Bar: (Close_Slide_Bar) => {
 
             dispatch(Action.Close_Silde_Bar(Close_Slide_Bar))
+        },
+        on_signIn: (credentials) => {
+
+            dispatch(AuthAction.signIn(credentials))
+
+        },
+        on_Sign_Out : () =>{
+
+            dispatch(AuthAction.SignOut())
+
         }
     }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)
+
+
+
+
+
+
+
+
+
+
+

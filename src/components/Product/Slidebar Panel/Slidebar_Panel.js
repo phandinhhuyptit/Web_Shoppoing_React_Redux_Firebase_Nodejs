@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import * as Action from '../../../Actions/Actions'
+import * as Action from '../../../Actions/ProjectActions'
 
 class Slidebar_Panel extends Component {
 

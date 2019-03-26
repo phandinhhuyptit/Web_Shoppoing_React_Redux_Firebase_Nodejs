@@ -3,7 +3,7 @@ import InformationAndStatistics from './Infomation And Statistic Product/Informa
 import Products from './Products/Products';
 import './Detail_Product.css';
 import { connect } from 'react-redux';
-import * as Action from '../../Actions/Actions';
+import * as Action from '../../Actions/ProjectActions';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import PropTypes from 'prop-types'; 
 
@@ -379,8 +379,8 @@ Detail_Product.defaultProps =defaultProps;
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        Onvideo: state.onVideo,
-        OnDataProduct: state.DataApi
+        Onvideo: state.project.onVideo,
+        OnDataProduct: state.project.DataApi
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as Action from '../../../Actions/Actions';
+import * as Action from '../../../Actions/ProjectActions';
 
 
 class InformationAndStatistics extends Component {
@@ -104,15 +104,14 @@ class InformationAndStatistics extends Component {
                           }
                       </tbody>
                   </table>,1000)
-        }
+          }
             else {
                 // Async
                 setTimeout(
 
                       Content_Statistics_Of_Product = <span className="text-center d-block" >------------------------------------------------</span>
 
-               ,1000)
-                
+               ,1000)               
  
             }
         } 

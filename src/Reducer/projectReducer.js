@@ -1,18 +1,18 @@
 import * as Action from '../Contants/Action_Types';
 
 const ShoppingInitialState = {
-
+    
     onShowNav: false,
     onNotification_Product: false,
     onVideo: false,
     onSliderPanel: false,
     onGridOrList : true,
     onPositionY : false,
-    DataApi : [],
+    DataApi : [], 
     ProductNotification :{}
+   
 }
-
-const rootReducer = (state = ShoppingInitialState, action) => {
+const projectReducer = (state = ShoppingInitialState, action) => {
 
     switch (action.type) {
 
@@ -48,7 +48,7 @@ const rootReducer = (state = ShoppingInitialState, action) => {
                 onVideo: action.Show_Video
             }
         case Action.Close_Video:
-            return {
+        return {
                 ...state,
                 onVideo : action.Close_Video
             }
@@ -98,12 +98,14 @@ const rootReducer = (state = ShoppingInitialState, action) => {
 
                     }
               }           
-        return state;      
-           
+        return state;
+        
+    
         default:    
             return state;
+            
     }
 }
 
 
-export default rootReducer;
+export default projectReducer;

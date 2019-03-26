@@ -4,7 +4,6 @@ import { db } from '../Firebase/config';
 
 export function Get_Product_For_Notification  ( IDProduct ) {
     return {
-
             type: Action.Get_Product_For_Notification,
             IDProduct
     }

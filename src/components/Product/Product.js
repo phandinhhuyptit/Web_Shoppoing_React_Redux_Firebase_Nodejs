@@ -5,7 +5,7 @@ import TitleProduct from './Title Product/TitleProduct';
 import SlidebarPanel from './Slidebar Panel/Slidebar_Panel';
 import Refine from './Refine/Refine';
 import { connect } from 'react-redux';
-import * as Action from '../../Actions/Actions';
+import * as Action from '../../Actions/ProjectActions';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ListProducts from './List Products/List_Products';
 import GridProducts from './Grid Products/Grid_Products';
@@ -21,8 +21,7 @@ const defaultProps ={
 
     On_Close_Slidebar_Panel : () =>{}
 
-} 
-
+}
 
 class Product extends Component {
 
@@ -33,8 +32,6 @@ class Product extends Component {
 
     render() {
         let SliderPanel, Background_Panel, List_Product, Grid_Product;
-
-
 
         if (this.props.onGridOrList) {
 
@@ -122,8 +119,8 @@ Product.defaultProps =defaultProps;
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        onSliderPanel: state.onSliderPanel,
-        onGridOrList: state.onGridOrList
+        onSliderPanel: state.project.onSliderPanel,
+        onGridOrList: state.project.onGridOrList
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {

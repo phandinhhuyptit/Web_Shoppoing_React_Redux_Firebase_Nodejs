@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as Action from '../../../../Actions/Actions';
+import * as Action from '../../../../Actions/ProjectActions';
 import PropTypes from 'prop-types';
 
 const proppTypes = {
@@ -463,8 +463,8 @@ Products.defaultProps = defaultProps;
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        OnNotificationProduct : state.onNotification_Product,
-        OnDataApi : state.DataApi        
+        OnNotificationProduct : state.project.onNotification_Product,
+        OnDataApi : state.project.DataApi        
 
 
     }

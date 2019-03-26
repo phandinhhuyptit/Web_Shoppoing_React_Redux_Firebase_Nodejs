@@ -3,9 +3,12 @@ import Header from './components/Header/Header';
 import Path from './components/Path/Path';
 import Footer from './components/Footer/Footer';
 import { connect } from 'react-redux';
-import *  as Action from './Actions/Actions';
+import *  as Action from './Actions/ProjectActions';
 import { BrowserRouter as Router } from "react-router-dom";
 import DirectionalURL from './Router/DirectionalURL';
+import * as actionAuth from './Actions/AuthAction';
+import {auth} from './Firebase/config';
+
 
 
 class App extends Component {
@@ -16,9 +19,23 @@ class App extends Component {
       PositionY: 0
     }
   }
+  
+  componentWillMount = () => {
+    
+
+    auth.onAuthStateChanged( (user) => {
+      if (user) {
+        this.props.on_First_State_Account(true);
+      } else {
+        this.props.on_First_State_Account(false);
+      }
+    });
+  }
 
 
 
+
+  
   Handle_Scroll = () => {
 
 
@@ -37,8 +54,6 @@ class App extends Component {
     this.props.on_Get_Data();
   }
 
-
-
   OnShowLogin = () => {
 
 
@@ -56,11 +71,18 @@ class App extends Component {
       ShowLogin: false
 
     })
-  }
+  } 
 
   render() {
-    const { ShowLogin, PositionY } = this.state
+      
+    var user = auth.currentUser;
+    console.log(user);
 
+
+    const { ShowLogin, PositionY } = this.state;   
+
+
+   
     if (PositionY >= 250 && this.props.onPositionY === false ) {
 
       
@@ -73,12 +95,14 @@ class App extends Component {
 
     }
 
+
     return (
       <Router>
         <div className="App">
+      
           <Header ShowLogin={ShowLogin} ClickShowLogin={this.OnShowLogin} ClickCloseLogin={this.OffShowLogin} PositionY={PositionY}></Header>
           <Path></Path>
-          <DirectionalURL />
+          <DirectionalURL/>
           <Footer ></Footer>
         </div>
       </Router>
@@ -87,8 +111,8 @@ class App extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-
-    onPositionY : state.onPositionY
+    
+    onPositionY : state.project.onPositionY
 
   }
 }
@@ -100,8 +124,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     on_Get_Data :() =>{
 
       dispatch(Action.Get_Data_Firebase())
-    }
+    },
+    on_State_Account : () =>{
 
+      dispatch(actionAuth.State_Account());
+
+    },
+    on_First_State_Account : (state) =>{
+
+      dispatch(actionAuth.First_State_Account(state));
+
+    }
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App)

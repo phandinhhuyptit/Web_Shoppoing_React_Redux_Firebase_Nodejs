@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Title_Product.css';
 import { connect } from 'react-redux'
-import * as Action from '../../../Actions/Actions';
+import * as Action from '../../../Actions/ProjectActions';
 
 
 class TitleProduct extends Component {
@@ -54,7 +54,7 @@ class TitleProduct extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
     return {
-        onGridOrList : state.onGridOrList
+        onGridOrList : state.project.onGridOrList
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {

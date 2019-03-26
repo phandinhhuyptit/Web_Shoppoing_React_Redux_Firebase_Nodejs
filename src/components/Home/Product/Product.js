@@ -5,7 +5,7 @@ import NotificationProduct from './Notification/Notification_Product';
 import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import './Product.css';
-import * as Action from '../../../Actions/Actions';
+import * as Action from '../../../Actions/ProjectActions';
 import PropTypes from 'prop-types'
 
 const propTypes = {
@@ -68,7 +68,7 @@ Product.propTypes = propTypes;
 Product.defaultProps = defaultProps;    
 const mapStateToProps = (state, ownProps) => {
     return {
-        OnNotificationProduct : state.onNotification_Product
+        OnNotificationProduct : state.project.onNotification_Product
     }
 }
 

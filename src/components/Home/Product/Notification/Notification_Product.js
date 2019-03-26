@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as Action from '../../../../Actions/Actions';
+import * as Action from '../../../../Actions/ProjectActions';
 import  './Notification_Product.css';   
 
 
@@ -35,7 +35,7 @@ class Notification_Product extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
     return {
-        onProductNotification : state.ProductNotification
+        onProductNotification : state.project.ProductNotification
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {

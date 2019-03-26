@@ -26,7 +26,7 @@ class Blog extends Component {
                                 <div className="Button-Learn">
                                     <a href="35" className="Sub_Button_Learn">
                                         Tìm Hiểu
-               </a>
+                                    </a>
                                 </div>
                             </div>
                             <div className="grid-items rs-pd">
@@ -39,11 +39,11 @@ class Blog extends Component {
                                 <div className="Button-Learn">
                                     <a href="1" className="Sub_Button_Learn">
                                         Tìm Hiểu
-               </a>
+                                     </a>
                                 </div>
                             </div>
                             <div className="grid-items rs-pd">
-                                <img aria-hidden alt="Card image cap"src="https://www.lense.fr/wp-content/uploads/2018/10/razer-blade-15-1180_700_-couv-690x690.jpg" />
+                                <img aria-hidden alt="Card image cap"src="./img/razer-blade-15-1180_700_-couv-690x690.jpg" />
 
                                 <div className="Content_Items_2 ">
                                     <h1>K70 RGB MK.2 SE</h1>
@@ -52,7 +52,7 @@ class Blog extends Component {
                                 <div className="Button-Learn">
                                     <a href="2" className="Sub_Button_Learn">
                                         Tìm Hiểu
-               </a>
+                                    </a>
                                 </div>
                             </div>
                             <div className="grid-items rs-pd">
@@ -65,7 +65,7 @@ class Blog extends Component {
                                 <div className="Button-Learn">
                                     <a href="3" className="Sub_Button_Learn">
                                         Tìm Hiểu
-               </a>
+                                    </a>
                                 </div>
                             </div>
                             <div className="grid-items rs-pd">
@@ -78,7 +78,7 @@ class Blog extends Component {
                                 <div className="Button-Learn">
                                     <a href="4" className="Sub_Button_Learn">
                                         Tìm Hiểu
-               </a>
+                                     </a>
                                 </div>
                             </div>
                             <div className="grid-items rs-pd">
@@ -117,7 +117,7 @@ class Blog extends Component {
                                 <div className="Button-Learn">
                                     <a href="8" className="Sub_Button_Learn">
                                         Tìm Hiểu
-               </a>
+                                     </a>
                                 </div>
                             </div>
                             <div className="grid-items rs-pd">
@@ -130,7 +130,7 @@ class Blog extends Component {
                                 <div className="Button-Learn">
                                     <a href="9" className="Sub_Button_Learn">
                                         Tìm Hiểu
-               </a>
+                                   </a>
                                 </div>
                             </div>
                         </div>

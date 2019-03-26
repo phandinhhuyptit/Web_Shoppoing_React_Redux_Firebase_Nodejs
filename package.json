@@ -10,11 +10,13 @@
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",
+    "react-redux-firebase": "^2.2.6",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.8",
     "react-scroll": "^1.7.11",
     "redux": "^4.0.1",
     "redux-devtools": "^3.5.0",
+    "redux-firestore": "^0.7.2",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
