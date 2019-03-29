@@ -7,7 +7,8 @@ const InitialAuth = {
 
 
     authError: null,
-    stateAuth: ''
+    stateAuth: false,
+    AuthData : {}
 }
 const authReducer = (state = InitialAuth, action) => {
     switch (action.type) {
@@ -47,6 +48,19 @@ const authReducer = (state = InitialAuth, action) => {
                 ...state,
                 stateAuth: action.state
             }
+        case actionAuth.AUTH_START : 
+            return state
+        case actionAuth.AUTH_SUCESS : 
+            return {
+
+                ...state , 
+                AuthData : action.authData
+            }    
+
+        case actionAuth.AUTH_FAIL : 
+        
+                return state
+            
         default:
             return state
     }

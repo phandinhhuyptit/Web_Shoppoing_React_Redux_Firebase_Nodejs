@@ -5,6 +5,10 @@
   "dependencies": {
     "axios": "^0.18.0",
     "firebase": "^5.9.0",
+    "firebase-admin": "^7.1.1",
+    "firebase-functions": "^2.2.1",
+    "http2": "^3.3.7",
+    "jsonwebtoken": "^8.5.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-addons-css-transition-group": "^15.6.2",

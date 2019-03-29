@@ -5,7 +5,7 @@ import Navigation from './Navigation/Navigation';
 import { connect } from 'react-redux';
 import * as Action from '../../Actions/ProjectActions';
 import PropTypes from 'prop-types';
-import * as AuthAction from '../../Actions/AuthAction';
+import  * as actionAuth from '../../Actions/AuthAction';
 const propTypes = {
 
     OnNav: PropTypes.bool.isRequired,
@@ -25,7 +25,6 @@ const defaultProps = {
 }
 
 class Header extends Component {
-
     state = {
 
         Email: '',
@@ -43,12 +42,13 @@ class Header extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
+        
         this.props.on_signIn(this.state);
         // Async
         setTimeout(() => {
             console.log(this.props.AuthError);
             if (this.props.AuthError === null) {
-                console.log("OK");
+                
 
                 this.props.ClickCloseLogin();
             }
@@ -80,7 +80,7 @@ class Header extends Component {
     Handle_Log_Out = (e) =>{
         e.preventDefault();
         console.log("OK Sucessfull Log Out");
-        this.props.on_Sign_Out();
+        // this.props.on_Sign_Out();
 
     }
 
@@ -136,7 +136,7 @@ class Header extends Component {
 
         if (AuthError) {
 
-            SignIn_Error = <span class="AuthError">{this.props.AuthError}</span>            
+            SignIn_Error = <span className="AuthError">{this.props.AuthError}</span>           
 
         }       
 
@@ -881,14 +881,21 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
             dispatch(Action.Close_Silde_Bar(Close_Slide_Bar))
         },
+        // onAuth : (credentials) =>{
+
+
+        //     dispatch(actionAuth.Auth(credentials))
+          
+    
+        // }
         on_signIn: (credentials) => {
 
-            dispatch(AuthAction.signIn(credentials))
+            dispatch(actionAuth.signIn(credentials))
 
         },
         on_Sign_Out : () =>{
 
-            dispatch(AuthAction.SignOut())
+            dispatch(actionAuth.SignOut())
 
         }
     }

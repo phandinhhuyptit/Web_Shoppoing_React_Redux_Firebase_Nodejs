@@ -1,9 +1,13 @@
 
 import {auth} from '../Firebase/config';
 
-import * as actionAuth from '../Contants/Action_Auth'
+import * as actionAuth from '../Contants/Action_Auth';
 
 
+
+
+
+ 
 export const signIn = (credentials)=>{
 
     return (dispatch) =>{
@@ -38,7 +42,7 @@ export const SignOut = () =>{
         console.log(Auth);    
         dispatch(LogOut_Sucess())
 
-      })
+      }) 
       .catch (Error =>{
 
         dispatch(LogOut_Fail())
@@ -127,6 +131,32 @@ export const Nothing_Account = (state) =>{
     return {
         type : actionAuth.Nothing_Account,
         state
+    }
+
+}
+export const authStart = () =>{
+
+    return {
+        type : actionAuth.AUTH_START
+    }   
+
+}
+export const authSucess = (authData) =>{
+
+    return {
+
+        type : actionAuth.AUTH_SUCESS,
+        authData
+    } 
+
+}
+export const authFail = (Error) =>{
+
+    return { 
+
+        type : actionAuth.AUTH_FAIL,
+        Error 
+
     }
 
 }

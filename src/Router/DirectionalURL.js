@@ -27,7 +27,8 @@ class DirectionalURL extends Component {
             ))
             return result;
         }
-    }
+    } 
+    
     ShowPrivateRouter = (routes) =>{
         
         let State;
@@ -43,9 +44,7 @@ class DirectionalURL extends Component {
                return false 
 
             }
-          });   
-
-          console.log(State);
+          });          
         
         if(routes.length > 0){
                 
@@ -59,8 +58,7 @@ class DirectionalURL extends Component {
                         component = {value.main}
                                        
                     /> 
-             ))
-                    
+             ))                    
               return result;
         }
     }

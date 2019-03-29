@@ -14,11 +14,18 @@ const PrivateRoute = ({ component: Component,...rest}) => {
         {...rest}
         
         render={props =>{                    
+            if(localStorage.getItem("Key")){
 
-         return rest.Auth ?  <Redirect to ={{ pathname :'/' ,state : {from: props.location }}}/> : <Component {...props} />
+             return   <Redirect to ={{ pathname :'/' ,state : {from: props.location }}}/>
 
-        }   
-            
+            }
+            else {
+
+             return  <Component {...props} />
+
+            }     
+
+        }              
         
         }
     />
@@ -32,7 +39,7 @@ const PrivateRoute = ({ component: Component,...rest}) => {
 // }
 
 const mapStateToProps = (state, ownProps) => {
-    return {
+    return { 
         auth: state.stateAuth
     }
 }

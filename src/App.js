@@ -8,6 +8,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import DirectionalURL from './Router/DirectionalURL';
 import * as actionAuth from './Actions/AuthAction';
 import {auth} from './Firebase/config';
+import jwt from 'jsonwebtoken'
+
 
 
 
@@ -18,24 +20,8 @@ class App extends Component {
       ShowLogin: false,
       PositionY: 0
     }
-  }
-  
-  componentWillMount = () => {
-    
+  }  
 
-    auth.onAuthStateChanged( (user) => {
-      if (user) {
-        this.props.on_First_State_Account(true);
-      } else {
-        this.props.on_First_State_Account(false);
-      }
-    });
-  }
-
-
-
-
-  
   Handle_Scroll = () => {
 
 
@@ -46,12 +32,31 @@ class App extends Component {
     })
   }
 
-
   componentDidMount = () => {
 
-    window.addEventListener('scroll', this.Handle_Scroll);
-  
+    window.addEventListener('scroll', this.Handle_Scroll);  
     this.props.on_Get_Data();
+    
+    
+    auth.onAuthStateChanged( (user) => {
+      if (user) {        
+        
+        auth.currentUser.getIdToken(true).then((idToken) => {         
+          
+          localStorage.setItem("Key",idToken);
+          
+          
+        }).catch((error) => {
+    
+          console.log(Error);
+    
+        });    
+        
+      } else {
+
+        this.props.on_First_State_Account(false);
+      }
+    });
   }
 
   OnShowLogin = () => {
@@ -74,14 +79,12 @@ class App extends Component {
   } 
 
   render() {
-      
-    var user = auth.currentUser;
-    console.log(user);
-
-
     const { ShowLogin, PositionY } = this.state;   
+    const idToken  = localStorage.getItem("Key");      
 
+    console.log(idToken);
 
+    this.props.on_State_Account();   
    
     if (PositionY >= 250 && this.props.onPositionY === false ) {
 
@@ -93,7 +96,9 @@ class App extends Component {
 
       this.props.on_Get_PositionY_Window(false);
 
-    }
+    } 
+  
+
 
 
     return (
@@ -125,6 +130,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
       dispatch(Action.Get_Data_Firebase())
     },
+  
     on_State_Account : () =>{
 
       dispatch(actionAuth.State_Account());
