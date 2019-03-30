@@ -32,6 +32,7 @@ class Product extends Component {
 
     render() {
         let SliderPanel, Background_Panel, List_Product, Grid_Product;
+        console.log(localStorage.getItem("Key"));
 
         if (this.props.onGridOrList) {
 

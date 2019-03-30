@@ -7,15 +7,13 @@ import {connect} from 'react-redux';
 import {auth} from '../Firebase/config';
 
 
-
-
 class DirectionalURL extends Component {
 
-    ShowContentMenu =   (routes) => {
+   ShowContentMenu =    (routes) => {
         let result = null;
         if (routes.length > 0) {
 
-            result =  routes.map((value, index) =>( 
+            result =   routes.map((value, index) =>( 
 
                  <Route
 
@@ -53,8 +51,7 @@ class DirectionalURL extends Component {
                      <PrivateRoute
                         key= {index}
                         path = {value.path}
-                        exact = {value.exact}
-                        Auth =  {this.props.auth} 
+                        exact = {value.exact}                        
                         component = {value.main}
                                        
                     /> 
@@ -65,14 +62,20 @@ class DirectionalURL extends Component {
     render() {
        
         return (
-            <Switch>
+                <div>
                  {
-                        this.ShowContentMenu(routes)
+                    
+
+                     this.ShowContentMenu(routes)
+
+
+                 
+                        
                  }
                  {
                         this.ShowPrivateRouter(routesPrivate)
                  }                 
-            </Switch>
+                </div>
         );
     }
 }

@@ -26,13 +26,10 @@ const routes = [
         main : ({match , location})=><DetailProduct match={match} location = {location}/>
 
 
-    }
+    },
     // {
-    //     path : '',
     //     exact : false,
     //     main : ({match , location})=><PageNotFound match={match} location = {location}/>
     // }
 ]
-
-
 export default routes;

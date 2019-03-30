@@ -1,13 +1,42 @@
-
 import {auth} from '../Firebase/config';
-
 import * as actionAuth from '../Contants/Action_Auth';
 
+export const AuthData = (User) =>{
 
+    return (dispatch) =>{
 
+        if(User){
+            console.log("Sucess AuthData");
+        
+         dispatch(Decoded_User_Sucess(User));  
 
+        }
+        else {
+            console.log("Fail AuthData");
 
- 
+        dispatch(Decoded_User_Fail());            
+
+        }
+    }
+}
+export const Decoded_User_Sucess =(payload) =>{
+
+        return {
+
+            type : actionAuth.Decode_User_Sucess,
+            payload
+        }
+
+}
+export const Decoded_User_Fail = () =>{
+
+      return {
+
+        type : actionAuth.Decode_User_Fail
+
+      }  
+
+}
 export const signIn = (credentials)=>{
 
     return (dispatch) =>{
@@ -93,7 +122,7 @@ export const First_State_Account  = (State) =>{
             dispatch(Still_Account(State))
 
         }
-        else{
+        else {
 
             dispatch(Nothing_Account(State))
 

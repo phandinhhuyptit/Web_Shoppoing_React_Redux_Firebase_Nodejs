@@ -8,10 +8,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import DirectionalURL from './Router/DirectionalURL';
 import * as actionAuth from './Actions/AuthAction';
 import {auth} from './Firebase/config';
-import jwt from 'jsonwebtoken'
-
-
-
+import jwt from 'jsonwebtoken';
 
 class App extends Component {
   constructor(props) {
@@ -34,29 +31,41 @@ class App extends Component {
 
   componentDidMount = () => {
 
-    window.addEventListener('scroll', this.Handle_Scroll);  
+    window.addEventListener('scroll', this.Handle_Scroll);
     this.props.on_Get_Data();
-    
-    
-    auth.onAuthStateChanged( (user) => {
-      if (user) {        
-        
-        auth.currentUser.getIdToken(true).then((idToken) => {         
-          
-          localStorage.setItem("Key",idToken);
-          
-          
+
+
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+
+        auth.currentUser.getIdToken(true).then((idToken) => {
+
+          localStorage.setItem("Key", idToken);
+
+
         }).catch((error) => {
-    
+
           console.log(Error);
-    
-        });    
-        
+
+        });
+
       } else {
 
         this.props.on_First_State_Account(false);
       }
     });
+    if (localStorage.getItem("Key")) {
+      const idToken = localStorage.getItem("Key");
+      const decoded = jwt.decode(idToken);
+     
+      if(decoded){   
+       
+         const user = decoded;
+         this.props.on_AuthData(user);
+      }
+      
+    }
+
   }
 
   OnShowLogin = () => {
@@ -76,13 +85,10 @@ class App extends Component {
       ShowLogin: false
 
     })
-  } 
+  }
 
   render() {
-    const { ShowLogin, PositionY } = this.state;   
-    const idToken  = localStorage.getItem("Key");      
-
-    console.log(idToken);
+    const { ShowLogin, PositionY } = this.state;    
 
     this.props.on_State_Account();   
    
@@ -96,10 +102,7 @@ class App extends Component {
 
       this.props.on_Get_PositionY_Window(false);
 
-    } 
-  
-
-
+    }
 
     return (
       <Router>
@@ -117,7 +120,8 @@ class App extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     
-    onPositionY : state.project.onPositionY
+    onPositionY : state.project.onPositionY,
+    
 
   }
 }
@@ -130,7 +134,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
       dispatch(Action.Get_Data_Firebase())
     },
-  
+    on_AuthData : (User) =>{
+
+      dispatch(actionAuth.AuthData(User))
+
+    },
     on_State_Account : () =>{
 
       dispatch(actionAuth.State_Account());

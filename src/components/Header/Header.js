@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import * as Action from '../../Actions/ProjectActions';
 import PropTypes from 'prop-types';
 import  * as actionAuth from '../../Actions/AuthAction';
+
 const propTypes = {
 
     OnNav: PropTypes.bool.isRequired,
@@ -51,6 +52,7 @@ class Header extends Component {
                 
 
                 this.props.ClickCloseLogin();
+                
             }
         }, 3000)
 
@@ -79,8 +81,8 @@ class Header extends Component {
     }
     Handle_Log_Out = (e) =>{
         e.preventDefault();
-        console.log("OK Sucessfull Log Out");
-        // this.props.on_Sign_Out();
+        this.props.on_Sign_Out();
+        localStorage.removeItem("Key");     
 
     }
 
@@ -136,7 +138,7 @@ class Header extends Component {
 
         if (AuthError) {
 
-            SignIn_Error = <span className="AuthError">{this.props.AuthError}</span>           
+            SignIn_Error = <span className="AuthError">{this.props.AuthError}</span>         
 
         }       
 

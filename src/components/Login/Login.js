@@ -1,8 +1,43 @@
 import React, { Component } from 'react';
 import './Login.css';
-
+import {Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
+import * as authAction from '../../Actions/AuthAction';
 class Login extends Component {
-    render() {
+
+    state = {
+
+        Email : '',
+        Password : ''
+    }
+
+
+
+
+    Handle_InPut_Sign_In = (event) =>{
+        
+        const Value= event.target.value;
+        const Name = event.target.name;
+        this.setState({
+
+            [Name] : Value
+        })
+    }
+    Handle_Sign_In = (e)=>{
+      e.preventDefault();
+      this.props.on_signIn(this.state);
+
+    }
+
+
+    render() {        
+
+        if (this.props.stateAuth) {
+            
+
+           return  <Redirect to={{ pathname: '/' }} />;
+        }       
+
         return (
 
             <div className="container">
@@ -24,9 +59,7 @@ class Login extends Component {
                             <a href="https://www.playzone.vn/index.php?route=account/transaction" className="list-group-item dark_hover">Lịch sử Giao dịch</a>
                             <a href="https://www.playzone.vn/index.php?route=account/newsletter" className="list-group-item dark_hover">Thư thông báo</a>
                         </div>
-
                     </div>
-
 
                     <div id="content-login-up" className="col-md-9 col-sm-12">
                         <h1>Đăng nhập tài khoản</h1>
@@ -48,21 +81,21 @@ class Login extends Component {
                                         <form action="https://www.playzone.vn/login" method="post" encType="multipart/form-data">
                                             <div className="form-group">
                                                 <label className="control-label" htmlFor="input-email">Địa chỉ E-Mail hoặc Số điện thoại:</label>
-                                                <input type="text" name="email" defaultValue placeholder="Địa chỉ E-Mail hoặc Số điện thoại:" id="input-email" className="form-control" />
+                                                <input onChange = {(e)=>this.Handle_InPut_Sign_In(e)} type="text" name="Email"  placeholder="Địa chỉ E-Mail hoặc Số điện thoại:" id="input-email" className="form-control" />
                                             </div>
                                             <div className="form-group">
                                                 <label className="control-label" htmlFor="input-password">Mật khẩu:</label>
-                                                <input type="password" name="password" defaultValue placeholder="Mật khẩu:" id="input-password" className="form-control" />
+                                                <input onChange={(e) => this.Handle_InPut_Sign_In(e)} type="password" name="Password"  placeholder="Mật khẩu:" id="input-password" className="form-control" />
                                             </div>
                                             <a href="https://www.playzone.vn/index.php?route=account/forgotten" className="forgotten">Quên mật khẩu</a>
                                         </form></div>
                                     <div className="padded bottom">
                                         <div id="social_login_content_holder" />
-                                        <input type="submit" defaultValue="Đăng nhập" className="btn btn-primary" />
+                                        <input type="submit" onClick={(e)=>this.Handle_Sign_In(e)} defaultValue="Đăng nhập" className="btn btn-primary" />
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
                     </div>
 
                 </div>
@@ -71,4 +104,19 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const mapStateToProps = (state, ownProps) => {
+    return {
+
+        stateAuth  : state.auth.stateAuth
+    }
+}
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        on_signIn: (credentials) => {
+            dispatch(authAction.signIn(credentials))
+        }
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

@@ -1,13 +1,11 @@
 
 import * as actionAuth from '../Contants/Action_Auth'
 
-
-
 const InitialAuth = {
 
 
     authError: null,
-    stateAuth: false,
+    stateAuth: null,
     AuthData : {}
 }
 const authReducer = (state = InitialAuth, action) => {
@@ -20,9 +18,7 @@ const authReducer = (state = InitialAuth, action) => {
                 authError: null,
 
             }
-        case actionAuth.Login_Error:
-
-
+        case actionAuth.Login_Error:        
             return {
 
                 ...state,
@@ -60,6 +56,23 @@ const authReducer = (state = InitialAuth, action) => {
         case actionAuth.AUTH_FAIL : 
         
                 return state
+
+        case actionAuth.Decode_User_Sucess :
+        
+            return {
+
+                ...state ,
+                AuthData : action.payload
+            }
+        case actionAuth.Decode_User_Fail :
+        
+            console.log("Fail Get Auth Data")
+            
+            return {
+
+                ...state,
+                authError : "Fail Get Data From Token"            
+            }
             
         default:
             return state

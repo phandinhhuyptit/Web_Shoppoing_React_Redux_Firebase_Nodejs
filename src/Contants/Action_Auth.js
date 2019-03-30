@@ -7,3 +7,5 @@ export const Nothing_Account = "NOTHING_ACCOUNT";
 export const AUTH_START = "AUTH_START";
 export const AUTH_SUCESS = "AUTH_SUCESS";
 export const AUTH_FAIL  = " AUTH_FAIL";
+export const Decode_User_Sucess = "DECODE_USER_SUCESS";
+export const Decode_User_Fail = "DECODE_USER_FAIL"
