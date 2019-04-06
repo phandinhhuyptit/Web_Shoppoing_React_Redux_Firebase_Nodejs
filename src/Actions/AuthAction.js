@@ -1,5 +1,42 @@
-import {auth} from '../Firebase/config';
+import {auth,db} from '../Firebase/config';
 import * as actionAuth from '../Contants/Action_Auth';
+
+export const SignUp = (newUser) =>{
+
+    return (dispatch)=>{
+
+        auth.createUserWithEmailAndPassword(
+           newUser.email.value,
+           newUser.password.value   
+
+            
+        ).then((res)=>{
+
+          return db.collection('Users').doc(res.user.uid).set({                
+               
+                Email : newUser.email.value,
+                Telephone :newUser.telephone.value,
+                Fax : newUser.fax.value,                
+                Address :newUser.address.value,              
+                Country_id :newUser.country_id.value,               
+                Name :  newUser.name.value         
+            
+            })           
+
+        })
+        .then(()=>{
+            dispatch(Sucess_Sign_Up())
+
+        })
+        .catch((error)=>{           
+
+            dispatch(Fail_Sign_Up());     
+
+
+        })
+    }
+}
+
 
 export const AuthData = (User) =>{
 
@@ -72,9 +109,9 @@ export const SignOut = () =>{
         dispatch(LogOut_Sucess())
 
       }) 
-      .catch (Error =>{
-
-        dispatch(LogOut_Fail())
+      .catch (error =>{
+        console.log(error);
+        dispatch(Fail_Sign_Up());
 
       } )   
 
@@ -126,7 +163,7 @@ export const First_State_Account  = (State) =>{
 
             dispatch(Nothing_Account(State))
 
-        }        
+        }       
 
     }
 }
@@ -186,6 +223,23 @@ export const authFail = (Error) =>{
         type : actionAuth.AUTH_FAIL,
         Error 
 
+    }
+
+}
+export const Sucess_Sign_Up = () =>{
+
+    return {
+
+        type : actionAuth.Sucess_Sign_Up        
+
+    }
+}
+export const Fail_Sign_Up = () =>{
+
+    return {
+
+        type : actionAuth.Fail_Sign_Up
+    
     }
 
 }

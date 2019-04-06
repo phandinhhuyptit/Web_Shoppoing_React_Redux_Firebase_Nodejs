@@ -189,6 +189,7 @@ a.Border-Cart.border {
     padding: 0 5px;
     text-align: center;
     border-radius: 3px;
+    display: inline-block;
 }
 .Account .sign_up {
     padding-left: 4px;
@@ -378,6 +379,8 @@ ul[class*="support-policy"]{
     padding: 0 5px;
     text-align: center;
     border-radius: 3px;
+    display: inline-block;
+    font-size: 13px;
 }
 .rowHeader .Logo .Menu-Mobile {
     background-color: #F1F1F1;
@@ -1858,13 +1861,13 @@ a.carousel-control-prev.previous:hover,a.carousel-control-next.next:hover {
   .mySlides .numbertext:hover {
       opacity: 1;
   } 
-span.plus_quantity,span.minus_quantity {
-    width: 25px;
+/* span.plus_quantity,span.minus_quantity {
+    width: 29px;
     height: 28px;
     padding-top: 2px;
     text-align: center;
     color: #777;
-}
+} */
 
 input#quantity {
     width: 35px;
@@ -1873,7 +1876,7 @@ input#quantity {
     text-align: center;
 }
 span.plus_quantity,span.minus_quantity {
-    width: 25px;
+    width: 29px;
     height: 39px;
     padding-top: 8px;
     text-align: center;

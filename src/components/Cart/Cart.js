@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Carts from './Carts/Carts';
-
-
 class Cart extends Component {
     render() {
         return (

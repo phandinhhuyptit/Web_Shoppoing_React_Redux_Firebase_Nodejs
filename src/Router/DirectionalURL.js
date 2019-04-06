@@ -5,13 +5,18 @@ import routesPrivate from '../Routes/RoutesPrivate';
 import PrivateRoute from './PrivateRouter';
 import {connect} from 'react-redux';
 import {auth} from '../Firebase/config';
+import { withRouter } from 'react-router-dom';
+import Cart from '../components/Cart/Cart';
+import Login from '../components/Login/Login';
+import SignUp from '../components/Sign Up/Sign_Up';
 
 
 class DirectionalURL extends Component {
 
    ShowContentMenu =    (routes) => {
-        let result = null;
+        
         if (routes.length > 0) {
+            let result 
 
             result =   routes.map((value, index) =>( 
 
@@ -27,55 +32,40 @@ class DirectionalURL extends Component {
         }
     } 
     
-    ShowPrivateRouter = (routes) =>{
-        
-        let State;
+    ShowPrivateRouter =  (routes) =>{
+
         let result = null;
-
-      State= auth.onAuthStateChanged((user) => {
-            if (user) {
-                
-                return true
-
-            } else {
-                
-               return false 
-
-            }
-          });          
-        
         if(routes.length > 0){
-                
-             result = routes.map((value,index)=>(
+            
+            
+          return result = routes.map((value,index)=>(
 
                      <PrivateRoute
                         key= {index}
                         path = {value.path}
                         exact = {value.exact}                        
-                        component = {value.main}
-                                       
+                        component = {value.main}                                       
                     /> 
              ))                    
-              return result;
+             
         }
     }
     render() {
        
         return (
-                <div>
-                 {
-                    
 
-                     this.ShowContentMenu(routes)
+            <div>
+                {
 
+                    this.ShowContentMenu(routes)
 
-                 
-                        
-                 }
-                 {
-                        this.ShowPrivateRouter(routesPrivate)
-                 }                 
-                </div>
+                }
+                <PrivateRoute exact path={'/Login'} component={({ match, location }) => <Login match={match} location={location} />} />
+                <PrivateRoute exact path={'/Cart'} component={({ match, location }) => <Cart match={match} location={location} />} />
+                <PrivateRoute exact path={'/SignUp'} component={({ match, location }) => <SignUp match={match} location={location} />} />
+            </div>
+
+                
         );
     }
 }
@@ -86,4 +76,4 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps)(DirectionalURL)
+export default  withRouter(connect(mapStateToProps)(DirectionalURL));

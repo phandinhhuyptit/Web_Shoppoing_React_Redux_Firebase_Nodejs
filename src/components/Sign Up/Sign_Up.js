@@ -1,7 +1,211 @@
 import React, { Component } from 'react';
 import './Sign_Up.css';
+import { connect } from 'react-redux';
+import * as actionAuth from '../../Actions/AuthAction';
+
+
 
 class SignUp extends Component {
+
+    state = {
+
+        SignUpForm: {
+
+            email: {
+
+                value: '',
+                validation: {
+                    required: true,
+                    isEmail: true
+                    
+                },
+                valid: false,
+                touched: false
+
+
+            },
+            telephone: {
+                value: '',
+                validation: {
+                    required: true,
+                    minLength_TelePhone: 10,
+                    maxLength_TelePhone: 11,
+                    isTelePhone: true
+
+                },
+                valid: false,
+                touched: false
+            },
+            fax: {
+                value: '',
+                validation: {
+                    required: true,
+                    minLength_Fax: 1,
+                    isFax: true
+
+                },
+                valid: false,
+                touched: false
+            },
+            address: {
+
+                value: '',
+                validation: {
+                    required: true,
+                    minLength_Address: 3,
+
+                },
+                valid: false,
+                touched: false
+            },
+            country_id: {
+
+                value: '',
+                validation: {
+                    required: true
+                },
+                valid: false,
+                touched: false
+            },
+            name: {
+
+                value: '',
+                validation: {
+                    required: true,
+                    isName: true
+
+                },
+                valid: false,
+                touched: false
+            },
+            confirm: {
+                value: '',
+                validation: {
+                    required: true,
+                    isConfirmPassword: true
+                },
+                valid: false,
+                touched: false
+            },
+            password: {
+                value: '',
+                validation: {
+                    required: true,
+                    isPassword: true
+                },
+                valid: false,
+                touched: false
+
+            },
+            agree: {
+                value: '',
+                validation: {
+                    required: true,
+
+                },
+                valid: false,
+                touched: false
+
+            }
+        },
+        formIsValid: false,
+        SignUp : true
+
+    }
+    checkValidity = (value, rules) => {
+
+        let isValid = true;
+        if (!rules) {
+            return true;
+        }
+
+        if (rules.required) {
+            isValid = value.trim() !== '' && isValid;
+        }
+        if (rules.isEmail) {
+
+            const pattern = /^[a-zA-Z][-_.a-zA-Z0-9]{5,29}@g(oogle)?mail.com$/;
+            isValid = pattern.test(value) && isValid;
+
+        }
+        if (rules.minLength_TelePhone) {
+
+
+            isValid = value.length >= rules.minLength_TelePhone && isValid;
+
+        }
+        if (rules.maxLength_TelePhone) {
+
+            isValid = value.length <= rules.maxLength_TelePhone && isValid;
+
+        }
+        if (rules.isTelePhone) {
+
+            const pattern = /^[0-9]*$/;
+            isValid = pattern.test(value) && isValid;
+
+        }
+        if (rules.minLength_Fax) {
+
+            isValid = value.length >= rules.minLength_Fax && isValid;
+
+        }
+        if (rules.isFax) {
+
+            const pattern = /^(\+?\d{1,}(\s?|\-?)\d*(\s?|\-?)\(?\d{2,}\)?(\s?|\-?)\d{3,}\s?\d{3,})$/;
+            isValid = pattern.test(value) && isValid;
+        }
+        if (rules.minLength_Address) {
+
+            isValid = value.length >= rules.minLength_Address && isValid;
+
+        }
+        if (rules.isName) {
+
+            const pattern = /[a-zA-Z][^#&<>\"~;$^%{}?]{1,20}$/;
+            isValid = pattern.test(value) && isValid;
+        }
+        if (rules.isPassword) {
+            const pattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
+            isValid = pattern.test(value) && isValid;
+        }
+        if (rules.isConfirmPassword){
+
+            isValid = value === this.state.SignUpForm.password.value && isValid;
+
+        }
+        return isValid;
+    }
+    Handle_Input_Sign_Up = (e) => {
+
+        const Value = e.currentTarget.value;
+        const Name = e.currentTarget.name;
+
+        const updatedFormSignUpForm = { ...this.state.SignUpForm }
+        const updateFormElement = { ...updatedFormSignUpForm[Name] }
+        updateFormElement.value = Value;
+        updateFormElement.valid = this.checkValidity(updateFormElement.value, updateFormElement.validation);
+        updateFormElement.touched = true;
+        updatedFormSignUpForm[Name] = updateFormElement;
+
+        let formIsValid = true;
+
+        for (let inputIdentifier in updatedFormSignUpForm) {
+
+            formIsValid = updatedFormSignUpForm[inputIdentifier].valid && formIsValid;
+        }
+
+        this.setState({
+
+            SignUpForm: updatedFormSignUpForm,
+            formIsValid: formIsValid
+
+        })
+    }
+    Handle_Sign_Up = (e) => {
+        e.preventDefault();
+        this.props.on_SignUp(this.state.SignUpForm);
+    }
     render() {
         return (
             <div className="container Sign-Up">
@@ -29,44 +233,30 @@ class SignUp extends Component {
                             <h3>Thông tin cá nhân</h3>
                             <div className="bordered_content padded_ex_bottom margin-b">
                                 <fieldset id="account">
-                                    <div className="form-group required" style={{ display: 'none' }}>
-                                        <label className="col-2 control-label">Customer Group</label>
-                                        <div className="col-sm-10">
-                                            <div className="radio">
-                                                <label>
-                                                    <input type="radio" name="customer_group_id" defaultValue={1} defaultChecked="checked" />
-                                                    Default</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="form-group required hidden">
-                                        <label className="col-sm-2 control-label" htmlFor="input-firstname">Họ và tên lót:</label>
-                                        <div className="col-sm-10">
-                                            <input type="text" name="firstname"  placeholder="Họ và tên lót:" id="input-firstname" className="form-control" />
-                                        </div>
-                                    </div>
+
+
                                     <div className="form-group required">
                                         <label className="col-sm-2 control-label" htmlFor="input-lastname">Tên:</label>
                                         <div className="col-sm-10">
-                                            <input type="text" name="lastname"  placeholder="Tên:" id="input-lastname" className="form-control" />
+                                            <input onChange={(e) => this.Handle_Input_Sign_Up(e)} type="text" name="name" placeholder="Tên:" id="input-lastname" className={`form-control ${!this.state.SignUpForm.name.valid && this.state.SignUpForm.name.touched ? 'Invalid' : ''}`} />
                                         </div>
                                     </div>
                                     <div className="form-group required">
                                         <label className="col-sm-2 control-label" htmlFor="input-email">Địa chỉ E-Mail:</label>
                                         <div className="col-sm-10">
-                                            <input type="email" name="email"  placeholder="Địa chỉ E-Mail:" id="input-email" className="form-control" />
+                                            <input onChange={(e) => this.Handle_Input_Sign_Up(e)} type="email" name="email" placeholder="Địa chỉ E-Mail:" id="input-email" className={`form-control ${!this.state.SignUpForm.email.valid  || !this.props.isStateSignUp ? 'Invalid' : ''}`} />
                                         </div>
                                     </div>
                                     <div className="form-group required">
                                         <label className="col-sm-2 control-label" htmlFor="input-telephone">Điện Thoại:</label>
                                         <div className="col-sm-10">
-                                            <input type="tel" name="telephone"  placeholder="Điện Thoại:" id="input-telephone" className="form-control" />
+                                            <input onChange={(e) => this.Handle_Input_Sign_Up(e)} type="tel" name="telephone" placeholder="Điện Thoại:" id="input-telephone" className={`form-control ${!this.state.SignUpForm.telephone.valid && this.state.SignUpForm.telephone.touched ? 'Invalid' : ''}`} />
                                         </div>
                                     </div>
                                     <div className="form-group hidden">
                                         <label className="col-sm-2 control-label" htmlFor="input-fax">Số Fax:</label>
                                         <div className="col-sm-10">
-                                            <input type="text" name="fax" placeholder="Số Fax:" id="input-fax" className="form-control" />
+                                            <input onChange={(e) => this.Handle_Input_Sign_Up(e)} type="text" name="fax" placeholder="Số Fax:" id="input-fax" className={`form-control ${!this.state.SignUpForm.fax.valid && this.state.SignUpForm.fax.touched ? 'Invalid' : ''}`} />
                                         </div>
                                     </div>
                                 </fieldset>
@@ -74,41 +264,18 @@ class SignUp extends Component {
                             <h3 className="hidden">Địa chỉ của bạn</h3>
                             <div className="bordered_content padded_ex_bottom margin-b">
                                 <fieldset id="address">
-                                    <div className="form-group hidden">
-                                        <label className="col-sm-2 control-label" htmlFor="input-company">Công ty:</label>
-                                        <div className="col-sm-10">
-                                            <input type="text" name="company"  placeholder="Công ty:" id="input-company" className="form-control" />
-                                        </div>
-                                    </div>
+
                                     <div className="form-group required">
                                         <label className="col-sm-2 control-label" htmlFor="input-address-1">Địa chỉ chính:</label>
                                         <div className="col-sm-10">
-                                            <input type="text" name="address_1"  placeholder="Địa chỉ chính:" id="input-address-1" className="form-control" />
+                                            <input onChange={(e) => this.Handle_Input_Sign_Up(e)} type="text" name="address" placeholder="Địa chỉ chính:" id="input-address-1" className="form-control" className={`form-control ${!this.state.SignUpForm.address.valid && this.state.SignUpForm.address.touched ? 'Invalid' : ''}`} />
                                         </div>
                                     </div>
-                                    <div className="form-group hidden hidden">
-                                        <label className="col-sm-2 control-label" htmlFor="input-address-2">Địa chỉ phụ:</label>
-                                        <div className="col-sm-10">
-                                            <input type="text" name="address_2"  placeholder="Địa chỉ phụ:" id="input-address-2" className="form-control" />
-                                        </div>
-                                    </div>
-                                    <div className="form-group required hidden">
-                                        <label className="col-sm-2 control-label" htmlFor="input-city">Xã/Phường:</label>
-                                        <div className="col-sm-10">
-                                            <input type="text" name="city"  placeholder="Xã/Phường:" id="input-city" className="form-control" />
-                                        </div>
-                                    </div>
-                                    <div className="form-group hidden">
-                                        <label className="col-sm-2 control-label" htmlFor="input-postcode">Mã Bưu Điện:</label>
-                                        <div className="col-sm-10">
-                                            <input type="text" name="postcode"  placeholder="Mã Bưu Điện:" id="input-postcode" className="form-control" />
-                                        </div>
-                                    </div>
-                                    <div className="form-group required">
+                                    <div className="form-group required">   
                                         <label className="col-sm-2 control-label" htmlFor="input-country">Tỉnh/Thành Phố:</label>
                                         <div className="col-sm-10">
-                                            <select name="country_id" id="input-country" className="form-control">
-                                                <option value> --- Chọn --- </option>
+                                            <select onChange={(e) => this.Handle_Input_Sign_Up(e)} name="country_id" id="input-country" className={`form-control ${!this.state.SignUpForm.country_id.valid && this.state.SignUpForm.country_id.touched ? 'Invalid' : ''}`}>
+                                                <option value={""}> --- Chọn --- </option>
                                                 <option value={89}>An Giang</option>
                                                 <option value={77}>Bà Rịa - Vũng Tàu</option>
                                                 <option value={24}>Bắc Giang</option>
@@ -131,7 +298,7 @@ class SignUp extends Component {
                                                 <option value={30}>Hải Dương</option>
                                                 <option value={31}>Hải Phòng</option>
                                                 <option value={93}>Hậu Giang</option>
-                                                <option value={79} selected="selected">Hồ Chí Minh</option>
+                                                <option value={79}>Hồ Chí Minh</option>
                                                 <option value={17}>Hòa Bình</option>
                                                 <option value={33}>Hưng Yên</option>
                                                 <option value={56}>Khánh Hòa</option>
@@ -175,12 +342,6 @@ class SignUp extends Component {
                                             </select>
                                         </div>
                                     </div>
-                                    <div className="form-group required hidden">
-                                        <label className="col-sm-2 control-label" htmlFor="input-zone">Quận/Huyện:</label>
-                                        <div className="col-sm-10">
-                                            <select name="zone_id" id="input-zone" className="form-control"><option value> --- Chọn --- </option><option value={760}>1</option><option value={771}>10</option><option value={772}>11</option><option value={761}>12</option><option value={769}>2</option><option value={770}>3</option><option value={773}>4</option><option value={774}>5</option><option value={775}>6</option><option value={778}>7</option><option value={776}>8</option><option value={763}>9</option><option value={785}>Bình Chánh</option><option value={777}>Bình Tân</option><option value={765}>Bình Thạnh</option><option value={787}>Cần Giờ</option><option value={783}>Củ Chi</option><option value={764}>Gò Vấp</option><option value={784}>Hóc Môn</option><option value={786}>Nhà Bè</option><option value={768}>Phú Nhuận</option><option value={766}>Tân Bình</option><option value={767}>Tân Phú</option><option value={762}>Thủ Đức</option></select>
-                                        </div>
-                                    </div>
                                 </fieldset>
                             </div>
                             <h3 className="hidden">Mật khẩu</h3>
@@ -189,25 +350,25 @@ class SignUp extends Component {
                                     <div className="form-group required">
                                         <label className="col-sm-2 control-label" htmlFor="input-password">Mật Khẩu:</label>
                                         <div className="col-sm-10">
-                                            <input type="password" name="password"  placeholder="Mật Khẩu:" id="input-password" className="form-control" aria-autocomplete="list" />
+                                            <input onChange={(e) => this.Handle_Input_Sign_Up(e)} type="password" name="password" placeholder="Mật Khẩu:" id="input-password" className={`form-control ${!this.state.SignUpForm.password.valid && this.state.SignUpForm.password.touched ? 'Invalid' : ''}`} aria-autocomplete="list" />
                                         </div>
                                     </div>
                                     <div className="form-group required">
                                         <label className="col-sm-2 control-label" htmlFor="input-confirm">Nhập lại Mật Khẩu:</label>
                                         <div className="col-sm-10">
-                                            <input type="password" name="confirm"  placeholder="Nhập lại Mật Khẩu:" id="input-confirm" className="form-control" />
+                                            <input onChange={(e) => this.Handle_Input_Sign_Up(e)} type="password" name="confirm" placeholder="Nhập lại Mật Khẩu:" id="input-confirm" className={`form-control ${!this.state.SignUpForm.confirm.valid && this.state.SignUpForm.confirm.touched ? 'Invalid' : ''}`} />
                                         </div>
                                     </div>
                                 </fieldset>
                             </div>
                             <h3 className="hidden">Thư thông báo</h3>
                             <div className="bordered_content  box">
-                              
-                            <div className="bottom_buttons">
+
+                                <div className="bottom_buttons">
                                     <div className="text-right">Tôi đã đọc &amp; đồng ý với <a className="fancybox" href="https://www.playzone.vn/index.php?route=information/information/agree&information_id=9" alt="Cam kết bảo mật thông tin "><b>Cam kết bảo mật thông tin </b></a>&nbsp;
-              <input type="checkbox" name="agree" defaultValue={1} />
+              <input onChange={(e) => this.Handle_Input_Sign_Up(e)} type="checkbox" name="agree" defaultValue={1} />
                                         &nbsp;
-              <input type="submit" defaultValue="Tiếp tục" className="btn btn-primary" />
+              <input onClick={(e) => this.Handle_Sign_Up(e)} type="submit" disabled={!this.state.formIsValid} defaultValue="subMit" className="btn btn-primary SignUp " />
                                     </div>
                                 </div></div>
                         </form>
@@ -219,4 +380,22 @@ class SignUp extends Component {
     }
 }
 
-export default SignUp;
+const mapStateToProps = (state, ownProps) => {
+    return {
+
+        isStateSignUp : state.auth.StateSignUp,
+        authError : state.auth.authError
+    }
+}
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        on_SignUp: (newUser) => {
+            dispatch(actionAuth.SignUp(newUser))
+
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
+
+

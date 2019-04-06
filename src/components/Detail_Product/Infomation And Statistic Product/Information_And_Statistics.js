@@ -181,7 +181,7 @@ class InformationAndStatistics extends Component {
                         <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" defaultValue={5} />
                         <label className="form-check-label" htmlFor="inlineRadio3">Yêu Thích</label>
                     </div>
-                    <button type="submit" className="btn btn-primary">Tiếp Tục </button>
+                    <button type="submit" className="btn btn-primary">Tiếp Tục</button>
                 </form>
             </div>            
         }

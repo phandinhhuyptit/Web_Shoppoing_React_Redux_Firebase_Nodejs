@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as Action from '../../../../Actions/ProjectActions';
-import  './Notification_Product.css';   
+import  './Notification_Product.css';
+import { Link} from 'react-router-dom';   
 
 
 class Notification_Product extends Component {
@@ -19,14 +20,14 @@ class Notification_Product extends Component {
                     <img src={this.props.onProductNotification.GeneralImage} alt="true" />
                     <span>
                         Thành công: Bạn đã thêm
-                <a className="ml-1" href={`Detail/${this.props.onProductNotification.ID_Product}`}>{this.props.onProductNotification.Name}</a>                        
+                <Link  className="ml-1" to={`Detail/${this.props.onProductNotification.ID_Product}`}>{this.props.onProductNotification.Name}</Link>                        
                  <span className="SpaceContent">vào</span>       
-                <a href="/Cart">Giỏ Hàng</a>
+                <Link to="/Cart">Giỏ Hàng</Link>
                     </span>
                 </div>
                 <div className="CheckOutButton">
-                    <a href="/Cart" className="btn btn-success">Xem Giỏ Hàng</a>
-                    <a href="/Payment" className="btn btn-success">Thanh Toán </a>
+                    <Link to="/Cart" className="btn btn-success">Xem Giỏ Hàng</Link>
+                    <Link to="/Payment" className="btn btn-success">Thanh Toán </Link>
                 </div>
                 <i  onClick  ={()=>this.Close_Notification_Product_Handdler()}  className="fas fa-times" />
             </div>

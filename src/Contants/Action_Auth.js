@@ -8,4 +8,6 @@ export const AUTH_START = "AUTH_START";
 export const AUTH_SUCESS = "AUTH_SUCESS";
 export const AUTH_FAIL  = " AUTH_FAIL";
 export const Decode_User_Sucess = "DECODE_USER_SUCESS";
-export const Decode_User_Fail = "DECODE_USER_FAIL"
+export const Decode_User_Fail = "DECODE_USER_FAIL";
+export const Sucess_Sign_Up = "SUCESS_SIGN_UP";
+export const Fail_Sign_Up  = "FAIL_SIGN_UP";

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as Action from '../../../../Actions/ProjectActions';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom'
 
 const proppTypes = {
 
@@ -120,16 +121,16 @@ class Products extends Component {
 
                     return <div className="col-sm-6 col-md-4 col-lg-3 " key={Key}>
                                          <div className="card mb-4 equal_Cards ">
-                                    <a href={`DetailProduct/${this.ChangeToSlug(Product.Name)}.${Product.ID_Product}.html`} className="Image-main">
+                                    <Link to={`DetailProduct/${this.ChangeToSlug(Product.Name)}.${Product.ID_Product}.html`} className="Image-main">
                                         <img className="card-img-top img-fluid" src={Product.Image.Image} aria-hidden alt="Card image cap" />
-                                    </a>
+                                    </Link>
                                     <div className="image-hover">
-                                        <a href={`DetailProduct/${this.ChangeToSlug(Product.Name)}.${Product.ID_Product}.html`}>
+                                        <Link to={`DetailProduct/${this.ChangeToSlug(Product.Name)}.${Product.ID_Product}.html`}>
                                             <img  className="card-img-top img-fluid" src={Product.Image.ImageHover} aria-hidden alt="Card image cap" />
-                                        </a>
+                                        </Link>
                                     </div>
                                     <div className="card-body Information_Items">
-                                        <a href={`DetailProduct/${this.ChangeToSlug(Product.Name)}.${Product.ID_Product}.html`} className="card-text Text_Items ">{Product.Name}</a>
+                                        <Link to={`DetailProduct/${this.ChangeToSlug(Product.Name)}.${Product.ID_Product}.html`} className="card-text Text_Items ">{Product.Name}</Link>
                                         <p className="Price">
                                             {this.coverStringMoney(Product.Price)} đ
                                          </p> 

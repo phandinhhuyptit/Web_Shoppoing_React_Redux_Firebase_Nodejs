@@ -8,6 +8,11 @@
 	    font-size: 16px;
 	}
 }
+
+.Invalid {
+    border: 1px solid red!important;
+    background-color: #FDA49A;
+}
 .container.Sign-Up {
     margin-bottom: 4em;
 }
@@ -172,6 +177,10 @@
     border-color: transparent!important;
     background: #018bc8!important
 
+}
+input.SignUp:disabled{
+
+    cursor: not-allowed;
 }
 
 @media(min-width: 576px){

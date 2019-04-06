@@ -5,6 +5,7 @@ const InitialAuth = {
 
 
     authError: null,
+    StateSignUp :true,
     stateAuth: null,
     AuthData : {}
 }
@@ -73,7 +74,21 @@ const authReducer = (state = InitialAuth, action) => {
                 ...state,
                 authError : "Fail Get Data From Token"            
             }
+        case actionAuth.Sucess_Sign_Up : 
+        return {
+
+                ...state,
+                authError : null,
+                StateSignUp : true
+        }    
+        case actionAuth.Fail_Sign_Up : 
+        return {
+
+            ...state,
+            authError :"Tài Khoản Này Đã Có Người Đăng Ký. Vui Lòng Kiểm Tra Lại",
+            StateSignUp : false
             
+        }    
         default:
             return state
     }

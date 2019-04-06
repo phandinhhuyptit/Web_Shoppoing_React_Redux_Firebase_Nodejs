@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import * as Action from '../../Actions/ProjectActions';
 import PropTypes from 'prop-types';
 import  * as actionAuth from '../../Actions/AuthAction';
+// import  {Link} from 'react-router-dom';
 
 const propTypes = {
 
@@ -207,7 +208,7 @@ class Header extends Component {
                                     <img className="img-fluid img-logo" src=" https://cdn.worldvectorlogo.com/logos/react-native-firebase-1.svg" alt="Đồ Điện Tử Giá Rẻ" />
                                 </a>
                             </div>
-                            <a href="/Cart.html" className="Border-Cart2 border2">
+                            <a href="/Cart" className="Border-Cart2 border2">
                                 <i className="fas fa-shopping-cart fa-lg icon-cart " />
                                 <span className="Cart-Text">Giỏ hàng</span>
                                 <span className="Cart-Quantity"> 0</span>
@@ -227,7 +228,7 @@ class Header extends Component {
                                    }
                         </div>
                         <div className="col-md-3 col-lg-2 Cart d-none d-md-block">
-                            <a href="/Cart.html" className="Border-Cart border">
+                            <a href="/Cart" className="Border-Cart border">
                                 <i className="fas fa-shopping-cart fa-lg icon-cart " />
                                 <span className="Cart-Text">Giỏ hàng</span>
                                 <span className="Cart-Quantity"> 0</span>

@@ -1,35 +1,34 @@
 import React from 'react';
-import { Redirect, Route } from "react-router-dom";
-import { connect} from 'react-redux';
+import { Redirect, Route, withRouter } from "react-router-dom";
+import { connect } from 'react-redux';
 
 
-const PrivateRoute = ({ component: Component,...rest}) => {  
-    
-    console.log(rest);
+
+
+const PrivateRoute = ({ component: Component, ...rest }) => {
+
 
     return <Route
         {...rest}
-        
-        render={props =>{                    
-            if(localStorage.getItem("Key")){
+        render={props => {
 
-             return   <Redirect to ={{ pathname :'/' ,state : {from: props.location }}}/>
+            return localStorage.getItem("Key") ? (
 
-            }
-            else {
+                rest.path =='/Login' || rest.path =='SignUp' ? (<Redirect to={{ pathname: '/', state: { from: props.location } }} />) : (<Component {...props}/>)
+            ) : (
 
-             return  <Component {...props} />
+                rest.path === "/Cart"  ?  (<Redirect to={{ pathname: '/Login', state: { from: props.location } }} />) : (<Component {...props}/>)                 
 
-            }    
+            )
 
-        }              
-        
+        }
+
         }
     />
 }
 const mapStateToProps = (state, ownProps) => {
-    return { 
+    return {
         auth: state.stateAuth
     }
 }
-export default connect(mapStateToProps)(PrivateRoute)
+export default withRouter(connect(mapStateToProps)(PrivateRoute));
