@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as Action from '../../../../Actions/ProjectActions';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import {Link,withRouter} from 'react-router-dom';
 import * as userAction from '../../../../Actions/UserAction';
+
 
 const proppTypes = {
 
@@ -63,16 +64,26 @@ class Products extends Component {
 
         const IDProduct = event.currentTarget.value;
         
+        if(localStorage.getItem("Key")){
 
-        this.props.On_Show_Notification_Cart(true);
+            this.props.On_Show_Notification_Cart(true);
 
         
-        this.props.On_Get_Product_For_Notification(IDProduct);
-        setTimeout(()=>{
+            this.props.On_Get_Product_For_Notification(IDProduct);
+            setTimeout(()=>{
+                
+                this.props.onAddProductToCart(IDProduct,this.props.CartOfUser,this.props.AuthData.user_id);
+    
+            },2000)
 
-            this.props.onAddProductToCart(IDProduct,this.props.CartOfUser,this.props.AuthData.user_id);
             
-        },2000)
+        }
+        else{
+
+
+            this.props.history.push('/Login');
+
+        }      
         
     }
     coverStringMoney = (Price) => {
@@ -496,4 +507,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Products)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Products))

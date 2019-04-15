@@ -166,8 +166,7 @@ class Header extends Component {
         this.props.onRemoveProductFromCart(idProduct, this.props.cartOfUser,this.props.AuthData.user_id);            
 
     }
-    render() {
-       
+    render() {      
 
         let totalQuantity = 0  ;
         let {cartOfUser,authSignInError, StateAuth } = this.props;
@@ -245,19 +244,12 @@ class Header extends Component {
             }
             else{
 
-
                 emptyCart = "Giỏ Hàng Đang Trống";
-
-
             }
-
-
         }
         else {
 
-
-            emptyCart = "Giỏ Hàng Đang Trống";
-            
+            emptyCart = "Giỏ Hàng Đang Trống";            
 
         }
 
