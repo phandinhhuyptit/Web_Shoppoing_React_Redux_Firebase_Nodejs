@@ -161,10 +161,9 @@ class Header extends Component {
     }
     handRemoveProductFromCart = (event) =>{
 
-
-        console.log("Remove");
-        const idProdct =event.currentTarget.getAttribute('data-target');       
-        console.log();
+        
+        const idProduct =event.currentTarget.getAttribute('data-target');
+        this.props.onRemoveProductFromCart(idProduct, this.props.cartOfUser,this.props.AuthData.user_id);            
 
     }
     render() {
@@ -1074,6 +1073,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         onGetCartOfUser: (idUser) => {
 
             dispatch(userAction.getCartOfUser(idUser))
+        },
+        onRemoveProductFromCart : (idProduct, CartProducts,idUser) =>{
+
+            dispatch(userAction.removeProductFromCart(idProduct, CartProducts,idUser))
+
         }       
     }
 }
