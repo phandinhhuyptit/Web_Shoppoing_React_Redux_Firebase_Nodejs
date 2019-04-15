@@ -3,8 +3,6 @@ import './Sign_Up.css';
 import { connect } from 'react-redux';
 import * as actionAuth from '../../Actions/AuthAction';
 
-
-
 class SignUp extends Component {
 
     state = {
@@ -238,19 +236,19 @@ class SignUp extends Component {
                                     <div className="form-group required">
                                         <label className="col-sm-2 control-label" htmlFor="input-lastname">Tên:</label>
                                         <div className="col-sm-10">
-                                            <input onChange={(e) => this.Handle_Input_Sign_Up(e)} type="text" name="name" placeholder="Tên:" id="input-lastname" className={`form-control ${!this.state.SignUpForm.name.valid && this.state.SignUpForm.name.touched ? 'Invalid' : ''}`} />
+                                            <input onChange={(e) => this.Handle_Input_Sign_Up(e)}  type="text" name="name" placeholder="Tên:" id="input-lastname" className={`form-control ${!this.state.SignUpForm.name.valid && this.state.SignUpForm.name.touched ? 'Invalid' : ''}`} />
                                         </div>
                                     </div>
                                     <div className="form-group required">
                                         <label className="col-sm-2 control-label" htmlFor="input-email">Địa chỉ E-Mail:</label>
                                         <div className="col-sm-10">
-                                            <input onChange={(e) => this.Handle_Input_Sign_Up(e)} type="email" name="email" placeholder="Địa chỉ E-Mail:" id="input-email" className={`form-control ${!this.state.SignUpForm.email.valid  || !this.props.isStateSignUp ? 'Invalid' : ''}`} />
+                                            <input onChange={(e) => this.Handle_Input_Sign_Up(e)}  type="email" name="email" placeholder="Địa chỉ E-Mail:" id="input-email" className={`form-control ${!this.state.SignUpForm.email.valid  || !this.props.isStateSignUp ? 'Invalid' : ''}`} />
                                         </div>
                                     </div>
                                     <div className="form-group required">
                                         <label className="col-sm-2 control-label" htmlFor="input-telephone">Điện Thoại:</label>
                                         <div className="col-sm-10">
-                                            <input onChange={(e) => this.Handle_Input_Sign_Up(e)} type="tel" name="telephone" placeholder="Điện Thoại:" id="input-telephone" className={`form-control ${!this.state.SignUpForm.telephone.valid && this.state.SignUpForm.telephone.touched ? 'Invalid' : ''}`} />
+                                            <input onChange={(e) => this.Handle_Input_Sign_Up(e)} type="number" name="telephone" placeholder="Điện Thoại:" id="input-telephone" className={`form-control ${!this.state.SignUpForm.telephone.valid && this.state.SignUpForm.telephone.touched ? 'Invalid' : ''}`} />
                                         </div>
                                     </div>
                                     <div className="form-group hidden">

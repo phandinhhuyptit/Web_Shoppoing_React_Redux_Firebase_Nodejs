@@ -1,160 +1,162 @@
-import {auth,db} from '../Firebase/config';
+import React from 'react';
+import { auth, db } from '../Firebase/config';
 import * as actionAuth from '../Contants/Action_Auth';
+import { Redirect } from 'react-router-dom'
 
-export const SignUp = (newUser) =>{
+import * as userAction from '../Contants/Action_User';
 
-    return (dispatch)=>{
+export const SignUp = (newUser) => {
+
+    return (dispatch) => {
 
         auth.createUserWithEmailAndPassword(
-           newUser.email.value,
-           newUser.password.value   
+            newUser.email.value,
+            newUser.password.value
 
-            
-        ).then((res)=>{
+        ).then((res) => {
 
-          return db.collection('Users').doc(res.user.uid).set({                
-               
-                Email : newUser.email.value,
-                Telephone :newUser.telephone.value,
-                Fax : newUser.fax.value,                
-                Address :newUser.address.value,              
-                Country_id :newUser.country_id.value,               
-                Name :  newUser.name.value         
-            
-            })           
+            return db.collection('Users').doc(res.user.uid).set({
 
-        })
-        .then(()=>{
-            dispatch(Sucess_Sign_Up())
-
-        })
-        .catch((error)=>{           
-
-            dispatch(Fail_Sign_Up());     
-
+                Email: newUser.email.value,
+                Telephone: newUser.telephone.value,
+                Fax: newUser.fax.value,
+                Address: newUser.address.value,
+                Country_id: newUser.country_id.value,
+                Name: newUser.name.value,
+                Cart: {
+                    Items: [],
+                    Quantity: 0,
+                    TotalPrice : 0 
+                }
+            })
 
         })
+            .then(() => {
+                dispatch(Sucess_Sign_Up())
+            })
+            .catch((error) => {
+
+                dispatch(Fail_Sign_Up());
+            })
     }
 }
 
+export const AuthData = (User) => {
 
-export const AuthData = (User) =>{
+    return (dispatch) => {
 
-    return (dispatch) =>{
-
-        if(User){
+        if (User) {
             console.log("Sucess AuthData");
-        
-         dispatch(Decoded_User_Sucess(User));  
+
+            dispatch(Decoded_User_Sucess(User));
 
         }
         else {
             console.log("Fail AuthData");
 
-        dispatch(Decoded_User_Fail());            
+            dispatch(Decoded_User_Fail());
 
         }
     }
 }
-export const Decoded_User_Sucess =(payload) =>{
+export const Decoded_User_Sucess = (payload) => {
 
-        return {
+    return {
 
-            type : actionAuth.Decode_User_Sucess,
-            payload
-        }
-
-}
-export const Decoded_User_Fail = () =>{
-
-      return {
-
-        type : actionAuth.Decode_User_Fail
-
-      }  
+        type: actionAuth.Decode_User_Sucess,
+        payload
+    }
 
 }
-export const signIn = (credentials)=>{
+export const Decoded_User_Fail = () => {
 
-    return (dispatch) =>{
+    return {
+
+        type: actionAuth.Decode_User_Fail
+
+    }
+
+}
+export const signIn = (credentials) => {
+
+    return (dispatch) => {
 
 
         auth.signInWithEmailAndPassword(
             credentials.Email,
             credentials.Password
 
-        ).then((account)=>{
+        ).then((account) => {
 
             console.log(account);
             dispatch(Login_Sucess())
-            
-            
-        }).catch(err =>{
 
-            dispatch(Login_Error(err))               
 
+        }).catch(err => {
+            dispatch(Login_Error(err))
         })
     }
 
 }
+export const SignOut = () => {
 
-export const SignOut = () =>{
+    return (dispatch) => {
 
-    return(dispatch) =>{
+        auth.signOut()
+            .then(Auth => {
 
-      auth.signOut()
-      .then(Auth =>{
+                console.log(Auth);
+                dispatch(LogOut_Sucess())                
+                dispatch(clearCart())
+                dispatch(clearAuth())
+            })
+            .catch(error => {
+                console.log(error);
+                dispatch(Fail_Sign_Up());
 
-        console.log(Auth);    
-        dispatch(LogOut_Sucess())
-
-      }) 
-      .catch (error =>{
-        console.log(error);
-        dispatch(Fail_Sign_Up());
-
-      } )   
+            })
 
     }
 }
-export const Login_Error = (Error) =>{
+
+export const Login_Error = (Error) => {
 
     return {
-        type : actionAuth.Login_Error,
+        type: actionAuth.Login_Error,
         Error
     }
 }
 
-export const Login_Sucess =() =>{
+export const Login_Sucess = () => {
 
-        return {
-            type : actionAuth.Login_Sucess,
-           
-        }   
+    return {
+        type: actionAuth.Login_Sucess,
+
+    }
 
 }
 
-export const LogOut_Sucess = () =>{
-
-        return {
-            
-            type : actionAuth.LogOut_Sucess
-        }
-}
-export const LogOut_Fail = () =>{
+export const LogOut_Sucess = () => {
 
     return {
 
-        type : actionAuth.LogOut_Fail
+        type: actionAuth.LogOut_Sucess
+    }
+}
+export const LogOut_Fail = () => {
+
+    return {
+
+        type: actionAuth.LogOut_Fail
 
     }
 }
 
-export const First_State_Account  = (State) =>{
-    
-    return (dispatch) =>{
+export const First_State_Account = (State) => {
 
-        if(State ===true){
+    return (dispatch) => {
+
+        if (State === true) {
 
             dispatch(Still_Account(State))
 
@@ -163,83 +165,96 @@ export const First_State_Account  = (State) =>{
 
             dispatch(Nothing_Account(State))
 
-        }       
+        }
 
     }
 }
 
 
-export const State_Account = (State) =>{
+export const State_Account = (State) => {
 
-    return  (dispatch)=>{
+    return (dispatch) => {
 
-        auth.onAuthStateChanged(function(user) {
+        auth.onAuthStateChanged(function (user) {
             if (user) {
                 dispatch(Still_Account(true))
             } else {
-                
+
                 dispatch(Nothing_Account(false))
             }
-          });
+        });
     }
 }
-export const Still_Account = (state) =>{
+export const Still_Account = (state) => {
 
     return {
-        type : actionAuth.Still_Account,
-        state
         
+        type: actionAuth.Still_Account,
+        state
+
     }
 }
 
-export const Nothing_Account = (state) =>{
+export const Nothing_Account = (state) => {
 
     return {
-        type : actionAuth.Nothing_Account,
+        type: actionAuth.Nothing_Account,
         state
     }
 
 }
-export const authStart = () =>{
+export const authStart = () => {
 
     return {
-        type : actionAuth.AUTH_START
-    }   
+        type: actionAuth.AUTH_START
+    }
 
 }
-export const authSucess = (authData) =>{
+export const authSucess = (authData) => {
 
     return {
 
-        type : actionAuth.AUTH_SUCESS,
+        type: actionAuth.AUTH_SUCESS,
         authData
-    } 
-
-}
-export const authFail = (Error) =>{
-
-    return { 
-
-        type : actionAuth.AUTH_FAIL,
-        Error 
-
     }
 
 }
-export const Sucess_Sign_Up = () =>{
+export const authFail = (Error) => {
 
     return {
 
-        type : actionAuth.Sucess_Sign_Up        
+        type: actionAuth.AUTH_FAIL,
+        Error
 
     }
+
 }
-export const Fail_Sign_Up = () =>{
+export const Sucess_Sign_Up = () => {
 
     return {
 
-        type : actionAuth.Fail_Sign_Up
-    
+        type: actionAuth.Sucess_Sign_Up
+
+    }
+}
+export const Fail_Sign_Up = () => {
+
+    return {
+        type: actionAuth.Fail_Sign_Up
     }
 
+}
+export const clearCart = () =>{
+
+       return {
+            type : userAction.clearCart
+       }
+}
+export const clearAuth = () =>{
+
+        return {
+
+            type : actionAuth.clearAuth
+
+        }
 }

@@ -4,25 +4,20 @@ import { connect } from 'react-redux';
 
 
 
-
 const PrivateRoute = ({ component: Component, ...rest }) => {
 
 
     return <Route
         {...rest}
-        render={props => {
-
+        render={props => {           
             return localStorage.getItem("Key") ? (
 
-                rest.path =='/Login' || rest.path =='SignUp' ? (<Redirect to={{ pathname: '/', state: { from: props.location } }} />) : (<Component {...props}/>)
+                rest.path == '/Login' || rest.path == '/SignUp' ? (<Redirect to={{ pathname: '/', state: { from: props.location } }} />) : (<Component {...props} />)
             ) : (
+                    rest.path === "/Cart" ? (<Redirect to={{ pathname: '/Login', state: { from: props.location } }} />) : (<Component {...props} />)
 
-                rest.path === "/Cart"  ?  (<Redirect to={{ pathname: '/Login', state: { from: props.location } }} />) : (<Component {...props}/>)                 
-
-            )
-
+                )
         }
-
         }
     />
 }

@@ -11,9 +11,6 @@ class Login extends Component {
         Password : ''
     }
 
-
-
-
     Handle_InPut_Sign_In = (event) =>{
         
         const Value= event.target.value;

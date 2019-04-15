@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as Action from '../../../../Actions/ProjectActions';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import * as userAction from '../../../../Actions/UserAction';
 
 const proppTypes = {
 
@@ -47,23 +48,32 @@ const proppTypes = {
         })
     ).isRequired,
     On_Show_Notification_Cart : PropTypes.func.isRequired,
-    On_Get_Product_For_Notification : PropTypes.func.isRequired         
+    On_Get_Product_For_Notification : PropTypes.func.isRequired,
+    onAddProductToCart : PropTypes.func.isRequired         
 }
 const defaultProps = {
 
     On_Show_Notification_Cart : ()=>{},
-    On_Get_Product_For_Notification : ()=>{}
+    On_Get_Product_For_Notification : ()=>{},
+    onAddProductToCart : () =>{}
 }
 class Products extends Component {
-    On_Notification_Product = (event) =>{
+    On_Notification_Product_And_Add_Product_To_Cart = (event) =>{
 
 
         const IDProduct = event.currentTarget.value;
+        
 
         this.props.On_Show_Notification_Cart(true);
 
         
         this.props.On_Get_Product_For_Notification(IDProduct);
+        setTimeout(()=>{
+
+            this.props.onAddProductToCart(IDProduct,this.props.CartOfUser,this.props.AuthData.user_id);
+            
+        },2000)
+        
     }
     coverStringMoney = (Price) => {
         let _tmpString = '';
@@ -109,9 +119,10 @@ class Products extends Component {
     // return
     return str;
     })
-
     
     render() {
+      let  {AuthData , CartOfUser} = this.props;   
+
 
         let Products;
         if(this.props.OnDataApi){
@@ -134,13 +145,12 @@ class Products extends Component {
                                         <p className="Price">
                                             {this.coverStringMoney(Product.Price)} đ
                                          </p> 
-                                        <button onClick = {(event)=>this.On_Notification_Product(event)} type="button" value={Product.ID_Product } className="btn btn-success Button_Add_Cart">Thêm Vào Giỏ</button>
+                                        <button onClick = {(event)=>this.On_Notification_Product_And_Add_Product_To_Cart(event)} type="button" value={Product.ID_Product } className="btn btn-success Button_Add_Cart">Thêm Vào Giỏ</button>
                                     </div>
                                 </div>
                             </div>
             })
         }
-        
         
         
         return (
@@ -463,10 +473,12 @@ Products.proppTypes = proppTypes;
 Products.defaultProps = defaultProps;    
 
 const mapStateToProps = (state, ownProps) => {
+    
     return {
         OnNotificationProduct : state.project.onNotification_Product,
-        OnDataApi : state.project.DataApi        
-
+        OnDataApi : state.project.DataApi,
+        AuthData : state.auth.AuthData,
+        CartOfUser : state.user.cartOfUser
 
     }
 }
@@ -478,7 +490,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         On_Get_Product_For_Notification: (IDProduct) => {
             dispatch(Action.Get_Product_For_Notification(IDProduct))
         },
-        
+        onAddProductToCart : (idProduct,CartProducts,IdUser) =>{
+            dispatch(userAction.addProductToCart(idProduct,CartProducts,IdUser))
+        }
 
     }
 }

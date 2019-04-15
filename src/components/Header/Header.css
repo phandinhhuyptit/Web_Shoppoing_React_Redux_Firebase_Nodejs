@@ -151,10 +151,14 @@ position: relative;
 cursor: pointer;
   
 }
+.emptyMiniCart {
 
+  display: inline-flex!important;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
 
-
-
+}
 @keyframes Nav-In {
 
 

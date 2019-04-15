@@ -6,7 +6,9 @@ import { connect } from 'react-redux';
 import * as Action from '../../Actions/ProjectActions';
 import PropTypes from 'prop-types';
 import  * as actionAuth from '../../Actions/AuthAction';
-// import  {Link} from 'react-router-dom';
+import  {Link} from 'react-router-dom';
+import jwt from 'jsonwebtoken';
+import * as userAction from '../../Actions/UserAction';
 
 const propTypes = {
 
@@ -23,17 +25,85 @@ const defaultProps = {
     on_Close_Silde_Bar: () => { },
     on_signIn: () => { },
     on_Sign_Out : () =>{ }
-
 }
 
 class Header extends Component {
     state = {
-
         Email: '',
         Password: ''
-
     }
+    ChangeToSlug = ((str) =>{
+        // Change To LowerCase
+    str = str.toLowerCase();     
+ 
+    // delete sign
+    str = str.replace(/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/g, 'a');
+    str = str.replace(/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/g, 'e');
+    str = str.replace(/(ì|í|ị|ỉ|ĩ)/g, 'i');
+    str = str.replace(/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/g, 'o');
+    str = str.replace(/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/g, 'u');
+    str = str.replace(/(ỳ|ý|ỵ|ỷ|ỹ)/g, 'y');
+    str = str.replace(/(đ)/g, 'd');
+ 
+    // Delete Special Characters
+    str = str.replace(/([^0-9a-z-\s])/g, '');
+ 
+    //Delete Space and Charater '-'
+    str = str.replace(/(\s+)/g, '-');
+ 
+    // delete the remainder at the head
+    str = str.replace(/^-+/g, '');
+     // delete the remainder at the end 
+    str = str.replace(/-+$/g, '');
+ 
+    // return
+    return str;
+    })
+    
+    coverStringMoney = (Price) => {
+        let _tmpString = '';
+        let _returnString = '';
+        Price = Price.toString();
+        let _count = 0;
+        for (let i = Price.length; i > 0; i--) {
+            if (_count % 3 === 0 && i !== Price.length) {
+                _tmpString += '.';
+            }
+            _tmpString += Price[i - 1];
+            _count++;
+        }
+        for (let j = _tmpString.length; j > 0; j--) {
+            _returnString += _tmpString[j - 1];
+        }
+        return _returnString;
+    }
+   
+    componentWillUpdate = () =>{
 
+        if (localStorage.getItem("Key")) {
+            const idToken = localStorage.getItem("Key");
+            const decoded = jwt.decode(idToken);
+
+            if (!this.props.cartOfUser) {
+
+                if (decoded) {
+
+                    const user = decoded;
+                    this.props.onGetCartOfUser(user.user_id);
+                }
+            }
+            if(!this.props.AuthData){
+
+                if (decoded) {
+
+                    const user = decoded;
+                    this.props.on_AuthData(user);
+                }
+                
+            }     
+
+        }
+    }    
     handleChange = (e) => {
 
         this.setState({
@@ -46,18 +116,19 @@ class Header extends Component {
         e.preventDefault();
         
         this.props.on_signIn(this.state);
-        // Async
-        setTimeout(() => {
-            console.log(this.props.AuthError);
-            if (this.props.AuthError === null) {
-                
+
+        // Async     
+
+        setTimeout(() => {    
+
+            if (this.props.authSignInError === null) {
+
 
                 this.props.ClickCloseLogin();
-                
             }
-        }, 3000)
+        }, 1500)
 
-    }
+    }   
 
     ShowLogin = (e) => {
 
@@ -81,16 +152,130 @@ class Header extends Component {
 
     }
     Handle_Log_Out = (e) =>{
+
         e.preventDefault();
         this.props.on_Sign_Out();
-        localStorage.removeItem("Key");     
+        localStorage.removeItem("Key");
+
 
     }
+    handRemoveProductFromCart = (event) =>{
 
+
+        console.log("Remove");
+        const idProdct =event.currentTarget.getAttribute('data-target');       
+        console.log();
+
+    }
     render() {
-        let { AuthError,StateAuth } = this.props;
+       
+
+        let totalQuantity = 0  ;
+        let {cartOfUser,authSignInError, StateAuth } = this.props;
         let SignIn_Error,State_SignIn;
         let Login, Background, Backgroud_Nav, Nav;
+        let miniCart1;
+        let miniCart2; 
+        let MiniButtonCart;
+        let emptyCart;
+
+        if (cartOfUser) {
+
+            if (cartOfUser.Items.length !== 0) {
+
+                miniCart1 = cartOfUser.Items.map(item => {
+
+                    return (
+                        <div className="Mini_Cart_Info">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td className="image border_Mini_Cart">
+                                            <a href="2">
+                                                <img src={item.Product.GeneralImage} alt="error" className="img-fluid" />
+                                            </a>
+                                        </td>
+                                        <td className="name border_Mini_Cart">
+                                            <Link to={`DetailProduct/${this.ChangeToSlug(item.Product.Name)}.${item.Product.ID_Product}.html`} >
+                                                {item.Product.Name}
+                                            </Link>
+                                            <p>{item.Quantity} x {this.coverStringMoney(item.Product.Price)} đ</p>
+                                        </td>
+                                        <td className="remove border_Mini_Cart">
+                                            <i  onClick={(event)=>this.handRemoveProductFromCart(event)} className="fas fa-times" data-target={item.Product.ID_Product} />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    )
+                })
+                miniCart2 = <div className="Mini_Cart_Total border_Mini_Cart">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td className="Title_Price">Sub-Total:</td>
+                                <td className="Price">{this.coverStringMoney(cartOfUser.TotalPrice)} đ</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Total:
+                                </td>
+                                <td>{this.coverStringMoney(cartOfUser.TotalPrice)} đ</td>
+                                <td />
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                MiniButtonCart = <div className="Mini_Cart_Check_Out_Button border_Mini_Cart">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="4" className="btn btn-success">Xem Giỏ Hàng</a>
+                                </td>
+                                <td>
+                                    <a href="5" className="btn btn-success">Thanh Toán </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            }
+            else{
+
+
+                emptyCart = "Giỏ Hàng Đang Trống";
+
+
+            }
+
+
+        }
+        else {
+
+
+            emptyCart = "Giỏ Hàng Đang Trống";
+            
+
+        }
+
+
+        if (cartOfUser) {
+
+            if (cartOfUser.Items) {
+
+                cartOfUser.Items.forEach(item => {
+
+                       totalQuantity += item.Quantity;
+                      
+
+                })
+            }
+        }        
+   
         if(StateAuth===true){               
                 
                 State_SignIn =    <a className="Detail_Account">
@@ -137,9 +322,9 @@ class Header extends Component {
 
         }
 
-        if (AuthError) {
+        if (authSignInError) {
 
-            SignIn_Error = <span className="AuthError">{this.props.AuthError}</span>         
+            SignIn_Error = <span className="AuthError">{this.props.authSignInError}</span>         
 
         }       
 
@@ -160,9 +345,9 @@ class Header extends Component {
                             </div>
                         </div>
                         <label htmlFor="uname"><b>Tài khoản</b></label>
-                        <input className={`${AuthError ? 'SignIn-Error' : ''}`} onChange={(e) => this.handleChange(e)} type="text" placeholder="Enter Username" name="Email" required />
+                        <input className={`${authSignInError ? 'SignIn-Error' : ''}`} onChange={(e) => this.handleChange(e)} type="text" placeholder="Enter Username" name="Email" required />
                         <label htmlFor="psw"><b>Mật Khẩu</b></label>
-                        <input className={`${AuthError ? 'SignIn-Error' : ''}`} onChange={(e) => this.handleChange(e)} type="password" placeholder="Enter Password" name="Password" required />
+                        <input className={`${authSignInError ? 'SignIn-Error' : ''}`} onChange={(e) => this.handleChange(e)} type="password" placeholder="Enter Password" name="Password" required />
 
                         {
                             SignIn_Error
@@ -189,7 +374,7 @@ class Header extends Component {
 
         }
         if (this.props.OnNav) {
-
+            
             Nav = <Navigation />
             Backgroud_Nav = <div onClick={() => this.CloseSlideBar()} className="Backgroud-Navbar"></div>
 
@@ -208,11 +393,11 @@ class Header extends Component {
                                     <img className="img-fluid img-logo" src=" https://cdn.worldvectorlogo.com/logos/react-native-firebase-1.svg" alt="Đồ Điện Tử Giá Rẻ" />
                                 </a>
                             </div>
-                            <a href="/Cart" className="Border-Cart2 border2">
+                            <Link to="/Cart" className="Border-Cart2 border2">
                                 <i className="fas fa-shopping-cart fa-lg icon-cart " />
                                 <span className="Cart-Text">Giỏ hàng</span>
-                                <span className="Cart-Quantity"> 0</span>
-                            </a>
+                                <span className="Cart-Quantity"> {totalQuantity}</span>
+                            </Link>
                         </div>
                         <div className="col-md-6 col-lg-5 Search">
                             <div className="header-search">
@@ -228,65 +413,42 @@ class Header extends Component {
                                    }
                         </div>
                         <div className="col-md-3 col-lg-2 Cart d-none d-md-block">
-                            <a href="/Cart" className="Border-Cart border">
+                            <Link to="/Cart" className="Border-Cart border">
                                 <i className="fas fa-shopping-cart fa-lg icon-cart " />
                                 <span className="Cart-Text">Giỏ hàng</span>
-                                <span className="Cart-Quantity"> 0</span>
-                            </a>
-                            <div className="Mini_Cart d-none d-lg-block">
-                                <div className="Mini_Cart_Info">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className="image border_Mini_Cart">
-                                                    <a href="2">
-                                                        <img src="https://www.playzone.vn/image/cache/catalog/san%20pham/dare-u/ban-phim/dk87-b/1-90x90.jpg" alt="error" className="img-fluid" />
-                                                    </a>
-                                                </td>
-                                                <td className="name border_Mini_Cart">
-                                                    <a href="3">
-                                                        Bàn Di Chuột Qck+ Miramar PUBG Edition
-                                                    </a>
-                                                    <p>1 x 6.940.000 đ</p>
-                                                </td>
-                                                <td className="remove border_Mini_Cart">
-                                                    <i className="fas fa-times" />
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className="Mini_Cart_Total border_Mini_Cart">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className="Title_Price">Sub-Total:</td>
-                                                <td className="Price">6.940.000 đ</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Total:
-                                                 </td>
-                                                <td>6.940.000 đ</td>
-                                                <td />
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div className="Mini_Cart_Check_Out_Button border_Mini_Cart">
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <a href="4" className="btn btn-success">Xem Giỏ Hàng</a>
-                                                </td>
-                                                <td>
-                                                    <a href="5" className="btn btn-success">Thanh Toán </a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <span className="Cart-Quantity"> {totalQuantity}</span>
+                            </Link>
+                            <div className={`Mini_Cart d-none d-lg-block ${ cartOfUser ? (!cartOfUser || cartOfUser.Items.length === 0 ? 'emptyMiniCart' : '') : ('')}`}>                        
+
+                                {/* {
+                                    cartOfUser ? (
+
+                                        cartOfUser.Items.length === 0 ?
+                                        <React.Fragment>
+                                            { emptyCart } 
+                                        </React.Fragment>    
+                                        : (
+
+                                            <React.Fragment>
+                                                {miniCart1}
+                                                {miniCart2}    
+                                                {MiniButtonCart}
+    
+                                            </React.Fragment>
+    
+    
+                                        )
+                                    ) : ('')
+                                    
+
+                                } */}
+                                {miniCart1}
+                                {miniCart2}
+                                {MiniButtonCart} 
+                                { emptyCart } 
+
+
+
                             </div>
                         </div>
                     </div>
@@ -871,8 +1033,11 @@ Header.defaultProps = defaultProps
 const mapStateToProps = (state, ownProps) => {
     return {
         OnNav: state.project.onShowNav,
-        AuthError: state.auth.authError,
-        StateAuth : state.auth.stateAuth
+        authSignInError:state.auth.authSignInError,
+        StateAuth : state.auth.stateAuth,
+        cartOfUser : state.user.cartOfUser,
+        AuthData : state.auth.AuthData
+        
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -900,7 +1065,16 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
             dispatch(actionAuth.SignOut())
 
-        }
+        },
+        on_AuthData : (User) =>{
+
+            dispatch(actionAuth.AuthData(User))
+      
+        },
+        onGetCartOfUser: (idUser) => {
+
+            dispatch(userAction.getCartOfUser(idUser))
+        }       
     }
 }
 

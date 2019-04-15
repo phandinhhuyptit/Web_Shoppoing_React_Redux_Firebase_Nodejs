@@ -1,0 +1,23 @@
+.countinueBuy {
+    width: 180px ;
+    color: white!important;
+} 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+.Shopping_Cart table .remove:hover {
+    color: white;
+}
+.Shopping_Cart table .remove {
+
+    color : white;
+
+}
+p.emptyCart {
+    font-size: 16px;
+    color: darkgrey;
+}

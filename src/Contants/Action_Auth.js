@@ -11,3 +11,4 @@ export const Decode_User_Sucess = "DECODE_USER_SUCESS";
 export const Decode_User_Fail = "DECODE_USER_FAIL";
 export const Sucess_Sign_Up = "SUCESS_SIGN_UP";
 export const Fail_Sign_Up  = "FAIL_SIGN_UP";
+export const clearAuth = "CLEAR_AUTH";

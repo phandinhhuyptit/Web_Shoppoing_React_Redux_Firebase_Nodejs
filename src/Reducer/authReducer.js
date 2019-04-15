@@ -2,12 +2,12 @@
 import * as actionAuth from '../Contants/Action_Auth'
 
 const InitialAuth = {
-
-
-    authError: null,
+    authSignUpError : null,
+    authGetTokenError : null,
+    authSignInError: null,
     StateSignUp :true,
     stateAuth: null,
-    AuthData : {}
+    AuthData : null
 }
 const authReducer = (state = InitialAuth, action) => {
     switch (action.type) {
@@ -16,14 +16,13 @@ const authReducer = (state = InitialAuth, action) => {
             return {
 
                 ...state,
-                authError: null,
+                authSignInError: null,
 
             }
         case actionAuth.Login_Error:        
             return {
-
                 ...state,
-                authError: 'Mật Khẩu Hoặc Email Không Khớp. Vui Lòng Kiểm Tra Lại '
+                authSignInError: 'Mật Khẩu Hoặc Email Không Khớp. Vui Lòng Kiểm Tra Lại '
 
             }
 
@@ -72,22 +71,27 @@ const authReducer = (state = InitialAuth, action) => {
             return {
 
                 ...state,
-                authError : "Fail Get Data From Token"            
+                authGetTokenError : "Fail Get Data From Token"            
             }
         case actionAuth.Sucess_Sign_Up : 
         return {
 
                 ...state,
-                authError : null,
+                authSignUpError : null,
                 StateSignUp : true
         }    
         case actionAuth.Fail_Sign_Up : 
         return {
 
             ...state,
-            authError :"Tài Khoản Này Đã Có Người Đăng Ký. Vui Lòng Kiểm Tra Lại",
-            StateSignUp : false
-            
+            authSignUpError :"Tài Khoản Này Đã Có Người Đăng Ký. Vui Lòng Kiểm Tra Lại",
+            StateSignUp : false            
+        }
+        case actionAuth.clearAuth: 
+        return {
+
+            ...state,
+            AuthData : null
         }    
         default:
             return state

@@ -5,7 +5,7 @@ import { db } from '../Firebase/config';
 export function Get_Product_For_Notification  ( IDProduct ) {
     return {
             type: Action.Get_Product_For_Notification,
-            IDProduct
+            IDProduct            
     }
 
 }
@@ -24,9 +24,7 @@ export function Off_Nav(OffNav){
 
         type : Action.Off_Nav_Mobile,
         OffNav
-
     }
-
 }
 export function Close_Silde_Bar(Close_Slide_Bar){
 
@@ -34,9 +32,7 @@ export function Close_Silde_Bar(Close_Slide_Bar){
 
         type: Action.Close_Slide_Bar,
         Close_Slide_Bar
-
     } 
-
 }
 export function Show_Notification_Product(Show_Product){
 
@@ -67,7 +63,6 @@ export function Close_Video(Close_Video){
         type: Action.Close_Video,
         Close_Video
     }
-
 }
 export function Show_Slidebar_Panel(Show_Slidebar_Panel){
 
@@ -217,4 +212,7 @@ export function Get_Data(DataFirebase) {
 
     }
 
-} 
+}
+
+
+

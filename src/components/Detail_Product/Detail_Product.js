@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 import * as Action from '../../Actions/ProjectActions';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import PropTypes from 'prop-types'; 
-
+import * as userAction from '../../Actions/UserAction';
+import {Link ,withRouter } from 'react-router-dom';
 const propTypes = {
 
     Onvideo : PropTypes.bool.isRequired,
@@ -60,14 +61,59 @@ class Detail_Product extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            position: '0',
-            backgroundImage: "",
-            backgroundPosition: '0% 0%',
-            Zoom_Thumb_Product: false,
+            backGround : {
+                position: '0',
+                backgroundImage: "",
+                backgroundPosition: '0% 0%',
+            },
+            DataProduct : [],      
             Position_Slide_Product: 1,
-            DataProduct : []            
+            Zoom_Thumb_Product: false,
+            quantityMinusOrPlus : 1
+                  
         }
     }
+    handleMinusQuantity = () => {
+        if (this.state.quantityMinusOrPlus > 1) {
+
+            this.setState((prevState) => ({
+
+                ...prevState, quantityMinusOrPlus: prevState.quantityMinusOrPlus - 1
+
+            }))
+        }
+    }
+    handlePlusQuantity = (DataProduct) => {
+
+
+        if (DataProduct) {
+
+
+            if (this.state.quantityMinusOrPlus < parseInt(DataProduct.Quanity)) {
+
+                this.setState((prevState) => ({
+
+
+                    ...prevState, quantityMinusOrPlus: prevState.quantityMinusOrPlus + 1
+
+                }))
+            }
+        }
+    }
+    handleAddProduct = (event) =>{
+
+        const IdProduct = event.currentTarget.value;
+        if(this.props.CartOfUser){
+
+            this.props.onAddMultipleProduct(IdProduct,this.props.CartOfUser,this.props.AuthData.user_id,this.state.quantityMinusOrPlus);
+
+        }else {
+            
+              this.props.history.push("/Login");
+        }        
+        
+    }
+
     coverStringMoney = (Price) => {
         let _tmpString = '';
         let _returnString = '';
@@ -156,12 +202,14 @@ class Detail_Product extends Component {
         const x = (e.pageX - left) / width * 100;
         const y = (e.pageY - top) / height * 100;
 
-        this.setState((previousState, currentProps) => {
+        this.setState((previousState, currentProps) => ({
 
-            return { ...previousState, backgroundPosition: `${x}% ${y}%` }
-
-        })   
-
+             ...previousState,        
+                 backGround : {                
+                ...previousState.backGround,
+                backgroundPosition: `${x}% ${y}%`
+             }
+        }))
     }
 
     Handle_Choose_Image = (e) => {  
@@ -194,18 +242,22 @@ class Detail_Product extends Component {
                
              }
         }       
-        this.setState({
-            backgroundImage: `url(${`${Src}`})`,
-            position: Position
-
-        })
+        this.setState(prevState =>({
+            ...prevState,
+            backGround : {                
+                ...prevState.backGround,
+                backgroundImage: `url(${`${Src}`})`,
+                position: Position                
+            }  
+        }))
     }
+ 
     
     render() {      
-        
+        let test;
         let OnVideo,DataImageOfProduct,Data_Images_Of_Zoom_Thumb_Items,Big_Image_Product,SubDataImageOfProduct,Length_Big_Image ;
         let DataProduct,Check_Quantity;      
-
+        
 
         if(this.props.OnDataProduct){
 
@@ -226,7 +278,7 @@ class Detail_Product extends Component {
             SubDataImageOfProduct = DataProduct.Small_Image.map((Product,Key) =>{
 
                     return (<div className="column" key={Key}>
-                    <img onClick={this.Handle_Choose_Image} className={`Small-Image cursor ${this.state.position === `${Key}` ? 'ActiveImage' : ''}`} src={Product.Image} data-image={Key} aria-hidden alt="The Woods" />
+                    <img onClick={this.Handle_Choose_Image} className={`Small-Image cursor ${this.state.backGround.position === `${Key}` ? 'ActiveImage' : ''}`} src={Product.Image} data-image={Key} aria-hidden alt="The Woods" />
                     </div>)
 
             })
@@ -235,10 +287,10 @@ class Detail_Product extends Component {
 
                 return (
 
-                    <div key={Key} className={`mySlides ${this.state.position === `${Key}` ? '' : 'd-none'}`}>
+                    <div key={Key} className={`mySlides ${this.state.backGround.position === `${Key}` ? '' : 'd-none'}`}>
 
                     <img className="myimage" src={`${Image_Product.Image}`} aria-hidden alt="Nature and sunrise" />
-                    <div onMouseMove={this.handleMouseMove} style={this.state} className="numbertext"></div>
+                    <div onMouseMove={this.handleMouseMove} style={this.state.backGround} className="numbertext"></div>
                 </div>
                 )
             })
@@ -329,11 +381,11 @@ class Detail_Product extends Component {
                                 </div>
                                 <p className="Price_Products">{DataProduct ? this.coverStringMoney(DataProduct.Price) : ''} đ</p>
                                 <div className="Quantity_Button_Add">
-                                    <span className="minus_quantity">-</span>
-                                    <input type="text" id="quantity" min={0} />
-                                    <span className="plus_quantity">+</span>
-                                </div>
-                                <button type="button" className="btn btn-success Add_Cart">Thêm Vào Giỏ</button>
+                                    <span onClick={() =>this.handleMinusQuantity(DataProduct)}  className={`minus_quantity ${this.state.quantityMinusOrPlus ===1 ?'LimitQuantity' :''}`}>-</span>
+                                    <input type="number" id="quantity" min={1} value={this.state.quantityMinusOrPlus} />
+                                    <span onClick = {() =>this.handlePlusQuantity(DataProduct)} className={`plus_quantity ${ DataProduct ? (this.state.quantityMinusOrPlus === parseInt(DataProduct.Quanity) ?'LimitQuantity' :'') :'' }`}>+</span>
+                                </div> 
+                                <button onClick ={(event) =>this.handleAddProduct(event)} type="button" className="btn btn-success Add_Cart" value={DataProduct ? DataProduct.ID_Product :''}>Thêm Vào Giỏ</button>
                             </div>
                         </div>
                     </div>
@@ -380,14 +432,23 @@ Detail_Product.defaultProps =defaultProps;
 const mapStateToProps = (state, ownProps) => {
     return {
         Onvideo: state.project.onVideo,
-        OnDataProduct: state.project.DataApi
+        OnDataProduct: state.project.DataApi,
+        AuthData : state.auth.AuthData,
+        CartOfUser : state.user.cartOfUser
+
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         On_Close_Video: (Close_Video) => {
             dispatch(Action.Close_Video(Close_Video));
+        },
+        onAddMultipleProduct : (idProduct, CartProducts, IdUser, Quantity) =>{
+
+                dispatch(userAction.addMultipleProduct(idProduct, CartProducts, IdUser, Quantity));
+
+
         }
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Detail_Product)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Detail_Product));

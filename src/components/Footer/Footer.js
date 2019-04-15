@@ -107,7 +107,7 @@ class Footer extends Component {
                             </h3>
                             <div className="col-12  col-md-4 Content-Contact">
                                 <div className="Location-Information1 ">
-                                    <a onClick={(event) => this.On_Click_Data_Location(event)} name="HCM" data="HCM" className={`Adress_And_Area_Content ${this.state.Name === 'HCM' ? 'Active' : ''}`} href="4" ref={(ref) => this.Adress[0] = ref} >
+                                    <a onClick={(event) => this.On_Click_Data_Location(event)} name="HCM" data="HCM" className={`Adress_And_Area_Content ${this.state.Name === 'HCM' ? 'Active' : ''}`} href="4"  >
                                         HỒ CHÍ MINH
                                     </a>
                                 </div>
@@ -115,14 +115,14 @@ class Footer extends Component {
                             <div />
                             <div className="col-12 col-md-4 Content-Contact">
                                 <div className="Location-Information2">
-                                    <a onClick={(event) => this.On_Click_Data_Location(event)} name="HN" data="HN" className={`Adress_And_Area_Content ${this.state.Name === 'HN' ? 'Active' : ''}`} href="5678" ref={(ref) => this.Adress[1] = ref}>
+                                    <a onClick={(event) => this.On_Click_Data_Location(event)} name="HN" data="HN" className={`Adress_And_Area_Content ${this.state.Name === 'HN' ? 'Active' : ''}`} href="5678" >
                                         HÀ NỘI
                                      </a>
                                 </div>
                             </div>
                             <div className="col-12 col-md-4 Content-Contact">
                                 <div className="Location-Information3">
-                                    <a onClick={(event) => this.On_Click_Data_Location(event)} name="QN" data="QN" className={`Adress_And_Area_Content ${this.state.Name === 'QN' ? 'Active' : ''}`} href="56" ref={(ref) => this.Adress[2] = ref} >
+                                    <a onClick={(event) => this.On_Click_Data_Location(event)} name="QN" data="QN" className={`Adress_And_Area_Content ${this.state.Name === 'QN' ? 'Active' : ''}`} href="56"  >
                                         QUẢNG NINH(ĐẠI LÝ)
                                     </a>
                                 </div>

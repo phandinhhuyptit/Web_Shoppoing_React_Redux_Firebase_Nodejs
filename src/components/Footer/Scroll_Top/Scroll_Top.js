@@ -16,7 +16,7 @@ class Scroll_Top extends Component {
     render() {  
      
         return (
-            <button onClick={() => this.on_Click_Scroll_Top()} ref={(ref) => this.ScrollRef = ref} type="button" className="Button_Scroll_Top">
+            <button onClick={() => this.on_Click_Scroll_Top()} type="button" className="Button_Scroll_Top">
                 <i  className="fas fa-arrow-up" />
             </button>
 

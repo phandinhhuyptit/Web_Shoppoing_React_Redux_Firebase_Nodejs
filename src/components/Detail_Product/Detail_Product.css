@@ -3,6 +3,13 @@
     border: 1px solid #189eff
 
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
 
 .onVideo-enter {
     position: fixed;    
@@ -85,4 +92,9 @@ button:focus {
     color: #1e76d6;
     font-size: 1em;
     font-weight: 800;
+}
+
+.LimitQuantity {
+
+    background-color: #31080885!important;
 }

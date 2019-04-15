@@ -4,10 +4,11 @@ import Path from './components/Path/Path';
 import Footer from './components/Footer/Footer';
 import { connect } from 'react-redux';
 import *  as Action from './Actions/ProjectActions';
+import * as userAction from './Actions/UserAction';
 import { BrowserRouter as Router } from "react-router-dom";
 import DirectionalURL from './Router/DirectionalURL';
 import * as actionAuth from './Actions/AuthAction';
-import {auth} from './Firebase/config';
+import { auth } from './Firebase/config';
 import jwt from 'jsonwebtoken';
 
 class App extends Component {
@@ -16,8 +17,9 @@ class App extends Component {
     this.state = {
       ShowLogin: false,
       PositionY: 0
+
     }
-  }  
+  }
 
   Handle_Scroll = () => {
 
@@ -41,32 +43,50 @@ class App extends Component {
         auth.currentUser.getIdToken(true).then((idToken) => {
 
           localStorage.setItem("Key", idToken);
-
+          this.props.on_First_State_Account(true);
 
         }).catch((error) => {
 
           console.log(Error);
 
         });
-
       } else {
 
         this.props.on_First_State_Account(false);
       }
     });
+
     if (localStorage.getItem("Key")) {
       const idToken = localStorage.getItem("Key");
       const decoded = jwt.decode(idToken);
-     
-      if(decoded){   
-       
-         const user = decoded;
-         this.props.on_AuthData(user);
-      }
-      
-    }
 
+      if (decoded) {
+
+        const user = decoded;
+        this.props.on_AuthData(user);    
+
+        this.props.onGetCartOfUser(user.user_id);      
+
+      }
+
+    }
   }
+  // componentWillUpdate = (nextProps, nextState) =>{
+
+  //   this.props.on_State_Account();   
+
+  //   if (localStorage.getItem("Key")) {
+  //     const idToken = localStorage.getItem("Key");
+  //     const decoded = jwt.decode(idToken);
+
+  //     if(decoded){   
+
+  //        const user = decoded;
+  //        this.props.on_AuthData(user);
+  //     }
+
+  //   }
+  // } 
 
   OnShowLogin = () => {
 
@@ -88,29 +108,27 @@ class App extends Component {
   }
 
   render() {
-    const { ShowLogin, PositionY } = this.state;    
+    const { ShowLogin, PositionY } = this.state;
 
-    this.props.on_State_Account();   
-   
-    if (PositionY >= 250 && this.props.onPositionY === false ) {
+    if (PositionY >= 250 && this.props.onPositionY === false) {
 
-      
+
       this.props.on_Get_PositionY_Window(true);
     }
-    else if (PositionY < 250 && this.props.onPositionY === true)
-    {
+    else if (PositionY < 250 && this.props.onPositionY === true) {
 
       this.props.on_Get_PositionY_Window(false);
 
     }
 
+
     return (
       <Router>
         <div className="App">
-      
+
           <Header ShowLogin={ShowLogin} ClickShowLogin={this.OnShowLogin} ClickCloseLogin={this.OffShowLogin} PositionY={PositionY}></Header>
           <Path></Path>
-          <DirectionalURL/>
+          <DirectionalURL />
           <Footer ></Footer>
         </div>
       </Router>
@@ -119,9 +137,10 @@ class App extends Component {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    
-    onPositionY : state.project.onPositionY,
-    
+
+    onPositionY: state.project.onPositionY,
+    onUser: state.auth.AuthData,
+    cartOfUser : state.user.cartOfUser
 
   }
 }
@@ -130,24 +149,28 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     on_Get_PositionY_Window: (PositionY) => {
       dispatch(Action.Get_PositionY_Window(PositionY))
     },
-    on_Get_Data :() =>{
+    on_Get_Data: () => {
 
       dispatch(Action.Get_Data_Firebase())
     },
-    on_AuthData : (User) =>{
+    on_AuthData: (User) => {
 
       dispatch(actionAuth.AuthData(User))
 
     },
-    on_State_Account : () =>{
+    on_State_Account: () => {
 
       dispatch(actionAuth.State_Account());
 
     },
-    on_First_State_Account : (state) =>{
+    on_First_State_Account: (state) => {
 
       dispatch(actionAuth.First_State_Account(state));
 
+    },
+    onGetCartOfUser: (idUser) => {
+
+      dispatch(userAction.getCartOfUser(idUser))
     }
   }
 }

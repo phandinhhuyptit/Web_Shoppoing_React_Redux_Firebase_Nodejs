@@ -32,7 +32,6 @@ class InformationAndStatistics extends Component {
             this.setState({
 
                 Destription_Review: true
-
             })
         }
         else {
