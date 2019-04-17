@@ -231,10 +231,10 @@ class Header extends Component {
                         <tbody>
                             <tr>
                                 <td>
-                                    <a href="4" className="btn btn-success">Xem Giỏ Hàng</a>
+                                    <Link to={'/Cart'} className="btn btn-success">Xem Giỏ Hàng</Link>
                                 </td>
                                 <td>
-                                    <a href="5" className="btn btn-success">Thanh Toán </a>
+                                    <Link to={"/Payment"} className="btn btn-success">Thanh Toán </Link>
                                 </td>
                             </tr>
                         </tbody>
@@ -332,7 +332,7 @@ class Header extends Component {
                                 <h3>Đăng Nhập</h3>
                             </div>
                             <div className="col-6 text-register">
-                                <a href="true">Tạo Tài Khoản</a>
+                                <Link to={'/SignUp'}>Tạo Tài Khoản</Link>
                             </div>
                         </div>
                         <label htmlFor="uname"><b>Tài khoản</b></label>
@@ -409,7 +409,7 @@ class Header extends Component {
                                 <span className="Cart-Text">Giỏ hàng</span>
                                 <span className="Cart-Quantity"> {totalQuantity}</span>
                             </Link>
-                            <div className={`Mini_Cart d-none d-lg-block ${ cartOfUser ? (!cartOfUser || cartOfUser.Items.length === 0 ? 'emptyMiniCart' : '') : ('')}`}>                        
+                            <div className={`Mini_Cart d-none d-lg-block ${ cartOfUser ? (cartOfUser.Items.length === 0 ? 'emptyMiniCart' : '') : ('emptyMiniCart')}`}>                        
 
                                 {/* {
                                     cartOfUser ? (

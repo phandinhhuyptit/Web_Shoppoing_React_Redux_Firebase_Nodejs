@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './Login.css';
-import {Redirect} from 'react-router-dom';
+import {Redirect,Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as authAction from '../../Actions/AuthAction';
+
 class Login extends Component {
 
     state = {
@@ -28,7 +29,7 @@ class Login extends Component {
 
 
     render() {        
-
+        let {authSignInError} = this.props;
         if (this.props.stateAuth) {
             
 
@@ -42,8 +43,8 @@ class Login extends Component {
                     <div id="column-left" className="col-md-3 col-sm-12">
                         <h3>Tài khoản</h3>
                         <div className="list-group box">
-                            <a href="https://www.playzone.vn/login" className="list-group-item dark_hover">Đăng nhập</a>
-                            <a href="https://www.playzone.vn/register" className="list-group-item dark_hover">Đăng kí</a>
+                            <Link to={"/Login"} className="list-group-item dark_hover">Đăng nhập</Link>
+                            <Link to={"/SignUp"} className="list-group-item dark_hover">Đăng kí</Link>
                             <a href="https://www.playzone.vn/index.php?route=account/forgotten" className="list-group-item dark_hover">Quên Mật Khẩu</a>
                             <a href="https://www.playzone.vn/account" className="list-group-item dark_hover">Tài Khoản Của Tôi</a>
                             <a href="https://www.playzone.vn/index.php?route=account/address" className="list-group-item dark_hover">Địa chỉ</a>
@@ -68,21 +69,21 @@ class Login extends Component {
                                         <p>Bằng cách tạo tài khoản bạn có thể mua sắm nhanh hơn, cập nhật tình trạng đơn hàng, theo dõi những đơn hàng đã đặt và đặc biệt là sẽ được hưởng nhiều chương trình ưu đãi!</p>
                                     </div>
                                     <div className="padded bottom">
-                                        <a href="https://www.playzone.vn/register" className="btn btn-primary">Đăng ký tài khoản</a>
+                                        <Link to={"/SignUp"} className="btn btn-primary">Đăng ký tài khoản</Link>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="padded top">
                                         <h2>Khách hàng cũ</h2>
                                         <p>Tôi là khách hàng cũ</p>
-                                        <form action="https://www.playzone.vn/login" method="post" encType="multipart/form-data">
+                                        <form>
                                             <div className="form-group">
                                                 <label className="control-label" htmlFor="input-email">Địa chỉ E-Mail hoặc Số điện thoại:</label>
-                                                <input onChange = {(e)=>this.Handle_InPut_Sign_In(e)} type="text" name="Email"  placeholder="Địa chỉ E-Mail hoặc Số điện thoại:" id="input-email" className="form-control" />
+                                                <input onChange = {(e)=>this.Handle_InPut_Sign_In(e)} type="text" name="Email"  placeholder="Địa chỉ E-Mail hoặc Số điện thoại:" id="input-email" className={`form-control ${authSignInError ? 'Invalid' : ''}`} />
                                             </div>
                                             <div className="form-group">
                                                 <label className="control-label" htmlFor="input-password">Mật khẩu:</label>
-                                                <input onChange={(e) => this.Handle_InPut_Sign_In(e)} type="password" name="Password"  placeholder="Mật khẩu:" id="input-password" className="form-control" />
+                                                <input onChange={(e) => this.Handle_InPut_Sign_In(e)} type="password" name="Password"  placeholder="Mật khẩu:" id="input-password" className={`form-control ${authSignInError ? 'Invalid' : ''}`}/>
                                             </div>
                                             <a href="https://www.playzone.vn/index.php?route=account/forgotten" className="forgotten">Quên mật khẩu</a>
                                         </form></div>
@@ -104,7 +105,8 @@ class Login extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
 
-        stateAuth  : state.auth.stateAuth
+        stateAuth  : state.auth.stateAuth,
+        authSignInError : state.auth.authSignInError
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {

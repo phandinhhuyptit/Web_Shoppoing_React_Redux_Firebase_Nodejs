@@ -89,7 +89,7 @@ class Detail_Product extends Component {
         if (DataProduct) {
 
 
-            if (this.state.quantityMinusOrPlus < parseInt(DataProduct.Quanity)) {
+            if (this.state.quantityMinusOrPlus < parseInt(DataProduct.Quantity)) {
 
                 this.setState((prevState) => ({
 
@@ -227,7 +227,6 @@ class Detail_Product extends Component {
                         DataProduct =  Product;
                 }
             })
-
     }
 
         if(DataProduct){
@@ -253,8 +252,7 @@ class Detail_Product extends Component {
     }
  
     
-    render() {      
-        let test;
+    render() {             
         let OnVideo,DataImageOfProduct,Data_Images_Of_Zoom_Thumb_Items,Big_Image_Product,SubDataImageOfProduct,Length_Big_Image ;
         let DataProduct,Check_Quantity;      
         
@@ -301,7 +299,7 @@ class Detail_Product extends Component {
 
 
             })
-            Check_Quantity = <span className={DataProduct.Quanity === 0 ? 'Out_of_stock' : 'Stock'}>{DataProduct.Quanity === 0 ? 'Tạm Hết' : 'Có Hàng'}</span>
+            Check_Quantity = <span className={DataProduct.Quanity === 0 ? 'Out_of_stock' : 'Stock'}>{DataProduct.Quantity === 0 ? 'Tạm Hết' : 'Có Hàng'}</span>
               
         }     
                 
@@ -383,7 +381,7 @@ class Detail_Product extends Component {
                                 <div className="Quantity_Button_Add">
                                     <span onClick={() =>this.handleMinusQuantity(DataProduct)}  className={`minus_quantity ${this.state.quantityMinusOrPlus ===1 ?'LimitQuantity' :''}`}>-</span>
                                     <input type="number" id="quantity" min={1} value={this.state.quantityMinusOrPlus} />
-                                    <span onClick = {() =>this.handlePlusQuantity(DataProduct)} className={`plus_quantity ${ DataProduct ? (this.state.quantityMinusOrPlus === parseInt(DataProduct.Quanity) ?'LimitQuantity' :'') :'' }`}>+</span>
+                                    <span onClick = {() =>this.handlePlusQuantity(DataProduct)} className={`plus_quantity ${ DataProduct ? (this.state.quantityMinusOrPlus === parseInt(DataProduct.Quantity) ?'LimitQuantity' :'') :'' }`}>+</span>
                                 </div> 
                                 <button onClick ={(event) =>this.handleAddProduct(event)} type="button" className="btn btn-success Add_Cart" value={DataProduct ? DataProduct.ID_Product :''}>Thêm Vào Giỏ</button>
                             </div>

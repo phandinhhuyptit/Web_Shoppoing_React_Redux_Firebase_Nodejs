@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Sign_Up.css';
 import { connect } from 'react-redux';
 import * as actionAuth from '../../Actions/AuthAction';
+import {Link} from 'react-router-dom'
 
 class SignUp extends Component {
 
@@ -211,8 +212,8 @@ class SignUp extends Component {
                     <div id="column-left" className=" col-12 col-lg-3 col-xl-3 col-md-4 col-sm-12">
                         <h3>Tài khoản</h3>
                         <div className="list-group box">
-                            <a href="https://www.playzone.vn/login" className="list-group-item dark_hover">Đăng nhập</a>
-                            <a href="https://www.playzone.vn/register" className="list-group-item dark_hover">Đăng kí</a>
+                            <Link to={'/Login'} className="list-group-item dark_hover">Đăng nhập</Link>
+                            <Link to={'SignUp'} className="list-group-item dark_hover">Đăng kí</Link>
                             <a href="https://www.playzone.vn/index.php?route=account/forgotten" className="list-group-item dark_hover">Quên Mật Khẩu</a>
                             <a href="https://www.playzone.vn/account" className="list-group-item dark_hover">Tài Khoản Của Tôi</a>
                             <a href="https://www.playzone.vn/index.php?route=account/address" className="list-group-item dark_hover">Địa chỉ</a>
